@@ -66,7 +66,7 @@ export default function Header() {
           <div className="flex-1 flex items-center gap-3">
             <button
               onClick={() => setMobileNavOpen(true)}
-              className="md:hidden p-1.5 -ml-1 text-brand-charcoal hover:text-brand-burgundy transition-colors duration-300 focus:outline-none"
+              className="md:hidden p-2.5 -ml-2 min-w-[44px] min-h-[44px] flex items-center justify-center text-brand-charcoal hover:text-brand-burgundy transition-colors duration-300 focus:outline-none"
               aria-label="Open mobile menu"
             >
               <Menu className="w-5 h-5 text-brand-gold" />
@@ -109,7 +109,7 @@ export default function Header() {
             {/* Mobile: search icon */}
             <button
               onClick={() => setSearchOpen(true)}
-              className="md:hidden p-1.5 text-brand-charcoal hover:text-brand-burgundy transition-colors duration-300 focus:outline-none"
+              className="md:hidden p-2.5 min-w-[44px] min-h-[44px] flex items-center justify-center text-brand-charcoal hover:text-brand-burgundy transition-colors duration-300 focus:outline-none"
               aria-label="Search"
             >
               <Search className="w-4.5 h-4.5 text-brand-gold" />

@@ -17,6 +17,7 @@ interface Slide {
   image: string;
   bg: string;
   dark?: boolean;
+  objectPosition?: string;
 }
 
 const HERO_SLIDES: Slide[] = [
@@ -39,6 +40,7 @@ const HERO_SLIDES: Slide[] = [
     href: "/collections/alhambra",
     image: "https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?auto=format&fit=crop&q=85&w=1400",
     bg: "#EDE8DD",
+    objectPosition: "center 30%",
   },
   {
     id: 3,
@@ -67,6 +69,7 @@ export default function Hero() {
   const [current, setCurrent] = useState(0);
   const [isHovered, setIsHovered] = useState(false);
   const timerRef = useRef<NodeJS.Timeout | null>(null);
+  const touchStartX = useRef<number>(0);
   const slide = HERO_SLIDES[current];
 
   const startTimer = () => {
@@ -77,22 +80,26 @@ export default function Hero() {
 
   useEffect(() => { startTimer(); return () => stopTimer(); }, []);
 
-  const prev = () => setCurrent((p) => (p === 0 ? HERO_SLIDES.length - 1 : p - 1));
-  const next = () => setCurrent((p) => (p + 1) % HERO_SLIDES.length);
+  const prev = () => { startTimer(); setCurrent((p) => (p === 0 ? HERO_SLIDES.length - 1 : p - 1)); };
+  const next = () => { startTimer(); setCurrent((p) => (p + 1) % HERO_SLIDES.length); };
 
-  const textColor = slide.dark ? "text-white" : "text-brand-charcoal";
-  const mutedColor = slide.dark ? "text-white/60" : "text-brand-charcoal/55";
-  const labelColor = slide.dark ? "text-white/50" : "text-brand-charcoal/45";
-  const ctaColor = slide.dark
-    ? "text-white border-white/50 hover:border-white"
-    : "text-brand-charcoal border-brand-charcoal/40 hover:border-brand-charcoal";
-  const dotBase = slide.dark ? "bg-white/30" : "bg-brand-charcoal/25";
-  const dotActive = slide.dark ? "bg-white" : "bg-brand-charcoal";
+  const handleTouchStart = (e: React.TouchEvent) => {
+    touchStartX.current = e.changedTouches[0].clientX;
+  };
+
+  const handleTouchEnd = (e: React.TouchEvent) => {
+    const diff = touchStartX.current - e.changedTouches[0].clientX;
+    if (Math.abs(diff) > 50) diff > 0 ? next() : prev();
+  };
+
+  const mutedColor = "text-white/60";
 
   return (
     <section
       onMouseEnter={() => { setIsHovered(true); stopTimer(); }}
       onMouseLeave={() => { setIsHovered(false); startTimer(); }}
+      onTouchStart={handleTouchStart}
+      onTouchEnd={handleTouchEnd}
       className="relative w-full overflow-hidden select-none"
       style={{ backgroundColor: slide.bg, height: "100svh", minHeight: 560 }}
     >
@@ -109,79 +116,75 @@ export default function Hero() {
         />
       </AnimatePresence>
 
-      {/* Split layout */}
-      <div className="relative h-full grid grid-cols-1 lg:grid-cols-[58fr_42fr]">
+      {/* Full-bleed image */}
+      <div className="absolute inset-0">
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={`img-${current}`}
+            initial={{ opacity: 0, scale: 1.04 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 1.1, ease: [0.16, 1, 0.3, 1] }}
+            className="absolute inset-0"
+          >
+            <Image
+              src={slide.image}
+              alt={slide.title.join(" ")}
+              fill
+              priority
+              placeholder="blur"
+              blurDataURL={slide.dark ? CHARCOAL_BLUR_DATA_URL : CREAM_BLUR_DATA_URL}
+              className="object-cover"
+              sizes="100vw"
+            />
+          </motion.div>
+        </AnimatePresence>
 
-        {/* ── Left: Image ── */}
-        <div className="relative h-[50%] lg:h-full overflow-hidden">
-          <AnimatePresence mode="wait">
-            <motion.div
-              key={`img-${current}`}
-              initial={{ opacity: 0, scale: 1.04 }}
-              animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 1.1, ease: [0.16, 1, 0.3, 1] }}
-              className="absolute inset-0"
+        {/* Gradient overlay for text readability */}
+        <div className="absolute inset-0 bg-gradient-to-r from-black/40 via-black/10 to-transparent" />
+
+        {/* Bottom fade into page background */}
+        <div className="absolute bottom-0 left-0 right-0 h-48 pointer-events-none" style={{ background: "linear-gradient(to bottom, transparent, #FAF8F5)" }} />
+      </div>
+
+      {/* Text overlay — center */}
+      <div className="relative h-full flex flex-col justify-center items-center text-center px-8 md:px-16 lg:px-24">
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={`text-${current}`}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -12 }}
+            transition={{ duration: 0.85, ease: [0.16, 1, 0.3, 1] }}
+            className="flex flex-col gap-4 lg:gap-5 max-w-lg"
+          >
+            {/* Label */}
+            <span className="text-[10px] uppercase tracking-[0.25em] font-medium text-white/70">
+              {slide.label}
+            </span>
+
+            {/* Heading */}
+            <h2 className="font-serif font-light leading-[1.05] text-white"
+              style={{ fontSize: "clamp(2.2rem, 4.5vw, 4rem)" }}>
+              {slide.title.map((line, i) => (
+                <React.Fragment key={i}>{line}{i < slide.title.length - 1 && <br />}</React.Fragment>
+              ))}
+            </h2>
+
+            {/* Subtitle */}
+            <p className="text-[0.8125rem] leading-relaxed font-light max-w-[26rem] text-white/70">
+              {slide.subtitle}
+            </p>
+
+            {/* CTA */}
+            <Link
+              href={slide.href}
+              className="self-center mt-2 text-[0.6875rem] uppercase tracking-[0.22em] font-medium border-b border-white/50 pb-1 text-white hover:border-white transition-all duration-300 focus:outline-none"
             >
-              <Image
-                src={slide.image}
-                alt={slide.title.join(" ")}
-                fill
-                priority
-                placeholder="blur"
-                blurDataURL={slide.dark ? CHARCOAL_BLUR_DATA_URL : CREAM_BLUR_DATA_URL}
-                className="object-cover object-center"
-                sizes="(max-width: 1024px) 100vw, 58vw"
-              />
-            </motion.div>
-          </AnimatePresence>
-
-          {/* Soft right-edge fade into background color on desktop */}
-          <div
-            className="absolute inset-y-0 right-0 w-24 hidden lg:block pointer-events-none"
-            style={{ background: `linear-gradient(to right, transparent, ${slide.bg})` }}
-          />
-        </div>
-
-        {/* ── Right: Text ── */}
-        <div className="flex flex-col justify-center px-8 md:px-12 lg:px-14 xl:px-20 py-10 lg:py-0 h-[50%] lg:h-full">
-          <AnimatePresence mode="wait">
-            <motion.div
-              key={`text-${current}`}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -12 }}
-              transition={{ duration: 0.85, ease: [0.16, 1, 0.3, 1] }}
-              className="flex flex-col gap-4 lg:gap-5 max-w-sm"
-            >
-              {/* Label */}
-              <span className={`text-[10px] uppercase tracking-[0.25em] font-medium ${labelColor}`}>
-                {slide.label}
-              </span>
-
-              {/* Heading */}
-              <h2 className={`font-serif font-light leading-[1.05] ${textColor}`}
-                style={{ fontSize: "clamp(2rem, 3.5vw, 3.25rem)" }}>
-                {slide.title.map((line, i) => (
-                  <React.Fragment key={i}>{line}{i < slide.title.length - 1 && <br />}</React.Fragment>
-                ))}
-              </h2>
-
-              {/* Subtitle */}
-              <p className={`text-[0.8125rem] leading-relaxed font-light max-w-[22rem] ${mutedColor}`}>
-                {slide.subtitle}
-              </p>
-
-              {/* CTA */}
-              <Link
-                href={slide.href}
-                className={`self-start mt-2 text-[0.6875rem] uppercase tracking-[0.22em] font-medium border-b pb-1 transition-all duration-300 focus:outline-none ${ctaColor}`}
-              >
-                {slide.cta}
-              </Link>
-            </motion.div>
-          </AnimatePresence>
-        </div>
+              {slide.cta}
+            </Link>
+          </motion.div>
+        </AnimatePresence>
       </div>
 
       {/* Prev / Next — desktop only, on hover */}
@@ -229,7 +232,7 @@ export default function Hero() {
             key={i}
             onClick={() => setCurrent(i)}
             className={`h-[2px] rounded-full transition-all duration-500 focus:outline-none ${
-              i === current ? `w-6 ${dotActive}` : `w-2.5 ${dotBase} hover:opacity-70`
+              i === current ? "w-6 bg-white" : "w-2.5 bg-white/30 hover:opacity-70"
             }`}
             aria-label={`Slide ${i + 1}`}
           />

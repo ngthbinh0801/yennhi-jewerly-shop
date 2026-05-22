@@ -59,6 +59,8 @@ export default function IconicCollections() {
 
       {/* Carousel */}
       <div className="relative">
+        {/* Right scroll hint fade — mobile only */}
+        <div className="absolute right-0 top-0 bottom-2 w-16 bg-gradient-to-l from-brand-cream to-transparent pointer-events-none md:hidden z-10" />
         {/* Left arrow */}
         {canLeft && (
           <button

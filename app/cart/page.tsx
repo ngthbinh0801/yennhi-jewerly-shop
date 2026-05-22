@@ -134,7 +134,7 @@ export default function CartPage() {
                             <button
                               onClick={() => updateQuantity(item.slug, item.quantity - 1)}
                               disabled={item.quantity <= 1}
-                              className="w-8 h-8 flex items-center justify-center text-brand-charcoal hover:text-brand-burgundy disabled:opacity-30 transition-colors duration-300"
+                              className="w-11 h-11 flex items-center justify-center text-brand-charcoal hover:text-brand-burgundy disabled:opacity-30 transition-colors duration-300"
                               aria-label="Decrease quantity"
                             >
                               <Minus size={12} />
@@ -144,7 +144,7 @@ export default function CartPage() {
                             </span>
                             <button
                               onClick={() => updateQuantity(item.slug, item.quantity + 1)}
-                              className="w-8 h-8 flex items-center justify-center text-brand-charcoal hover:text-brand-burgundy transition-colors duration-300"
+                              className="w-11 h-11 flex items-center justify-center text-brand-charcoal hover:text-brand-burgundy transition-colors duration-300"
                               aria-label="Increase quantity"
                             >
                               <Plus size={12} />

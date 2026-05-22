@@ -78,7 +78,7 @@ export default function Services() {
             >
               <Link
                 href={s.href}
-                className="group flex flex-col items-center text-center bg-brand-white border border-brand-gold/10 p-8 shadow-sm hover:shadow-lg hover:border-brand-gold/25 transition-all duration-500 h-full min-h-[320px] justify-between"
+                className="group flex flex-col items-center text-center bg-brand-white border border-brand-gold/10 p-5 sm:p-8 shadow-sm hover:shadow-lg hover:border-brand-gold/25 transition-all duration-500 h-full sm:min-h-[320px] justify-between"
               >
                 {/* Icon */}
                 <div className="text-brand-burgundy group-hover:text-brand-gold transition-colors duration-500 p-4 bg-brand-cream/60 group-hover:bg-brand-cream rounded-full transition-all duration-500 mb-2">
