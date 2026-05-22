@@ -1,0 +1,215 @@
+@import "tailwindcss";
+
+@theme {
+  --color-brand-white: #FFFFFF;
+  --color-brand-cream: #FAF8F5;
+  --color-brand-charcoal: #1A1A1A;
+  --color-brand-burgundy: #722F37;
+  --color-brand-gold: #C9A961;
+  --color-brand-gray: #8B8B8B;
+
+  --font-serif: var(--font-cormorant), "Playfair Display", Georgia, serif;
+  --font-sans: var(--font-inter), "Helvetica Neue", Arial, sans-serif;
+
+  --breakpoint-xs: 375px;
+  --breakpoint-md: 768px;
+  --breakpoint-lg: 1024px;
+  --breakpoint-xl: 1440px;
+}
+
+/* ─── Reset ───────────────────────────────────────────────────── */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  background-color: var(--color-brand-cream);
+}
+
+body {
+  background-color: var(--color-brand-cream);
+  color: var(--color-brand-charcoal);
+  font-family: var(--font-sans), "Helvetica Neue", Arial, sans-serif;
+  font-size: 14px;
+  line-height: 1.75;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ─── Selection ──────────────────────────────────────────────── */
+::selection {
+  background-color: var(--color-brand-burgundy);
+  color: var(--color-brand-cream);
+}
+::-moz-selection {
+  background-color: var(--color-brand-burgundy);
+  color: var(--color-brand-cream);
+}
+
+/* ─── Scrollbar ──────────────────────────────────────────────── */
+@media (min-width: 768px) {
+  ::-webkit-scrollbar { width: 5px; }
+  ::-webkit-scrollbar-track { background: var(--color-brand-cream); }
+  ::-webkit-scrollbar-thumb {
+    background: var(--color-brand-gold);
+    border-radius: 4px;
+  }
+  ::-webkit-scrollbar-thumb:hover { background: var(--color-brand-burgundy); }
+}
+
+/* ─── Typography ─────────────────────────────────────────────── */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-serif), "Playfair Display", serif;
+  font-weight: 300;
+  line-height: 1.15;
+  color: var(--color-brand-charcoal);
+  letter-spacing: 0.04em;
+}
+
+h1 { letter-spacing: 0.10em; }
+h2 { letter-spacing: 0.06em; }
+h3 { letter-spacing: 0.04em; }
+
+/* ─── Navigation ─────────────────────────────────────────────── */
+.nav-link {
+  font-family: var(--font-sans), sans-serif;
+  font-size: 0.6875rem;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  font-weight: 500;
+  color: var(--color-brand-charcoal);
+  transition: color 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: -3px;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background-color: var(--color-brand-gold);
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.nav-link:hover { color: var(--color-brand-burgundy); }
+.nav-link:hover::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+/* ─── Decorative Elements ────────────────────────────────────── */
+.gold-divider {
+  width: 36px;
+  height: 1px;
+  background-color: var(--color-brand-gold);
+  margin: 1.25rem auto;
+  flex-shrink: 0;
+}
+
+/* ─── Layout Containers ──────────────────────────────────────── */
+.page-content {
+  width: 100%;
+  max-width: 1280px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: clamp(1.25rem, 4vw, 4rem);
+  padding-right: clamp(1.25rem, 4vw, 4rem);
+}
+
+.section-padding {
+  padding-top: clamp(4rem, 8vw, 7rem);
+  padding-bottom: clamp(4rem, 8vw, 7rem);
+}
+
+/* ─── Section Headers ────────────────────────────────────────── */
+.section-label {
+  font-family: var(--font-sans), sans-serif;
+  font-size: 0.625rem;
+  text-transform: uppercase;
+  letter-spacing: 0.22em;
+  font-weight: 600;
+  color: var(--color-brand-burgundy);
+  display: block;
+}
+
+.section-title {
+  font-family: var(--font-serif), serif;
+  font-weight: 300;
+  color: var(--color-brand-charcoal);
+}
+
+/* ─── Luxury Button System ───────────────────────────────────── */
+.btn-luxury {
+  font-family: var(--font-sans), sans-serif;
+  font-size: 0.6875rem;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  font-weight: 500;
+  padding: 0.875rem 2.25rem;
+  border: 1px solid var(--color-brand-charcoal);
+  background-color: transparent;
+  color: var(--color-brand-charcoal);
+  transition: color 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+              background-color 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.btn-luxury:hover {
+  background-color: var(--color-brand-charcoal);
+  color: var(--color-brand-white);
+}
+
+.btn-luxury-gold {
+  border-color: var(--color-brand-gold);
+  color: var(--color-brand-gold);
+}
+.btn-luxury-gold:hover {
+  background-color: var(--color-brand-gold);
+  color: var(--color-brand-white);
+}
+
+.btn-luxury-burgundy {
+  border-color: var(--color-brand-burgundy);
+  color: var(--color-brand-burgundy);
+}
+.btn-luxury-burgundy:hover {
+  background-color: var(--color-brand-burgundy);
+  color: var(--color-brand-white);
+}
+
+/* ─── Utilities ──────────────────────────────────────────────── */
+.font-serif {
+  font-family: var(--font-serif), 'Cormorant Garamond', 'Playfair Display', serif;
+  font-weight: 300;
+}
+
+section {
+  width: 100%;
+  position: relative;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+.scrollbar-hide::-webkit-scrollbar { display: none; }
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
