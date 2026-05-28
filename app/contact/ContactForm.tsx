@@ -274,17 +274,17 @@ export default function ContactForm() {
                   <span>+33 1 55 04 11 11</span>
                 </a>
                 <a
-                  href="mailto:concierge@yennhi.com"
+                  href="mailto:rirao_support@gmail.com"
                   className="flex items-center gap-3 text-brand-charcoal hover:text-brand-burgundy transition-all duration-300 font-semibold"
                 >
                   <Mail size={14} className="text-brand-burgundy shrink-0" />
-                  <span>concierge@yennhi.com</span>
+                  <span>rirao_support@gmail.com</span>
                 </a>
                 <div className="flex items-start gap-3 text-brand-gray">
                   <Clock size={14} className="text-brand-burgundy shrink-0 mt-0.5" />
                   <div className="flex flex-col gap-2">
-                    <span>Thứ Hai - Thứ Bảy: 10:00 sáng - 7:00 tối</span>
-                    <span>Chủ Nhật: Đóng cửa (Giờ Paris)</span>
+                    <span>Thứ Hai - Thứ Bảy: 9:00 sáng - 8:00 tối</span>
+                    <span>Chủ Nhật: 10:00 sáng - 6:00 tối (GMT+7)</span>
                   </div>
                 </div>
               </div>

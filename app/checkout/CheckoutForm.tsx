@@ -176,7 +176,6 @@ export default function CheckoutForm() {
                   name="fullName"
                   value={form.fullName}
                   onChange={handleChange}
-                  placeholder="Nguyễn Yến Nhi"
                   required
                   className={inputClass}
                 />
@@ -190,7 +189,6 @@ export default function CheckoutForm() {
                     name="phone"
                     value={form.phone}
                     onChange={handleChange}
-                    placeholder="0912 345 678"
                     required
                     className={inputClass}
                   />
@@ -202,7 +200,6 @@ export default function CheckoutForm() {
                     name="email"
                     value={form.email}
                     onChange={handleChange}
-                    placeholder="yennhi@gmail.com"
                     className={inputClass}
                   />
                 </div>
@@ -215,7 +212,6 @@ export default function CheckoutForm() {
                   name="address"
                   value={form.address}
                   onChange={handleChange}
-                  placeholder="22 Hàng Trống, Quận Hoàn Kiếm, Hà Nội"
                   required
                   className={inputClass}
                 />
@@ -321,7 +317,6 @@ export default function CheckoutForm() {
                             name="cardNumber"
                             value={form.cardNumber}
                             onChange={handleChange}
-                            placeholder="4242 4242 4242 4242"
                             className={inputClass + " pl-10"}
                           />
                           <CreditCard
@@ -337,7 +332,6 @@ export default function CheckoutForm() {
                           name="cardName"
                           value={form.cardName}
                           onChange={handleChange}
-                          placeholder="NGUYEN YEN NHI"
                           className={inputClass}
                         />
                       </div>
