@@ -1,11 +1,9 @@
 "use client";
 
 import React, { useState, useMemo, useEffect } from "react";
-import Image from "next/image";
 import { Search, MapPin, Phone, Clock, ArrowRight, Check, X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { BOUTIQUES_DATA, Boutique } from "@/lib/mockData";
-import { CREAM_BLUR_DATA_URL } from "@/lib/constants";
 import { useSearchParams } from "next/navigation";
 
 const REGIONS = ["Tất cả", "Miền Bắc", "Miền Trung", "Miền Nam"];
@@ -194,25 +192,15 @@ export default function BoutiquesClient() {
         )}
       </AnimatePresence>
 
-      {/* Hero short Section (40vh) */}
-      <section className="relative h-[35vh] w-full flex items-center justify-center overflow-hidden bg-brand-charcoal">
-        <Image
-          src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&q=80&w=1200"
-          alt="Flagship Boutique"
-          fill
-          priority
-          sizes="100vw"
-          className="object-cover opacity-35 object-center"
-          placeholder="blur"
-          blurDataURL={CREAM_BLUR_DATA_URL}
-        />
-        <div className="relative z-10 text-center px-4">
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-light text-brand-white font-serif tracking-widest leading-none mb-3">
+      {/* Hero short Section */}
+      <section className="w-full flex items-center justify-center bg-brand-white py-16 md:py-20">
+        <div className="text-center px-4">
+          <h1 className="text-4xl md:text-5xl lg:text-6xl font-light text-brand-charcoal font-serif tracking-widest leading-none mb-3">
             Tìm Cửa Hàng
           </h1>
-          <div className="gold-divider my-3 bg-brand-gold w-12" />
-          <p className="text-brand-cream/80 text-[10px] md:text-xs font-sans tracking-[0.2em] uppercase">
-            Khám phá hệ thống cửa hàng Rì Rào Store tại Việt Nam — trải nghiệm tư vấn riêng biệt
+          <div className="gold-divider my-3 bg-brand-gold w-12 mx-auto" />
+          <p className="text-brand-charcoal/50 text-[10px] md:text-xs font-sans tracking-[0.2em] uppercase">
+            Ghé thăm cửa hàng Rì Rào Store tại Phú Quốc — trải nghiệm tư vấn riêng biệt
           </p>
         </div>
       </section>
