@@ -49,12 +49,8 @@ export default async function CollectionDetailPage({ params }: PageProps) {
       <CollectionHero
         heroSrc={heroSrc}
         name={collection.name}
-        categoryLabel={categoryLabel}
-        tagline={collection.tagline}
         heroBg={heroBg}
         isDark={isDark}
-        heroText={heroText}
-        heroMuted={heroMuted}
         blurDataURL={isDark ? CHARCOAL_BLUR_DATA_URL : CREAM_BLUR_DATA_URL}
       />
 
@@ -102,6 +98,26 @@ export default async function CollectionDetailPage({ params }: PageProps) {
               />
             </div>
           </div>
+        </div>
+      </section>
+
+      {/* ── COLLECTION TITLE ─────────────────────────────────── */}
+      <section className="w-full bg-brand-cream">
+        <div className="page-content pt-20 pb-12 md:pt-24 md:pb-14 flex flex-col items-center text-center">
+          <span className="text-[9px] uppercase tracking-[0.45em] text-brand-gold font-semibold mb-5">
+            {categoryLabel} · Thủ Công Mỹ Nghệ
+          </span>
+          <h1 className="font-serif text-[2.75rem] md:text-[4.5rem] lg:text-[5.5rem] font-light text-brand-charcoal tracking-[0.04em] leading-none mb-5">
+            {collection.name}
+          </h1>
+          <div className="flex items-center justify-center gap-2.5 mb-5">
+            <div className="w-8 h-px bg-brand-gold/70" />
+            <div className="w-1 h-1 rounded-full bg-brand-gold/50" />
+            <div className="w-8 h-px bg-brand-gold/70" />
+          </div>
+          <p className="text-[0.8125rem] font-light tracking-[0.1em] text-brand-charcoal/50 max-w-xs mx-auto">
+            {collection.tagline}
+          </p>
         </div>
       </section>
 
