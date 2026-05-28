@@ -15,7 +15,7 @@ import MobileNav from "./MobileNav";
 const NAV_ITEMS = [
   { key: "HIGH JEWELRY", label: "TRANG SỨC CAO CẤP" },
   { key: "JEWELRY", label: "TRANG SỨC" },
-  { key: "WATCHES", label: "ĐỒNG HỒ" },
+  { key: "HANDBAGS", label: "TÚI XÁCH" },
   { key: "BRIDAL", label: "BỘ SƯU TẬP CƯỚI" },
   { key: "FRAGRANCE", label: "NƯỚC HOA" },
   { key: "THE ATELIER", label: "XƯỞNG CHẾ TÁC" },
@@ -112,24 +112,22 @@ export default function Header() {
 
           {/* Center ─ flex-shrink-0 so logo never compresses */}
           <div className="flex-shrink-0 flex flex-col items-center text-center px-4">
-            <Link
-              href="/"
-              className={`font-serif italic font-light tracking-[0.12em] text-brand-charcoal block transition-all duration-500 ease-in-out hover:text-brand-burgundy whitespace-nowrap ${isScrolled ? "text-xl md:text-2xl" : "text-2xl md:text-[3rem]"
-                }`}
-            >
-              {BRAND_INFO.name}
-            </Link>
             <AnimatePresence>
-              {!isScrolled && (
-                <motion.span
-                  initial={{ opacity: 0, height: 0 }}
-                  animate={{ opacity: 1, height: "auto" }}
-                  exit={{ opacity: 0, height: 0 }}
-                  transition={{ duration: 0.35 }}
-                  className="text-[7px] uppercase tracking-[0.35em] text-brand-gold font-light mt-0.5 block overflow-hidden"
+              {(!isHome || isScrolled) && (
+                <motion.div
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  transition={{ duration: 0.4 }}
+                  className="flex flex-col items-center"
                 >
-                  Place Vendôme Paris
-                </motion.span>
+                  <Link
+                    href="/"
+                    className="font-serif italic font-light tracking-[0.12em] text-brand-charcoal text-xl md:text-2xl block transition-all duration-500 ease-in-out hover:text-brand-burgundy whitespace-nowrap"
+                  >
+                    {BRAND_INFO.name}
+                  </Link>
+                </motion.div>
               )}
             </AnimatePresence>
           </div>
@@ -245,19 +243,34 @@ export default function Header() {
 
             return (
               <motion.div
-                initial={{ opacity: 0, y: -10 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -10 }}
+                initial={{ opacity: 0, y: -10, x: "-50%" }}
+                animate={{ opacity: 1, y: 0, x: "-50%" }}
+                exit={{ opacity: 0, y: -10, x: "-50%" }}
                 transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
                 onMouseEnter={handleMouseEnterHoverCard}
                 onMouseLeave={handleMouseLeaveHoverCard}
-                className={`absolute left-1/2 -translate-x-1/2 w-[92%] max-w-[1200px] z-30 transition-all duration-500 overflow-hidden shadow-2xl rounded-2xl border top-full mt-2 lg:mt-3 ${
+                style={{
+                  position: "absolute",
+                  left: "50vw",
+                  width: "min(92vw, 1280px)",
+                  zIndex: 30,
+                  overflow: "hidden",
+                  boxShadow: "0 25px 50px -12px rgba(0,0,0,0.25)",
+                  borderRadius: "1rem",
+                  border: "1px solid",
+                  top: "100%",
+                  marginTop: "0.5rem",
+                }}
+                className={`transition-all duration-500 ${
                   isScrolled
                     ? "bg-brand-white/95 backdrop-blur-lg border-brand-gold/15"
                     : "bg-brand-white/20 backdrop-blur-xl border-brand-white/20"
                 }`}
               >
-                <div className="grid grid-cols-12 gap-8 py-8 pl-16 md:pl-24 lg:pl-32 pr-10 lg:pr-16 items-center">
+                <div
+                  className="grid grid-cols-12 items-center"
+                  style={{ gap: "2rem", padding: "2rem clamp(1.25rem, 4vw, 4rem)" }}
+                >
                   {/* Left info column */}
                   <div className="col-span-7 flex flex-col pr-6">
                     <span className="text-[9px] uppercase tracking-[0.35em] text-brand-gold font-semibold mb-3">

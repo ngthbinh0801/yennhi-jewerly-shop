@@ -2,7 +2,6 @@
 
 import { useState } from "react";
 import Image from "next/image";
-import Link from "next/link";
 import { Heart, ShoppingBag, Check } from "lucide-react";
 import { motion } from "framer-motion";
 import { Product } from "@/lib/mockData";
@@ -49,7 +48,7 @@ export default function CollectionProducts({ products }: CollectionProductsProps
             onMouseLeave={() => setHovered(null)}
           >
             {/* Image */}
-            <Link href={`/products/${prod.slug}`} className="relative block aspect-[4/5] overflow-hidden bg-[#f5f0ea]">
+            <div className="relative block aspect-[4/5] overflow-hidden bg-[#f5f0ea]">
               <Image
                 src={img}
                 alt={prod.name}
@@ -81,18 +80,16 @@ export default function CollectionProducts({ products }: CollectionProductsProps
                   {isAdded ? <><Check size={13} />Đã thêm</> : <><ShoppingBag size={13} />Thêm vào giỏ</>}
                 </button>
               </div>
-            </Link>
+            </div>
 
             {/* Info */}
             <div className="pt-4 flex flex-col gap-1">
               <span className="text-[9px] uppercase tracking-[0.35em] text-brand-gold font-semibold">
                 {prod.material.split(",")[0].trim()}
               </span>
-              <Link href={`/products/${prod.slug}`}>
-                <h3 className="font-serif text-[1.0625rem] font-light text-brand-charcoal group-hover:text-brand-burgundy transition-colors duration-300 leading-snug">
-                  {prod.name}
-                </h3>
-              </Link>
+              <h3 className="font-serif text-[1.0625rem] font-light text-brand-charcoal leading-snug">
+                {prod.name}
+              </h3>
               <span className="text-[0.875rem] font-light text-brand-charcoal/70 mt-0.5">
                 {prod.price}
               </span>

@@ -15,7 +15,7 @@ export interface Collection {
   image: string;
   heroImage?: string;
   itemCount: number;
-  category: "necklaces" | "bracelets" | "earrings" | "rings" | "watches";
+  category: "necklaces" | "bracelets" | "earrings" | "rings" | "handbags" | "mirrors";
   theme: CollectionTheme;
 }
 
@@ -84,7 +84,7 @@ export const COLLECTIONS_DATA: Collection[] = [
     image: SITE_IMAGES.collections.tui_xach_editorial,
     heroImage: SITE_IMAGES.collections.tui_xach,
     itemCount: 4,
-    category: "necklaces",
+    category: "handbags",
     theme: { heroBg: "#12282E", heroText: "#A8D4D8", heroMuted: "rgba(168,212,216,0.65)", dark: true },
   },
   {
@@ -95,7 +95,7 @@ export const COLLECTIONS_DATA: Collection[] = [
     image: SITE_IMAGES.collections.guong_editorial,
     heroImage: SITE_IMAGES.collections.guong,
     itemCount: 5,
-    category: "rings",
+    category: "mirrors",
     theme: { heroBg: "#12282E", heroText: "#A8D4D8", heroMuted: "rgba(168,212,216,0.65)", dark: true },
   },
   {

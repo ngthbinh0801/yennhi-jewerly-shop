@@ -67,8 +67,8 @@ export const SITE_IMAGES = {
 
     jewelryFeatured1: "https://images.unsplash.com/photo-1543294001-f7cd5d7fb516?auto=format&fit=crop&q=80&w=800",
     jewelryFeatured2: "/images/collections/logo/frivole.jpg",
-    watchesFeatured1: "https://images.unsplash.com/photo-1596944924616-7b38e7cfac36?auto=format&fit=crop&q=80&w=800",
-    watchesFeatured2: "https://images.unsplash.com/photo-1526304640581-d334cdbbf45e?auto=format&fit=crop&q=80&w=800",
+    handbagsFeatured1: "/images/collections/gio_vo_so/tui_xach.jpg",
+    handbagsFeatured2: "/images/collections/gio_vo_so/tui_xach_editorial.jpg",
 
     bridalFeatured1: "https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&q=80&w=800",
     bridalFeatured2: "https://images.unsplash.com/photo-1519046904884-53103b34b206?auto=format&fit=crop&q=80&w=800",

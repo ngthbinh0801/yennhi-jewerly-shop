@@ -83,14 +83,6 @@ export default function ContactForm() {
             Liên Hệ Chúng Tôi
           </motion.h1>
           <div className="gold-divider my-3 bg-brand-gold w-12" />
-          <motion.p
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.8, delay: 0.3 }}
-            className="text-brand-cream/80 text-[10px] md:text-xs font-sans tracking-[0.2em] uppercase"
-          >
-            Gửi yêu cầu tới đội ngũ tư vấn viên Place Vendôme tận tâm của chúng tôi
-          </motion.p>
         </div>
       </section>
 
@@ -98,8 +90,8 @@ export default function ContactForm() {
       <section className="max-w-[1440px] w-full mx-auto px-4 md:px-8 lg:px-12 py-24 bg-brand-cream">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 md:gap-16 items-start">
           
-          {/* LEFT SECTION (7 cols - Form) */}
-          <div className="lg:col-span-7 bg-brand-white border border-brand-charcoal/5 p-6 md:p-10 shadow-lg relative">
+          {/* LEFT SECTION (6 cols - Form) */}
+          <div className="lg:col-span-6 bg-brand-white border border-brand-charcoal/5 shadow-lg relative" style={{ padding: '3rem' }}>
             <span className="text-[10px] uppercase tracking-[0.25em] text-brand-gold font-bold block mb-1">
               Biểu Mẫu Đăng Ký Yêu Cầu
             </span>
@@ -156,7 +148,7 @@ export default function ContactForm() {
                       type="text"
                       name="name"
                       required
-                      placeholder="Ví dụ: Nguyễn Yến Nhi"
+                      placeholder=""
                       value={formData.name}
                       onChange={handleChange}
                       disabled={formStatus === "submitting"}
@@ -174,7 +166,7 @@ export default function ContactForm() {
                         type="email"
                         name="email"
                         required
-                        placeholder="Ví dụ: yennhi@gmail.com"
+                        placeholder=""
                         value={formData.email}
                         onChange={handleChange}
                         disabled={formStatus === "submitting"}
@@ -188,7 +180,7 @@ export default function ContactForm() {
                       <input
                         type="tel"
                         name="phone"
-                        placeholder="Ví dụ: 0912 345 678"
+                        placeholder=""
                         value={formData.phone}
                         onChange={handleChange}
                         disabled={formStatus === "submitting"}
@@ -228,7 +220,7 @@ export default function ContactForm() {
                       name="message"
                       required
                       rows={5}
-                      placeholder="Vui lòng mô tả mong muốn của bạn, kiểu dáng đính đá quý mong muốn hoặc mã số sản phẩm tham chiếu..."
+                      placeholder=""
                       value={formData.message}
                       onChange={handleChange}
                       disabled={formStatus === "submitting"}
@@ -258,22 +250,22 @@ export default function ContactForm() {
             </AnimatePresence>
           </div>
 
-          {/* RIGHT SECTION (5 cols - Contact Details & Card) */}
-          <div className="lg:col-span-5 flex flex-col gap-8 lg:sticky lg:top-32">
+          {/* RIGHT SECTION (6 cols - Contact Details & Card) */}
+          <div className="lg:col-span-6 flex flex-col gap-8 lg:sticky lg:top-32">
             
             {/* Customer Care Hotline Box */}
-            <div className="bg-brand-white border border-brand-charcoal/5 p-6 md:p-8 shadow-md">
-              <span className="text-[9px] uppercase tracking-[0.25em] text-brand-gold font-bold block mb-1">
+            <div className="bg-brand-white border border-brand-charcoal/5 shadow-md" style={{ padding: '3rem' }}>
+              <span className="text-[9px] uppercase tracking-[0.25em] text-brand-gold font-bold block mb-3">
                 Quan Hệ Khách Hàng
               </span>
-              <h3 className="text-xl font-light font-serif text-brand-charcoal mb-4">
+              <h3 className="text-xl font-light font-serif text-brand-charcoal mb-5">
                 Tổng Đài Concierge Điện Thoại Rì Rào Store
               </h3>
-              <p className="text-brand-gray text-xs leading-relaxed mb-6 font-light">
+              <p className="text-brand-gray text-xs leading-[2] mb-8 font-light">
                 Đội ngũ nhân viên quan hệ khách hàng cao cấp của chúng tôi rất hân hạnh được hỗ trợ cá nhân hóa liên quan đến đơn đặt hàng, tùy chỉnh kích thước và điều phối cửa hàng.
               </p>
-              
-              <div className="flex flex-col gap-3 font-sans text-xs">
+
+              <div className="flex flex-col gap-5 font-sans text-xs">
                 <a
                   href="tel:+33155041111"
                   className="flex items-center gap-3 text-brand-charcoal hover:text-brand-burgundy transition-all duration-300 font-semibold"
@@ -290,7 +282,7 @@ export default function ContactForm() {
                 </a>
                 <div className="flex items-start gap-3 text-brand-gray">
                   <Clock size={14} className="text-brand-burgundy shrink-0 mt-0.5" />
-                  <div className="flex flex-col gap-0.5">
+                  <div className="flex flex-col gap-2">
                     <span>Thứ Hai - Thứ Bảy: 10:00 sáng - 7:00 tối</span>
                     <span>Chủ Nhật: Đóng cửa (Giờ Paris)</span>
                   </div>
@@ -299,19 +291,13 @@ export default function ContactForm() {
             </div>
 
             {/* Boutique Appointment Quick link Card */}
-            <div className="bg-brand-white border border-brand-charcoal/5 p-6 md:p-8 shadow-md flex flex-col justify-between">
-              <div>
-                <span className="text-[9px] uppercase tracking-[0.25em] text-brand-gold font-bold block mb-1">
-                  Giám Tuyển Riêng Biệt
-                </span>
-                <h3 className="text-xl font-light font-serif text-brand-charcoal mb-3">
-                  Đặt Lịch Hẹn Tư Vấn Cửa Hàng
-                </h3>
-                <p className="text-brand-gray text-xs leading-relaxed mb-6 font-light">
-                  Để trải nghiệm trực tiếp các tạo tác, vui lòng đặt trước phòng chờ xem riêng tư tại một trong các cửa hàng flagship toàn cầu của chúng tôi ở Paris, New York, London hoặc Tokyo.
-                </p>
-              </div>
-
+            <div className="bg-brand-white border border-brand-charcoal/5 shadow-md flex flex-col gap-5" style={{ padding: '3rem' }}>
+              <h3 className="text-xl font-light font-serif text-brand-charcoal">
+                Đặt Lịch Hẹn Tư Vấn Cửa Hàng
+              </h3>
+              <p className="text-brand-gray text-xs leading-[2] font-light">
+                Để trải nghiệm sớm các sản phẩm, các tình yêu vui lòng đặt trước lịch hẹn nhé!
+              </p>
               <Link
                 href="/boutiques"
                 className="py-3 px-6 border border-brand-charcoal/20 text-brand-charcoal hover:border-brand-burgundy hover:text-brand-burgundy text-[10px] font-semibold uppercase tracking-widest flex items-center justify-center gap-1.5 transition-all duration-300 self-stretch text-center"
@@ -321,13 +307,11 @@ export default function ContactForm() {
             </div>
 
             {/* Social Channels directory */}
-            <div className="bg-brand-white border border-brand-charcoal/5 p-6 shadow-md flex items-center justify-between">
-              <span className="text-[9px] uppercase tracking-widest text-brand-gray font-bold">Mạng xã hội:</span>
-              <div className="flex gap-4 text-xs font-semibold uppercase tracking-widest text-brand-charcoal font-sans">
+            <div className="bg-brand-white border border-brand-charcoal/5 shadow-md flex flex-col gap-5" style={{ padding: '3rem' }}>
+              <span className="text-[9px] uppercase tracking-widest text-brand-gray font-bold">Mạng xã hội</span>
+              <div className="flex flex-col gap-4 text-xs font-semibold uppercase tracking-widest text-brand-charcoal font-sans">
                 <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="hover:text-brand-burgundy transition-all">Instagram</a>
-                <span className="text-brand-gold/40">|</span>
                 <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" className="hover:text-brand-burgundy transition-all">YouTube</a>
-                <span className="text-brand-gold/40">|</span>
                 <a href="https://pinterest.com" target="_blank" rel="noopener noreferrer" className="hover:text-brand-burgundy transition-all">Pinterest</a>
               </div>
             </div>

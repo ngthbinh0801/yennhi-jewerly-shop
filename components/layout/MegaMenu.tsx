@@ -84,33 +84,32 @@ const MENU_CONTENT: Record<string, MegaMenuContent> = {
     ctaText: "Khám phá Hoa Khơi Biển",
     ctaHref: "/collections/frivole"
   },
-  "WATCHES": {
-    featuredImage1: SITE_IMAGES.megaMenu.watchesFeatured1,
-    featuredTitle1: "Mặt số Thơ mộng (Nhịp Điệu Thủy Triều)",
-    featuredSubtitle1: "Câu chuyện thời gian được kể qua những mặt số cổ tích cơ khí tinh xảo.",
+  "HANDBAGS": {
+    featuredImage1: SITE_IMAGES.megaMenu.handbagsFeatured1,
+    featuredTitle1: "Giỏ Vỏ Sò",
+    featuredSubtitle1: "Giỏ cói dệt tay khảm sò biển — mang hương vị biển khơi theo từng bước chân.",
     links: [
       {
-        category: "Các Dòng Đồng Hồ",
+        category: "Dòng Túi & Giỏ",
         items: [
-          { label: "Nhịp Điệu Thủy Triều®", href: "/collections/poetic-complications" },
-          { label: "Đồng hồ Charms", href: "/collections?category=watches" },
-          { label: "Đồng hồ Xà Cừ Bốn Lá", href: "/collections?category=watches" },
-          { label: "Sweet Xà Cừ Bốn Lá", href: "/collections?category=watches" }
+          { label: "Giỏ Cói Khảm Sò", href: "/collections/gio_vo_so" },
+          { label: "Túi Đeo Chéo Vỏ Sò", href: "/collections/gio_vo_so" },
+          { label: "Giỏ Tròn Sao Biển", href: "/collections/gio_vo_so" },
         ]
       },
       {
-        category: "Nghệ Thuật Chế Tác",
+        category: "Phân Loại",
         items: [
-          { label: "Nghệ thuật tráng men thủ công", href: "/the-maison" },
-          { label: "Kỹ thuật vẽ tiểu họa", href: "/the-maison" },
-          { label: "Đỉnh cao cơ khí chế tác", href: "/the-maison" }
+          { label: "Tất cả Túi Xách", href: "/collections?category=handbags" },
+          { label: "Túi đi biển", href: "/collections/gio_vo_so" },
+          { label: "Phụ kiện tặng quà", href: "/collections/gio_vo_so" },
         ]
       }
     ],
-    featuredImage2: SITE_IMAGES.megaMenu.watchesFeatured2,
-    featuredTitle2: "Đồng hồ Lady Yen",
-    ctaText: "Khám phá Thời gian Thơ mộng",
-    ctaHref: "/collections/poetic-complications"
+    featuredImage2: SITE_IMAGES.megaMenu.handbagsFeatured2,
+    featuredTitle2: "Bộ Sưu Tập Giỏ Vỏ Sò",
+    ctaText: "Khám phá Túi Xách",
+    ctaHref: "/collections/gio_vo_so"
   },
   "BRIDAL": {
     featuredImage1: SITE_IMAGES.megaMenu.bridalFeatured1,

@@ -81,20 +81,17 @@ export default function CartPage() {
                       className="flex gap-6 py-8 border-b border-brand-charcoal/10"
                     >
                       {/* Product Image */}
-                      <Link
-                        href={`/products/${item.slug}`}
-                        className="relative w-28 h-28 md:w-36 md:h-36 shrink-0 bg-brand-white border border-brand-charcoal/5 overflow-hidden group"
-                      >
+                      <div className="relative w-28 h-28 md:w-36 md:h-36 shrink-0 bg-brand-white border border-brand-charcoal/5 overflow-hidden">
                         <Image
                           src={item.image}
                           alt={item.name}
                           fill
                           sizes="144px"
-                          className="object-cover transition-transform duration-700 group-hover:scale-105"
+                          className="object-cover"
                           placeholder="blur"
                           blurDataURL={CREAM_BLUR_DATA_URL}
                         />
-                      </Link>
+                      </div>
 
                       {/* Info + Controls */}
                       <div className="flex-1 flex flex-col justify-between">
@@ -106,12 +103,9 @@ export default function CartPage() {
                             >
                               Bộ sưu tập {item.collectionSlug}
                             </Link>
-                            <Link
-                              href={`/products/${item.slug}`}
-                              className="text-lg font-light font-serif text-brand-charcoal hover:text-brand-burgundy transition-colors duration-300 leading-tight"
-                            >
+                            <span className="text-lg font-light font-serif text-brand-charcoal leading-tight">
                               {item.name}
-                            </Link>
+                            </span>
                             <div className="text-sm font-semibold uppercase tracking-wider text-brand-charcoal mt-1">
                               {item.price}
                             </div>

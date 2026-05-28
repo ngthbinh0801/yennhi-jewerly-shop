@@ -19,7 +19,8 @@ const CATEGORIES = [
   { label: "Vòng tay", value: "bracelets" },
   { label: "Bông tai", value: "earrings" },
   { label: "Nhẫn", value: "rings" },
-  { label: "Đồng hồ", value: "watches" }
+  { label: "Túi xách", value: "handbags" },
+  { label: "Gương", value: "mirrors" },
 ];
 
 const SORT_OPTIONS = [
@@ -175,11 +176,11 @@ export default function CollectionsClient({ initialCollections }: CollectionsCli
         </AnimatePresence>
 
         {/* Filters and Sorting bar */}
-        <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-6 pb-8 border-b border-brand-charcoal/10 mb-12">
+        <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-6 border-b border-brand-charcoal/10" style={{ paddingTop: "2.5rem", paddingBottom: "2.5rem", marginBottom: "4rem" }}>
           {/* Categories Pills */}
-          <div className="flex flex-wrap items-center gap-2">
-            <span className="text-xs uppercase tracking-widest text-brand-gray mr-2 flex items-center gap-2 font-medium">
-              <SlidersHorizontal size={14} className="text-brand-burgundy" /> Danh mục:
+          <div className="flex flex-wrap items-center gap-3">
+            <span className="uppercase tracking-widest text-brand-gray mr-2 flex items-center gap-2 font-medium" style={{ fontSize: "0.875rem" }}>
+              <SlidersHorizontal size={15} className="text-brand-burgundy" /> Danh mục:
             </span>
             {CATEGORIES.map((cat) => {
               const isActive = selectedCategory === cat.value;
@@ -187,7 +188,8 @@ export default function CollectionsClient({ initialCollections }: CollectionsCli
                 <button
                   key={cat.value}
                   onClick={() => setSelectedCategory(cat.value)}
-                  className={`px-4 py-1.5 rounded-full text-xs font-medium uppercase tracking-widest transition-all duration-300 ${
+                  style={{ fontSize: "0.875rem", padding: "0.5rem 1.25rem" }}
+                  className={`rounded-full font-medium uppercase tracking-widest transition-all duration-300 ${
                     isActive
                       ? "bg-brand-burgundy text-brand-white shadow-md shadow-brand-burgundy/15"
                       : "bg-brand-white text-brand-charcoal hover:bg-brand-cream border border-brand-charcoal/5 hover:border-brand-gold/40"
@@ -201,10 +203,10 @@ export default function CollectionsClient({ initialCollections }: CollectionsCli
 
           {/* Sort Dropdown & Display Counter */}
           <div className="flex flex-wrap items-center justify-between w-full lg:w-auto gap-4">
-            <span className="text-xs uppercase tracking-widest text-brand-gray font-medium">
+            <span className="uppercase tracking-widest text-brand-gray font-medium" style={{ fontSize: "0.875rem" }}>
               Đang hiển thị <span className="text-brand-charcoal font-semibold">{totalItems}</span> bộ sưu tập
             </span>
-            <div className="flex items-center gap-2 bg-brand-white px-3 py-1.5 border border-brand-charcoal/5 rounded-md shadow-sm">
+            <div className="flex items-center gap-2 bg-brand-white border border-brand-charcoal/5 rounded-md shadow-sm" style={{ padding: "0.5rem 0.75rem" }}>
               <ArrowUpDown size={14} className="text-brand-gold" />
               <select
                 value={selectedSort}
@@ -212,7 +214,8 @@ export default function CollectionsClient({ initialCollections }: CollectionsCli
                   setSelectedSort(e.target.value);
                   setCurrentPage(1);
                 }}
-                className="bg-transparent text-xs font-semibold uppercase tracking-widest text-brand-charcoal focus:outline-none cursor-pointer pr-1"
+                style={{ fontSize: "0.875rem" }}
+                className="bg-transparent font-semibold uppercase tracking-widest text-brand-charcoal focus:outline-none cursor-pointer pr-1"
               >
                 {SORT_OPTIONS.map((opt) => (
                   <option key={opt.value} value={opt.value} className="bg-brand-white text-brand-charcoal font-sans text-xs">

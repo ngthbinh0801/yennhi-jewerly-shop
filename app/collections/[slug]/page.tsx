@@ -25,7 +25,8 @@ const CATEGORY_VI: Record<string, string> = {
   bracelets: "Vòng Tay",
   earrings: "Hoa Tai",
   rings: "Nhẫn",
-  watches: "Đồng Hồ",
+  handbags: "Túi Xách",
+  mirrors: "Gương",
 };
 
 export default async function CollectionDetailPage({ params }: PageProps) {
