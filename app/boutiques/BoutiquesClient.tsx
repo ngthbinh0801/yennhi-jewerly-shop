@@ -192,18 +192,6 @@ export default function BoutiquesClient() {
         )}
       </AnimatePresence>
 
-      {/* Hero short Section */}
-      <section className="w-full flex items-center justify-center bg-brand-white py-16 md:py-20">
-        <div className="text-center px-4">
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-light text-brand-charcoal font-serif tracking-widest leading-none mb-3">
-            Tìm Cửa Hàng
-          </h1>
-          <div className="gold-divider my-3 bg-brand-gold w-12 mx-auto" />
-          <p className="text-brand-charcoal/50 text-[10px] md:text-xs font-sans tracking-[0.2em] uppercase">
-            Ghé thăm cửa hàng Rì Rào Store tại Phú Quốc — trải nghiệm tư vấn riêng biệt
-          </p>
-        </div>
-      </section>
 
       {/* 2. Map & Dynamic Location Interface */}
       <section className="page-content py-12 flex flex-col">
