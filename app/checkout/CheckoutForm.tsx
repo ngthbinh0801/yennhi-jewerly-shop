@@ -15,6 +15,7 @@ interface FormData {
   address: string;
   cardName: string;
   cardNumber: string;
+  subscribeNewsletter: boolean;
 }
 
 const EMPTY_FORM: FormData = {
@@ -24,6 +25,7 @@ const EMPTY_FORM: FormData = {
   address: "",
   cardName: "",
   cardNumber: "",
+  subscribeNewsletter: false,
 };
 
 function formatCardNumber(value: string): string {
@@ -79,9 +81,13 @@ export default function CheckoutForm() {
   const hasPOA = items.some((i) => getPriceNumber(i.price) === null);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target;
+    const { name, value, type, checked } = e.target;
     if (name === "cardNumber") {
       setForm((prev) => ({ ...prev, cardNumber: formatCardNumber(value) }));
+      return;
+    }
+    if (type === "checkbox") {
+      setForm((prev) => ({ ...prev, [name]: checked }));
       return;
     }
     setForm((prev) => ({ ...prev, [name]: value }));
@@ -447,6 +453,29 @@ export default function CheckoutForm() {
               * Các tạo tác đánh dấu &ldquo;Liên hệ để biết giá&rdquo; sẽ được bộ phận dịch vụ khách hàng liên hệ tư vấn và xác nhận riêng biệt.
             </p>
           )}
+
+          {/* Newsletter opt-in */}
+          <label className="flex items-start gap-3 cursor-pointer group">
+            <div className="relative mt-0.5 shrink-0">
+              <input
+                type="checkbox"
+                name="subscribeNewsletter"
+                checked={form.subscribeNewsletter}
+                onChange={handleChange}
+                className="sr-only peer"
+              />
+              <div className="w-4 h-4 border border-brand-charcoal/25 rounded peer-checked:bg-brand-burgundy peer-checked:border-brand-burgundy transition-all duration-200 flex items-center justify-center">
+                {form.subscribeNewsletter && (
+                  <svg className="w-2.5 h-2.5 text-white" viewBox="0 0 10 10" fill="none">
+                    <path d="M1.5 5L4 7.5L8.5 2.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                  </svg>
+                )}
+              </div>
+            </div>
+            <span className="text-[0.75rem] text-brand-charcoal/60 font-light leading-relaxed group-hover:text-brand-charcoal/80 transition-colors">
+              Tôi muốn nhận thông tin về các bộ sưu tập mới nhất, triển lãm và ưu đãi độc quyền từ Rì Rào Store qua email.
+            </span>
+          </label>
 
           {/* Submit */}
           <button
