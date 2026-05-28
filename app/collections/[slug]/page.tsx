@@ -1,105 +1,127 @@
-import React from "react";
 import { Metadata } from "next";
 import Image from "next/image";
 import { notFound } from "next/navigation";
 import { COLLECTIONS_DATA, PRODUCTS_DATA } from "@/lib/mockData";
-import { CREAM_BLUR_DATA_URL } from "@/lib/constants";
+import { CREAM_BLUR_DATA_URL, CHARCOAL_BLUR_DATA_URL } from "@/lib/constants";
 import CollectionProducts from "./CollectionProducts";
 
 interface PageProps {
   params: Promise<{ slug: string }>;
 }
 
-// Generate dynamic SEO metadata
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { slug } = await params;
   const collection = COLLECTIONS_DATA.find((c) => c.slug === slug);
-  
-  if (!collection) {
-    return {
-      title: "Collection Not Found | Yen Nhi Jewerly",
-    };
-  }
-
+  if (!collection) return { title: "Không tìm thấy | Rì Rào Store" };
   return {
-    title: `${collection.name} Collection | Yen Nhi Jewerly`,
-    description: `${collection.tagline}. ${collection.description.substring(0, 160)}...`,
-    keywords: `${collection.name}, ${collection.category}, luxury collection, fine jewelry`,
+    title: `${collection.name} | Rì Rào Store`,
+    description: `${collection.tagline}. ${collection.description.substring(0, 160)}`,
   };
 }
 
+const CATEGORY_VI: Record<string, string> = {
+  necklaces: "Dây Chuyền",
+  bracelets: "Vòng Tay",
+  earrings: "Hoa Tai",
+  rings: "Nhẫn",
+  watches: "Đồng Hồ",
+};
+
 export default async function CollectionDetailPage({ params }: PageProps) {
   const { slug } = await params;
-  
-  // Find collection details
   const collection = COLLECTIONS_DATA.find((c) => c.slug === slug);
-  if (!collection) {
-    notFound();
-  }
+  if (!collection) notFound();
 
-  // Filter products belonging to this collection
-  const collectionProducts = PRODUCTS_DATA.filter(
-    (prod) => prod.collectionSlug === slug
-  );
+  const collectionProducts = PRODUCTS_DATA.filter((p) => p.collectionSlug === slug);
+  const categoryLabel = CATEGORY_VI[collection.category] ?? collection.category;
+  const heroSrc = collection.heroImage ?? collection.image;
+
+  const heroBg = collection.theme.heroBg;
+  const isDark = collection.theme.dark ?? false;
+  const heroText = collection.theme.heroText;
+  const heroMuted = collection.theme.heroMuted;
 
   return (
-    <div className="w-full flex flex-col bg-brand-cream">
-      {/* 1. Collection Hero Section */}
-      <section className="relative h-[60vh] w-full flex items-center justify-center overflow-hidden">
+    <div className="w-full flex flex-col">
+
+      {/* ── HERO ─────────────────────────────────────────────── */}
+      <section className="relative min-h-[78vh] w-full overflow-hidden flex items-center justify-center" style={{ backgroundColor: heroBg }}>
         <Image
-          src={collection.image}
+          src={heroSrc}
           alt={collection.name}
           fill
           priority
           sizes="100vw"
-          className="object-cover object-center"
+          className="object-contain object-center"
           placeholder="blur"
-          blurDataURL={CREAM_BLUR_DATA_URL}
+          blurDataURL={isDark ? CHARCOAL_BLUR_DATA_URL : CREAM_BLUR_DATA_URL}
         />
-        <div className="absolute inset-0 bg-black/40" />
-        <div className="relative z-10 text-center px-4 max-w-4xl mx-auto">
-          <span className="text-xs uppercase tracking-[0.3em] text-brand-gold font-semibold mb-3 block">
-            {collection.category} Creations
+
+        {/* Lateral fades */}
+        <div className="absolute inset-y-0 left-0 w-20 md:w-48 lg:w-72 pointer-events-none z-10" style={{ background: `linear-gradient(to right, ${heroBg}, transparent)` }} />
+        <div className="absolute inset-y-0 right-0 w-20 md:w-48 lg:w-72 pointer-events-none z-10" style={{ background: `linear-gradient(to left, ${heroBg}, transparent)` }} />
+
+        {/* Bottom fade → charcoal */}
+        <div className="absolute bottom-0 inset-x-0 h-64 bg-gradient-to-b from-transparent to-[#1B2A30] pointer-events-none z-20" />
+
+        {/* Text — centered */}
+        <div className="absolute inset-0 z-30 flex flex-col items-center justify-center text-center px-6">
+          <span className="inline-block text-[9px] uppercase tracking-[0.45em] font-semibold mb-5" style={{ color: heroMuted }}>
+            {categoryLabel} · Thủ Công Mỹ Nghệ
           </span>
-          <h1 className="text-4xl md:text-6xl lg:text-7xl font-light text-brand-white font-serif tracking-widest leading-tight mb-4">
+          <h1 className="font-serif text-[2.75rem] md:text-[4.5rem] lg:text-[5.5rem] font-light tracking-[0.04em] leading-none mb-5" style={{ color: heroText }}>
             {collection.name}
           </h1>
-          <div className="gold-divider my-4 bg-brand-gold w-16" />
-          <p className="text-brand-cream/90 text-sm md:text-base font-light max-w-2xl mx-auto font-sans tracking-wide">
+          <div className="flex items-center justify-center gap-2.5 mb-4">
+            <div className="w-8 h-px bg-brand-gold/70" />
+            <div className="w-1 h-1 rounded-full bg-brand-gold/50" />
+            <div className="w-8 h-px bg-brand-gold/70" />
+          </div>
+          <p className="text-[0.8125rem] font-light tracking-[0.1em] max-w-xs mx-auto" style={{ color: heroMuted }}>
             {collection.tagline}
           </p>
         </div>
       </section>
- 
-      {/* 2. Editorial Section */}
-      <section className="page-content py-24 bg-brand-cream">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 md:gap-16 items-center">
-          {/* Editorial Content */}
-          <div className="flex flex-col justify-center order-2 lg:order-1">
-            <span className="text-xs uppercase tracking-[0.25em] text-brand-burgundy font-semibold mb-3">
-              The Savoir-Faire of {collection.name}
-            </span>
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-light font-serif text-brand-charcoal mb-6 leading-tight">
-              A Legacy of Poetry & Excellence
-            </h2>
-            <div className="w-12 h-[1px] bg-brand-gold mb-6" />
-            <p className="text-brand-charcoal/80 text-sm md:text-base font-light leading-relaxed mb-6">
-              {collection.description}
-            </p>
-            <p className="text-brand-gray text-sm font-light leading-relaxed">
-              Every detail is meticulously perfected by our master artisans, merging the timeless elegance of natural diamonds and precious minerals with high precision gold bead borders. The result is a brilliant testament to our brand's artistic poetry.
-            </p>
-          </div>
 
-          {/* Editorial Image Showcase */}
-          <div className="relative aspect-square md:aspect-[4/3] lg:aspect-[4/5] w-full overflow-hidden border border-brand-gold/15 p-2 bg-brand-white shadow-xl order-1 lg:order-2">
-            <div className="relative w-full h-full overflow-hidden">
+      {/* ── EDITORIAL ────────────────────────────────────────── */}
+      <section className="w-full bg-brand-charcoal overflow-hidden">
+        <div className="page-content pt-20 pb-24 md:pt-24 md:pb-28">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-14 items-center">
+
+            {/* Text column */}
+            <div className="flex flex-col order-2 lg:order-1 lg:pr-6">
+              <span className="text-[9px] uppercase tracking-[0.4em] text-brand-gold font-semibold mb-6">
+                Nghệ Thuật Chế Tác · {collection.name}
+              </span>
+
+              <h2 className="font-serif text-[2rem] md:text-[2.5rem] lg:text-[3rem] font-light text-white leading-[1.12] tracking-[0.02em] mb-7">
+                Di Sản Của Chất Thơ<br className="hidden lg:block" /> & Sự Tinh Hoa
+              </h2>
+
+              <div className="flex items-center gap-3 mb-7">
+                <div className="w-10 h-px bg-brand-gold/60" />
+                <div className="w-1.5 h-1.5 rounded-full bg-brand-gold/40" />
+              </div>
+
+              <p className="text-brand-cream/80 text-[0.9375rem] font-light leading-[1.95] mb-5">
+                {collection.description}
+              </p>
+
+              <p className="text-brand-cream/40 text-[0.875rem] font-light leading-[1.85]">
+                Từng chi tiết được các nghệ nhân bậc thầy của chúng tôi chăm chút tỉ mỉ — kết hợp vẻ đẹp vượt thời gian của vỏ sò tự nhiên với kỹ thuật khảm bạc tinh xảo. Mỗi tác phẩm là minh chứng rực rỡ cho chất thơ nghệ thuật của Rì Rào Store.
+              </p>
+            </div>
+
+            {/* Image column */}
+            <div
+              className="relative aspect-[3/4] w-3/4 sm:w-1/2 lg:w-3/5 xl:w-1/2 overflow-hidden order-1 lg:order-2 lg:ml-auto mx-auto lg:mx-0"
+            >
               <Image
                 src={collection.image}
-                alt={`${collection.name} Craftsmanship`}
+                alt={`${collection.name} — Kỹ Thuật Chế Tác`}
                 fill
-                sizes="(max-width: 768px) 100vw, 50vw"
-                className="object-cover transform scale-102 hover:scale-105 transition-transform duration-1000"
+                sizes="(max-width: 1024px) 100vw, 50vw"
+                className="object-cover object-center hover:scale-[1.04] transition-transform duration-[1200ms] ease-out"
                 placeholder="blur"
                 blurDataURL={CREAM_BLUR_DATA_URL}
               />
@@ -108,23 +130,28 @@ export default async function CollectionDetailPage({ params }: PageProps) {
         </div>
       </section>
 
-      {/* 3. Products Grid Section */}
-      <section className="page-content py-16 border-t border-brand-charcoal/10">
-        <div className="text-center mb-16">
-          <span className="text-[10px] uppercase tracking-[0.3em] text-brand-gold font-semibold block mb-2">
-            The Catalog
-          </span>
-          <h2 className="text-3xl md:text-4xl font-light font-serif text-brand-charcoal">
-            Discover the Creations
-          </h2>
-          <div className="gold-divider bg-brand-gold w-12 my-4" />
-          <p className="text-brand-gray text-xs md:text-sm font-light tracking-wide uppercase">
-            Signature silhouettes defined by grace
-          </p>
-        </div>
+      {/* ── PRODUCTS ─────────────────────────────────────────── */}
+      <section className="w-full bg-brand-cream">
+        <div className="page-content py-20 md:py-28">
 
-        <CollectionProducts products={collectionProducts} />
+          <div className="flex flex-col items-center text-center mb-16">
+            <span className="text-[9px] uppercase tracking-[0.45em] text-brand-gold font-semibold mb-4">
+              Danh Mục Sản Phẩm
+            </span>
+            <h2 className="font-serif text-[1.875rem] md:text-[2.5rem] font-light text-brand-charcoal tracking-[0.03em] mb-5">
+              Khám Phá Tác Phẩm
+            </h2>
+            <div className="flex items-center gap-2.5">
+              <div className="w-8 h-px bg-brand-gold/50" />
+              <div className="w-1 h-1 rounded-full bg-brand-gold/40" />
+              <div className="w-8 h-px bg-brand-gold/50" />
+            </div>
+          </div>
+
+          <CollectionProducts products={collectionProducts} />
+        </div>
       </section>
+
     </div>
   );
 }

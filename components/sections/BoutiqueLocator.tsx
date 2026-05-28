@@ -7,11 +7,13 @@ import { MapPin } from "lucide-react";
 import { CREAM_BLUR_DATA_URL } from "@/lib/constants";
 import { useRouter } from "next/navigation";
 
+import { SITE_IMAGES } from "@/lib/imageConfig";
+
 const FEATURED_BOUTIQUES = [
-  { city: "Paris", address: "22 Place Vendôme, 75001" },
-  { city: "New York", address: "712 Fifth Avenue, NY 10019" },
-  { city: "Tokyo", address: "5-6-15 Ginza, Chuo-ku" },
-  { city: "London", address: "150 New Bond Street, W1S 2TU" },
+  { city: "Hà Nội", address: "18 Hàng Bài, Hoàn Kiếm" },
+  { city: "TP. Hồ Chí Minh", address: "38 Đồng Khởi, Quận 1" },
+  { city: "Đà Nẵng", address: "255 Hùng Vương, Hải Châu" },
+  { city: "Hội An", address: "23 Lê Lợi, Phố Cổ" },
 ];
 
 export default function BoutiqueLocator() {
@@ -34,10 +36,10 @@ export default function BoutiqueLocator() {
           className="grid grid-cols-1 lg:grid-cols-10 gap-12 lg:gap-16 items-center"
         >
           {/* Image */}
-          <div className="relative w-full overflow-hidden border border-brand-gold/15 bg-brand-cream shadow-md lg:col-span-6 aspect-[4/3] lg:aspect-[16/10]">
+          <div className="relative w-full overflow-hidden border border-brand-gold/15 bg-brand-cream rounded-2xl shadow-md lg:col-span-6 aspect-[4/3] lg:aspect-[16/10]">
             <Image
-              src="https://images.unsplash.com/photo-1565008447742-97f6f38c985c?auto=format&fit=crop&q=80&w=1600"
-              alt="Yen Nhi Jewerly Boutique"
+              src={SITE_IMAGES.sections.boutiqueLocator}
+              alt="Cửa hàng Rì Rào Store"
               fill
               placeholder="blur"
               blurDataURL={CREAM_BLUR_DATA_URL}
@@ -49,13 +51,13 @@ export default function BoutiqueLocator() {
 
           {/* Content */}
           <div className="flex flex-col gap-5 items-center lg:items-start text-center lg:text-left lg:col-span-4">
-            <span className="section-label text-brand-burgundy">Boutiques</span>
+            <span className="section-label text-brand-burgundy">Cửa Hàng</span>
             <h2 className="section-title text-[2rem] lg:text-[2.75rem] leading-none">
-              Visit Our Boutiques<br className="hidden lg:block" /> Worldwide
+              Ghé Thăm Hệ Thống<br className="hidden lg:block" /> Cửa Hàng Tại Việt Nam
             </h2>
             <div className="w-8 h-px bg-brand-gold" />
             <p className="text-[0.8125rem] text-brand-gray leading-[1.85] font-light max-w-sm">
-              Step inside our poetic sanctuaries. Experience bespoke high jewelry consultations, bridal guidance, and exceptional client hospitality.
+              Hãy bước vào các không gian đầy chất thơ của chúng tôi. Trải nghiệm tư vấn trang sức cao cấp riêng biệt, định hướng bộ sưu tập cưới, và sự hiếu khách đẳng cấp từ đội ngũ nhân viên.
             </p>
 
             {/* Search form */}
@@ -63,7 +65,7 @@ export default function BoutiqueLocator() {
               <div className="flex items-center gap-2 border-b border-brand-gold/30 pb-2.5 focus-within:border-brand-burgundy transition-colors duration-300">
                 <input
                   type="text"
-                  placeholder="Search by city or country"
+                  placeholder="Tìm kiếm theo thành phố hoặc quốc gia"
                   value={query}
                   onChange={(e) => setQuery(e.target.value)}
                   className="flex-1 bg-transparent border-none text-[0.8125rem] text-brand-charcoal placeholder-brand-gray/55 font-light focus:outline-none select-text"
@@ -71,13 +73,13 @@ export default function BoutiqueLocator() {
                 <MapPin className="w-4 h-4 text-brand-gold/70 flex-shrink-0" />
               </div>
               <button type="submit" className="btn-luxury w-full">
-                Find a Boutique
+                Tìm Cửa Hàng
               </button>
             </form>
 
             {/* Featured boutiques */}
             <div className="w-full border-t border-brand-gold/10 pt-5 mt-1">
-              <span className="section-label text-brand-gold mb-4 block text-left">Featured Boutiques</span>
+              <span className="section-label text-brand-gold mb-4 block text-left">Cửa Hàng Nổi Bật</span>
               <div className="grid grid-cols-2 gap-x-6 gap-y-4 text-left">
                 {FEATURED_BOUTIQUES.map((b) => (
                   <button

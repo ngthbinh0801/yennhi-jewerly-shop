@@ -19,60 +19,45 @@ interface MobileMenuItem {
 
 const MOBILE_MENU_ITEMS: MobileMenuItem[] = [
   {
-    label: "High Jewelry",
-    href: "/collections?search=Snowflake",
-    subItems: [
-      { label: "Legend of Diamonds", href: "/collections?search=Snowflake" },
-      { label: "Romeo & Juliet", href: "/collections?search=Butterfly" },
-      { label: "Savoir-Faire Workshops", href: "/the-maison" },
-      { label: "All High Jewelry Creations", href: "/collections" }
-    ]
-  },
-  {
-    label: "Jewelry",
+    label: "Trang Sức",
     href: "/collections",
     subItems: [
-      { label: "Alhambra", href: "/collections/alhambra" },
-      { label: "Frivole", href: "/collections/frivole" },
-      { label: "Perlée", href: "/collections/perlee" },
-      { label: "Fauna & Flora", href: "/collections/fauna-flora" },
-      { label: "All Jewelry Creations", href: "/collections" }
+      { label: "Dây Chuyền Vỏ Sò", href: "/collections/day_chuyen_vo_so" },
+      { label: "Nhẫn Vỏ Ốc", href: "/collections/nhan_vo_oc" },
+      { label: "Khuyên Tai Vỏ Sò", href: "/collections/khuyen_tai" },
+      { label: "Vòng Tay Vỏ Sò", href: "/collections/vong_tay" },
+      { label: "Tất cả Trang sức", href: "/collections" }
     ]
   },
   {
-    label: "Watches",
-    href: "/collections?category=watches",
-    subItems: [
-      { label: "Poetic Complications", href: "/collections/poetic-complications" },
-      { label: "Charms", href: "/collections?category=watches" },
-      { label: "Alhambra Watches", href: "/collections?category=watches" },
-      { label: "All Watchmaking Pieces", href: "/collections?category=watches" }
-    ]
-  },
-  {
-    label: "Bridal",
+    label: "Đồ Thủ Công",
     href: "/collections",
     subItems: [
-      { label: "Engagement Rings", href: "/collections?category=rings" },
-      { label: "Wedding Bands", href: "/collections?category=rings" },
-      { label: "Bridal Collections", href: "/collections" }
+      { label: "Giỏ Vỏ Sò", href: "/collections/gio_vo_so" },
+      { label: "Gương Đính Vỏ Sò", href: "/collections/guong_vo_so" },
+      { label: "Tất cả Đồ Thủ Công", href: "/collections" }
     ]
   },
   {
-    label: "Fragrance",
-    href: "/collections"
+    label: "Bộ Sưu Tập Cưới",
+    href: "/collections",
+    subItems: [
+      { label: "Nhẫn đính hôn", href: "/collections?category=rings" },
+      { label: "Vòng tay cô dâu", href: "/collections/vong_tay" },
+      { label: "Bộ trang sức cưới", href: "/collections" }
+    ]
   },
   {
-    label: "The Atelier",
+    label: "Xưởng Chế Tác",
     href: "/the-maison",
     subItems: [
-      { label: "Our Legacy", href: "/the-maison" },
-      { label: "Savoir-Faire Workshops", href: "/the-maison" },
-      { label: "Exhibitions & Events", href: "/the-maison" }
+      { label: "Di sản của chúng tôi", href: "/the-maison" },
+      { label: "Nghệ thuật thủ công", href: "/the-maison" },
+      { label: "Triển lãm & Sự kiện văn hóa", href: "/the-maison" }
     ]
   },
   {
-    label: "Services",
+    label: "Dịch Vụ",
     href: "/contact"
   }
 ];
@@ -194,7 +179,7 @@ export default function MobileNav({ isOpen, onClose }: MobileNavProps) {
                 className="flex items-center gap-3 text-xs uppercase tracking-wider hover:text-brand-burgundy transition-colors duration-300"
               >
                 <MapPin className="w-4 h-4 text-brand-gold" />
-                <span>Find a Boutique</span>
+                <span>Tìm Cửa Hàng</span>
               </Link>
 
               <Link
@@ -203,7 +188,7 @@ export default function MobileNav({ isOpen, onClose }: MobileNavProps) {
                 className="flex items-center gap-3 text-xs uppercase tracking-wider hover:text-brand-burgundy transition-colors duration-300"
               >
                 <Phone className="w-4 h-4 text-brand-gold" />
-                <span>Contact Us</span>
+                <span>Liên Hệ Chúng Tôi</span>
               </Link>
 
               <Link
@@ -212,12 +197,12 @@ export default function MobileNav({ isOpen, onClose }: MobileNavProps) {
                 className="flex items-center gap-3 text-xs uppercase tracking-wider hover:text-brand-burgundy transition-colors duration-300"
               >
                 <User className="w-4 h-4 text-brand-gold" />
-                <span>My Account</span>
+                <span>Tài Khoản Của Tôi</span>
               </Link>
 
               <div className="flex items-center gap-3 text-[10px] uppercase tracking-widest text-brand-gray border-t border-brand-gold/10 pt-4 mt-2">
                 <Globe className="w-3.5 h-3.5 text-brand-gold" />
-                <span>English (Global)</span>
+                <span>Tiếng Việt</span>
               </div>
             </div>
           </motion.div>

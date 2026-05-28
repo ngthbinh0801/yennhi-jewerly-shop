@@ -2,16 +2,23 @@
 
 import React, { useState } from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { Globe, MapPin, Phone, User, ChevronDown } from "lucide-react";
 
-const LANGUAGES = ["English", "Français", "Tiếng Việt", "日本語"];
+const LANGUAGES = ["Tiếng Việt", "English", "Français", "日本語"];
 
 export default function UtilityBar() {
   const [langOpen, setLangOpen] = useState(false);
-  const [selectedLang, setSelectedLang] = useState("English");
+  const [selectedLang, setSelectedLang] = useState("Tiếng Việt");
+  const pathname = usePathname();
+  const isHome = pathname === "/";
+
+  const utilityClasses = isHome
+    ? "w-full bg-transparent border-b border-transparent select-none absolute top-0 left-0 z-50 transition-all duration-500"
+    : "w-full bg-brand-white/90 backdrop-blur-sm border-b border-brand-gold/8 select-none relative z-50";
 
   return (
-    <div className="w-full bg-brand-white/90 backdrop-blur-sm border-b border-brand-gold/8 select-none relative z-50">
+    <div className={utilityClasses}>
       <div className="page-content py-2 flex items-center justify-between">
         {/* Language selector */}
         <div className="relative">
@@ -48,15 +55,15 @@ export default function UtilityBar() {
         <div className="flex items-center gap-5 md:gap-7">
           <Link href="/boutiques" className="hidden sm:flex items-center gap-1.5 text-[10px] uppercase tracking-[0.12em] text-brand-charcoal hover:text-brand-burgundy transition-colors duration-300">
             <MapPin className="w-3 h-3 text-brand-gold" />
-            <span>Find a Boutique</span>
+            <span>Tìm Cửa Hàng</span>
           </Link>
           <Link href="/contact" className="hidden md:flex items-center gap-1.5 text-[10px] uppercase tracking-[0.12em] text-brand-charcoal hover:text-brand-burgundy transition-colors duration-300">
             <Phone className="w-3 h-3 text-brand-gold" />
-            <span>Contact Us</span>
+            <span>Liên Hệ</span>
           </Link>
           <Link href="/contact" className="flex items-center gap-1.5 text-[10px] uppercase tracking-[0.12em] text-brand-charcoal hover:text-brand-burgundy transition-colors duration-300">
             <User className="w-3 h-3 text-brand-gold" />
-            <span className="hidden md:inline">Account</span>
+            <span className="hidden md:inline">Tài Khoản</span>
           </Link>
         </div>
       </div>

@@ -1,19 +1,20 @@
 "use client";
 
-import React, { useRef, useState, useEffect } from "react";
+import { useRef, useState, useEffect } from "react";
 import Image from "next/image";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import Link from "next/link";
 import { CREAM_BLUR_DATA_URL } from "@/lib/constants";
 
+import { SITE_IMAGES } from "@/lib/imageConfig";
+
 const ICONIC_ITEMS = [
-  { id: 1, name: "Alhambra", description: "Iconic symbols of luck since 1968", image: "https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?auto=format&fit=crop&q=80&w=800", href: "/collections/alhambra" },
-  { id: 2, name: "Perlée", description: "The sparkling radiance of golden beads", image: "https://images.unsplash.com/photo-1589674781759-c21c37956a44?auto=format&fit=crop&q=80&w=800", href: "/collections/perlee" },
-  { id: 3, name: "Frivole", description: "Poetic flowers in mirror-polished gold", image: "https://images.unsplash.com/photo-1602751584552-8ba73aad10e1?auto=format&fit=crop&q=80&w=800", href: "/collections/frivole" },
-  { id: 4, name: "Lucky Spring", description: "A joyful celebration of springtime", image: "https://images.unsplash.com/photo-1596462502278-27bfdc403348?auto=format&fit=crop&q=80&w=800", href: "/collections/lucky-spring" },
-  { id: 5, name: "Magic Alhambra", description: "Playful asymmetry and bold scales", image: "https://images.unsplash.com/photo-1605100804763-247f67b3557e?auto=format&fit=crop&q=80&w=800", href: "/collections/flying-butterfly" },
-  { id: 6, name: "Vintage Alhambra", description: "Faithful celebration of the 1968 original", image: "https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?auto=format&fit=crop&q=80&w=800", href: "/collections/alhambra" },
-  { id: 7, name: "Lotus", description: "Sacred flowers reflecting pure beauty", image: "https://images.unsplash.com/photo-1543294001-f7cd5d7fb516?auto=format&fit=crop&q=80&w=800", href: "/collections/lotus" },
+  { id: 1, name: "Dây Chuyền Vỏ Sò", description: "Chất thơ đại dương trên đôi vai trần gợi cảm", image: SITE_IMAGES.collections.perlee, href: "/collections/day_chuyen_vo_so" },
+  { id: 2, name: "Nhẫn Vỏ Ốc", description: "Ánh cầu vồng lấp lánh đọng trên ngón tay xinh", image: SITE_IMAGES.collections.nhan, href: "/collections/nhan_vo_oc" },
+  { id: 3, name: "Giỏ Vỏ Sò", description: "Giỏ tre bện mây khảm sò biển mộc mạc và hoang sơ", image: SITE_IMAGES.collections.alhambra, href: "/collections/gio_vo_so" },
+  { id: 4, name: "Gương Đính Vỏ Sò", description: "Khung gương nghệ thuật làm từ ngàn vỏ điệp biển sâu", image: SITE_IMAGES.collections.guong, href: "/collections/guong_vo_so" },
+  { id: 5, name: "Khuyên Tai Vỏ Sò", description: "Ánh xà cừ lung linh đung đưa bên khóe mắt", image: SITE_IMAGES.collections.khuyen_tai, href: "/collections/khuyen_tai" },
+  { id: 6, name: "Vòng Tay Vỏ Sò", description: "Nhịp điệu sóng vỗ dịu êm bện chặt cổ tay", image: SITE_IMAGES.collections.vong_tay, href: "/collections/vong_tay" },
 ];
 
 export default function IconicCollections() {
@@ -49,11 +50,11 @@ export default function IconicCollections() {
   return (
     <section className="w-full bg-brand-cream section-padding group/carousel">
       {/* Heading */}
-      <div className="page-content text-center mb-12">
-        <h2 className="section-title text-[2rem] md:text-[2.75rem]">Iconic Collections</h2>
+      <div className="page-content flex flex-col items-center text-center mb-16">
+        <h2 className="section-title text-[2rem] md:text-[2.75rem]">Bộ Sưu Tập Kinh Điển</h2>
         <div className="gold-divider" />
-        <p className="text-[0.8125rem] text-brand-gray font-light max-w-md mx-auto">
-          Timeless pieces that define the poetic heritage of Yen Nhi Jewerly
+        <p className="text-[0.8125rem] text-brand-gray font-light max-w-lg">
+          Những tác phẩm vượt thời gian tạo nên di sản đầy chất thơ của Rì Rào Store
         </p>
       </div>
 
@@ -93,7 +94,7 @@ export default function IconicCollections() {
               href={item.href}
               className="flex-none w-[272px] md:w-[384px] snap-start group block"
             >
-              <div className="relative aspect-[3/4] overflow-hidden border border-brand-gold/10 bg-brand-cream shadow-sm hover:shadow-lg hover:border-brand-gold/25 transition-all duration-500">
+              <div className="relative aspect-[3/4] overflow-hidden border border-brand-gold/10 bg-brand-cream rounded-2xl shadow-sm hover:shadow-lg hover:border-brand-gold/25 transition-all duration-500">
                 <Image
                   src={item.image}
                   alt={item.name}

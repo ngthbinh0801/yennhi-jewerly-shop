@@ -22,13 +22,13 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Yen Nhi Jewerly | Haute Joaillerie & Horlogerie since 2026",
-  description: "Explore the poetic world of Yen Nhi Jewerly, creators of unique high jewelry, fine jewelry, engagement rings, and exceptional watchmaking pieces since 2026.",
-  keywords: "Yen Nhi Jewerly, luxury jewelry, high jewelry, fine watches, poetic complications, bridal jewelry, engagement rings",
-  authors: [{ name: "Yen Nhi Jewerly Team" }],
+  title: "Rì Rào Store | Premium Artisanal Seashell Jewelry since 2026",
+  description: "Khám phá thế giới đầy chất thơ của Rì Rào Store, thương hiệu chế tác trang sức vỏ sò tự nhiên, hoa tai vỏ ốc, vòng tay bện dây thủ công và ngọc trai nước ngọt độc bản kể từ năm 2026.",
+  keywords: "Rì Rào Store, trang sức vỏ sò, vòng cổ vỏ sò, hoa tai ngọc trai, vòng bện tay cô dâu, sao biển trang sức, quà tặng san hô",
+  authors: [{ name: "Rì Rào Store Team" }],
   openGraph: {
-    title: "Yen Nhi Jewerly | Haute Joaillerie & Horlogerie since 2026",
-    description: "Explore the poetic world of Yen Nhi Jewerly, creators of unique high jewelry, fine jewelry, engagement rings, and exceptional watchmaking pieces.",
+    title: "Rì Rào Store | Premium Artisanal Seashell Jewelry since 2026",
+    description: "Khám phá thế giới đầy chất thơ của Rì Rào Store, thương hiệu chế tác trang sức vỏ sò tự nhiên, hoa tai vỏ ốc, vòng tay bện dây thủ công và ngọc trai nước ngọt độc bản.",
     type: "website",
     locale: "vi_VN",
   },
@@ -41,7 +41,7 @@ export default function RootLayout({
 }>) {
   return (
     <html
-      lang="en"
+      lang="vi"
       className={`${cormorantGaramond.variable} ${inter.variable} scroll-smooth`}
     >
       <body className="min-h-screen w-full overflow-x-hidden flex flex-col antialiased bg-brand-cream">

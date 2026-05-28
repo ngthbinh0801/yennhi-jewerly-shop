@@ -20,48 +20,19 @@ interface Slide {
   objectPosition?: string;
 }
 
+import { SITE_IMAGES } from "@/lib/imageConfig";
+
 const HERO_SLIDES: Slide[] = [
   {
     id: 1,
-    label: "Perlée Collection",
-    title: ["Golden beads meet", "precious stones"],
-    subtitle: "The Perlée collection combines pure lines and refined craftsmanship",
-    cta: "Compose Your Set",
-    href: "/collections/perlee",
-    image: "https://images.unsplash.com/photo-1602751584552-8ba73aad10e1?auto=format&fit=crop&q=85&w=1400",
-    bg: "#C9D5C1",
-  },
-  {
-    id: 2,
-    label: "Alhambra",
-    title: ["Icons of luck", "since 1968"],
-    subtitle: "Four-leaf clover motifs that have symbolised luck for generations",
-    cta: "Discover Alhambra",
-    href: "/collections/alhambra",
-    image: "https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?auto=format&fit=crop&q=85&w=1400",
-    bg: "#EDE8DD",
-    objectPosition: "center 30%",
-  },
-  {
-    id: 3,
-    label: "Haute Joaillerie",
-    title: ["Treasures", "of Exception"],
-    subtitle: "Each creation embodies the height of pure artistic expression",
-    cta: "Explore High Jewelry",
-    href: "/collections?search=Snowflake",
-    image: "https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?auto=format&fit=crop&q=85&w=1400",
-    bg: "#1E1E1E",
-    dark: true,
-  },
-  {
-    id: 4,
-    label: "Lucky Spring",
-    title: ["An ode to", "nature's renewal"],
-    subtitle: "Floral creations that capture the poetry of the natural world",
-    cta: "Discover the Collection",
-    href: "/collections/lucky-spring",
-    image: "https://images.unsplash.com/photo-1596462502278-27bfdc403348?auto=format&fit=crop&q=85&w=1400",
-    bg: "#E4EBDF",
+    label: "Bộ Sưu Tập Hạt Ngọc Biển",
+    title: ["Những hạt ngọc trai", "lấp lánh nắng khơi"],
+    subtitle: "Chuỗi hạt ngọc trai nước ngọt tự nhiên kết bện thủ công mang âm hưởng bình yên từ đại dương.",
+    cta: "Khám Phá Hạt Ngọc Biển",
+    href: "/collections/day_chuyen_vo_so",
+    image: SITE_IMAGES.collections.frivole,
+    bg: "#FAF6F0",
+    objectPosition: "object-[center_25%]", // Đặt ở mức 25% (nằm giữa center và top) để ảnh dịch lên lại một chút vừa vặn
   },
 ];
 
@@ -73,6 +44,7 @@ export default function Hero() {
   const slide = HERO_SLIDES[current];
 
   const startTimer = () => {
+    if (HERO_SLIDES.length <= 1) return;
     if (timerRef.current) clearInterval(timerRef.current);
     timerRef.current = setInterval(() => setCurrent((p) => (p + 1) % HERO_SLIDES.length), 7000);
   };
@@ -89,10 +61,17 @@ export default function Hero() {
 
   const handleTouchEnd = (e: React.TouchEvent) => {
     const diff = touchStartX.current - e.changedTouches[0].clientX;
-    if (Math.abs(diff) > 50) diff > 0 ? next() : prev();
+    if (Math.abs(diff) > 50) {
+      if (diff > 0) {
+        next();
+      } else {
+        prev();
+      }
+    }
   };
 
-  const mutedColor = "text-white/60";
+  const mutedColor = "text-brand-charcoal/60";
+  const isDark = !!slide.dark;
 
   return (
     <section
@@ -134,52 +113,61 @@ export default function Hero() {
               priority
               placeholder="blur"
               blurDataURL={slide.dark ? CHARCOAL_BLUR_DATA_URL : CREAM_BLUR_DATA_URL}
-              className="object-cover"
+              className={`object-cover ${slide.objectPosition || "object-center"}`}
               sizes="100vw"
             />
           </motion.div>
         </AnimatePresence>
 
-        {/* Gradient overlay for text readability */}
-        <div className="absolute inset-0 bg-gradient-to-r from-black/40 via-black/10 to-transparent" />
+        {/* Subtle dark tint to help with text contrast */}
+        <div className="absolute inset-0 bg-black/5" />
 
         {/* Bottom fade into page background */}
-        <div className="absolute bottom-0 left-0 right-0 h-48 pointer-events-none" style={{ background: "linear-gradient(to bottom, transparent, #FAF8F5)" }} />
+        <div className="absolute bottom-0 left-0 right-0 h-48 pointer-events-none" style={{ background: "linear-gradient(to bottom, transparent, #FAF6F0)" }} />
       </div>
 
-      {/* Text overlay — center */}
-      <div className="relative h-full flex flex-col justify-center items-center text-center px-8 md:px-16 lg:px-24">
+      {/* Text overlay — centered with improved size, contrast, and layout */}
+      <div className="relative h-full flex flex-col justify-center items-center text-center px-6 md:px-12 lg:px-24 z-10">
         <AnimatePresence mode="wait">
           <motion.div
             key={`text-${current}`}
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -12 }}
             transition={{ duration: 0.85, ease: [0.16, 1, 0.3, 1] }}
-            className="flex flex-col gap-4 lg:gap-5 max-w-lg"
+            className="flex flex-col gap-5 md:gap-6 max-w-xl md:max-w-2xl"
           >
             {/* Label */}
-            <span className="text-[10px] uppercase tracking-[0.25em] font-medium text-white/70">
+            <span className={`text-[11px] md:text-[12px] uppercase tracking-[0.3em] font-semibold ${isDark ? "text-white/80" : "text-brand-charcoal/80"}`}>
               {slide.label}
             </span>
 
             {/* Heading */}
-            <h2 className="font-serif font-light leading-[1.05] text-white"
-              style={{ fontSize: "clamp(2.2rem, 4.5vw, 4rem)" }}>
+            <h2 
+              className={`font-serif font-normal leading-[1.15] ${isDark ? "text-white" : "text-brand-charcoal"}`}
+              style={{ fontSize: "clamp(2.4rem, 5.5vw, 4.5rem)" }}
+            >
               {slide.title.map((line, i) => (
-                <React.Fragment key={i}>{line}{i < slide.title.length - 1 && <br />}</React.Fragment>
+                <React.Fragment key={i}>
+                  {line}
+                  {i < slide.title.length - 1 && <br />}
+                </React.Fragment>
               ))}
             </h2>
 
             {/* Subtitle */}
-            <p className="text-[0.8125rem] leading-relaxed font-light max-w-[26rem] text-white/70">
+            <p className={`text-[0.9rem] md:text-[1rem] leading-relaxed font-normal max-w-lg mx-auto ${isDark ? "text-white/70" : "text-brand-charcoal/85"}`}>
               {slide.subtitle}
             </p>
 
             {/* CTA */}
             <Link
               href={slide.href}
-              className="self-center mt-2 text-[0.6875rem] uppercase tracking-[0.22em] font-medium border-b border-white/50 pb-1 text-white hover:border-white transition-all duration-300 focus:outline-none"
+              className={`self-center mt-3 text-xs md:text-[13px] uppercase tracking-[0.25em] font-bold border-b-2 pb-2 transition-all duration-300 focus:outline-none ${
+                isDark 
+                  ? "text-white border-white/40 hover:border-white" 
+                  : "text-brand-charcoal border-brand-charcoal/20 hover:border-brand-burgundy hover:text-brand-burgundy"
+              }`}
             >
               {slide.cta}
             </Link>
@@ -187,64 +175,70 @@ export default function Hero() {
         </AnimatePresence>
       </div>
 
-      {/* Prev / Next — desktop only, on hover */}
-      <AnimatePresence>
-        {isHovered && (
-          <>
-            <motion.button
-              initial={{ opacity: 0, x: -6 }}
-              animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.25 }}
-              onClick={prev}
-              className={`absolute left-4 top-1/2 -translate-y-1/2 z-20 hidden md:flex p-2.5 rounded-full border transition-all duration-300 focus:outline-none backdrop-blur-sm ${
-                slide.dark
-                  ? "border-white/20 text-white hover:border-white bg-black/10 hover:bg-black/30"
-                  : "border-brand-charcoal/15 text-brand-charcoal hover:border-brand-charcoal/50 bg-white/20 hover:bg-white/50"
-              }`}
-              aria-label="Previous"
-            >
-              <ChevronLeft className="w-4 h-4" />
-            </motion.button>
-            <motion.button
-              initial={{ opacity: 0, x: 6 }}
-              animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.25 }}
-              onClick={next}
-              className={`absolute right-4 top-1/2 -translate-y-1/2 z-20 hidden md:flex p-2.5 rounded-full border transition-all duration-300 focus:outline-none backdrop-blur-sm ${
-                slide.dark
-                  ? "border-white/20 text-white hover:border-white bg-black/10 hover:bg-black/30"
-                  : "border-brand-charcoal/15 text-brand-charcoal hover:border-brand-charcoal/50 bg-white/20 hover:bg-white/50"
-              }`}
-              aria-label="Next"
-            >
-              <ChevronRight className="w-4 h-4" />
-            </motion.button>
-          </>
-        )}
-      </AnimatePresence>
+      {/* Prev / Next — desktop only, hidden since only 1 slide exists */}
+      {HERO_SLIDES.length > 1 && (
+        <AnimatePresence>
+          {isHovered && (
+            <>
+              <motion.button
+                initial={{ opacity: 0, x: -6 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.25 }}
+                onClick={prev}
+                className={`absolute left-4 top-1/2 -translate-y-1/2 z-20 hidden md:flex p-2.5 rounded-full border transition-all duration-300 focus:outline-none backdrop-blur-sm ${
+                  slide.dark
+                    ? "border-white/20 text-white hover:border-white bg-black/10 hover:bg-black/30"
+                    : "border-brand-charcoal/15 text-brand-charcoal hover:border-brand-charcoal/50 bg-white/20 hover:bg-white/50"
+                }`}
+                aria-label="Trước"
+              >
+                <ChevronLeft className="w-4 h-4" />
+              </motion.button>
+              <motion.button
+                initial={{ opacity: 0, x: 6 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.25 }}
+                onClick={next}
+                className={`absolute right-4 top-1/2 -translate-y-1/2 z-20 hidden md:flex p-2.5 rounded-full border transition-all duration-300 focus:outline-none backdrop-blur-sm ${
+                  slide.dark
+                    ? "border-white/20 text-white hover:border-white bg-black/10 hover:bg-black/30"
+                    : "border-brand-charcoal/15 text-brand-charcoal hover:border-brand-charcoal/50 bg-white/20 hover:bg-white/50"
+                }`}
+                aria-label="Sau"
+              >
+                <ChevronRight className="w-4 h-4" />
+              </motion.button>
+            </>
+          )}
+        </AnimatePresence>
+      )}
 
-      {/* Pagination dots */}
-      <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex items-center gap-2 z-10">
-        {HERO_SLIDES.map((_, i) => (
-          <button
-            key={i}
-            onClick={() => setCurrent(i)}
-            className={`h-[2px] rounded-full transition-all duration-500 focus:outline-none ${
-              i === current ? "w-6 bg-white" : "w-2.5 bg-white/30 hover:opacity-70"
-            }`}
-            aria-label={`Slide ${i + 1}`}
-          />
-        ))}
-      </div>
+      {/* Pagination dots — hidden since only 1 slide exists */}
+      {HERO_SLIDES.length > 1 && (
+        <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex items-center gap-2 z-10">
+          {HERO_SLIDES.map((_, i) => (
+            <button
+              key={i}
+              onClick={() => setCurrent(i)}
+              className={`h-[2px] rounded-full transition-all duration-500 focus:outline-none ${
+                i === current ? "w-6 bg-white" : "w-2.5 bg-white/30 hover:opacity-70"
+              }`}
+              aria-label={`Slide ${i + 1}`}
+            />
+          ))}
+        </div>
+      )}
 
-      {/* Slide counter — bottom right */}
-      <div className={`absolute bottom-6 right-6 hidden md:flex items-center gap-1 z-10 text-[10px] tracking-widest tabular-nums font-light ${mutedColor}`}>
-        <span>{String(current + 1).padStart(2, "0")}</span>
-        <span className="opacity-40 mx-0.5">/</span>
-        <span className="opacity-40">{String(HERO_SLIDES.length).padStart(2, "0")}</span>
-      </div>
+      {/* Slide counter — bottom right, hidden since only 1 slide exists */}
+      {HERO_SLIDES.length > 1 && (
+        <div className={`absolute bottom-6 right-6 hidden md:flex items-center gap-1 z-10 text-[10px] tracking-widest tabular-nums font-light ${mutedColor}`}>
+          <span>{String(current + 1).padStart(2, "0")}</span>
+          <span className="opacity-40 mx-0.5">/</span>
+          <span className="opacity-40">{String(HERO_SLIDES.length).padStart(2, "0")}</span>
+        </div>
+      )}
     </section>
   );
 }

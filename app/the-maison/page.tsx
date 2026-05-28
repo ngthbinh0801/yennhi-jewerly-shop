@@ -3,7 +3,7 @@
 import React, { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { Play, X, Landmark, Compass, Award, Calendar, Heart, ArrowRight } from "lucide-react";
+import { Play, X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { TIMELINE_DATA } from "@/lib/mockData";
 import { CREAM_BLUR_DATA_URL, CHARCOAL_BLUR_DATA_URL } from "@/lib/constants";
@@ -33,7 +33,7 @@ export default function TheMaisonPage() {
             transition={{ duration: 0.6 }}
             className="text-xs uppercase tracking-[0.4em] text-brand-gold font-semibold mb-4 block"
           >
-            Haute Heritage Since 2026
+            Di Sản Lộng Lẫy Từ Năm 2026
           </motion.span>
           <motion.h1
             initial={{ opacity: 0, y: 25 }}
@@ -41,7 +41,7 @@ export default function TheMaisonPage() {
             transition={{ duration: 0.8, delay: 0.2 }}
             className="text-6xl md:text-7xl lg:text-8xl font-light text-brand-white font-serif tracking-widest leading-none mb-6"
           >
-            The Atelier
+            Xưởng Chế Tác
           </motion.h1>
           <div className="gold-divider my-6 bg-brand-gold w-20 h-[2px]" />
           <motion.p
@@ -50,7 +50,7 @@ export default function TheMaisonPage() {
             transition={{ duration: 0.8, delay: 0.4 }}
             className="text-brand-cream/80 text-sm md:text-base font-sans tracking-[0.25em] uppercase"
           >
-            Luxury Design & Craftsmanship
+            Thiết Kế Mỹ Nghệ & Tay Nghề Thủ Công Cao Cấp
           </motion.p>
         </div>
       </section>
@@ -67,23 +67,23 @@ export default function TheMaisonPage() {
             className="flex flex-col"
           >
             <span className="text-xs uppercase tracking-[0.25em] text-brand-burgundy font-semibold mb-3">
-              Our Story
+              Câu Chuyện Của Chúng Tôi
             </span>
             <h2 className="text-4xl md:text-5xl font-light font-serif text-brand-charcoal mb-6 leading-tight">
-              A Romance Written in Gemstones
+              Mối Tình Lãng Mạn Viết Bằng Đá Quý
             </h2>
             <div className="w-12 h-[1px] bg-brand-gold mb-6" />
             <p className="text-brand-charcoal/80 text-sm md:text-base font-light leading-relaxed mb-6">
-              The history of Yen Nhi Jewerly began with a profound love for precious stone craftsmanship. Born from a family legacy of expert stonecutters and gemstone curators, our brand brings together passion, poetry, and ancestral jewelry expertise.
+              Lịch sử của Rì Rào Store được bắt đầu với tình yêu mãnh liệt dành cho kỹ nghệ đá quý. Được nuôi dưỡng từ di sản gia đình của các chuyên gia cắt đá và giám tuyển đá quý bậc thầy, thương hiệu của chúng tôi là sự giao hòa giữa niềm đam mê, chất thơ và tay nghề kim hoàn gia truyền tinh xảo.
             </p>
             <p className="text-brand-charcoal/80 text-sm md:text-base font-light leading-relaxed mb-8">
-              Founded as an elite high-jewelry house, Yen Nhi Jewerly has established a prestigious reputation that quickly attracted fine jewelry connoisseurs. Guided by poetry and a passion for rare stones, our artisans create pieces that reflect luck, beauty, and technical wizardry.
+              Được thành lập như một xưởng chế tác trang sức cao cấp hàng đầu, Rì Rào Store đã nhanh chóng tạo dựng được danh tiếng uy tín thu hút những người sành sỏi trang sức tinh xảo. Được dẫn dắt bởi chất thơ và niềm đam mê với những viên đá quý hiếm có, các nghệ nhân của chúng tôi tạo nên những tác phẩm phản chiếu sự may mắn, vẻ đẹp và phép màu kỹ thuật chế tác.
             </p>
             <Link
               href="/collections"
               className="btn-luxury self-start border-brand-charcoal hover:border-brand-burgundy text-xs"
             >
-              Explore Iconic Creations
+              Khám Phá Tạo Tác Kinh Điển
             </Link>
           </motion.div>
 
@@ -98,7 +98,7 @@ export default function TheMaisonPage() {
             <div className="relative w-full h-full overflow-hidden bg-brand-cream">
               <Image
                 src="https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&q=80&w=800"
-                alt="Yen Nhi Jewerly Founders Legacy"
+                alt="Rì Rào Store Founders Legacy"
                 fill
                 sizes="(max-width: 768px) 100vw, 50vw"
                 className="object-cover transform hover:scale-103 transition-transform duration-[1200ms]"
@@ -114,14 +114,14 @@ export default function TheMaisonPage() {
       <section className="w-full bg-brand-white py-24 border-t border-b border-brand-charcoal/10 overflow-hidden">
         <div className="page-content mb-16">
           <span className="text-xs uppercase tracking-[0.25em] text-brand-gold font-semibold mb-2 block">
-            A Legacy Timeline
+            Dòng Thời Gian Di Sản
           </span>
           <h2 className="text-3xl md:text-4xl font-light font-serif text-brand-charcoal">
-            The Historical Epochs
+            Các Cột Mốc Lịch Sử
           </h2>
           <div className="w-12 h-[1px] bg-brand-gold my-4" />
           <p className="text-xs text-brand-gray uppercase tracking-widest">
-            Drag or scroll horizontally to explore the centuries of milestone creations
+            Kéo hoặc vuốt ngang để khám phá các cột mốc tạo tác qua từng năm tháng
           </p>
         </div>
 
@@ -170,22 +170,22 @@ export default function TheMaisonPage() {
       <section className="w-full bg-brand-charcoal text-brand-white py-24 relative overflow-hidden">
         <div className="page-content flex flex-col items-center text-center">
           <span className="text-xs uppercase tracking-[0.3em] text-brand-gold font-semibold mb-3">
-            The Main d'Or
+            Bàn Tay Vàng (Mains d&apos;Or)
           </span>
           <h2 className="text-4xl md:text-5xl font-light font-serif text-brand-cream tracking-wide mb-6">
-            The Spirit of Savoir-Faire
+            Tinh Thần Của Nghệ Thuật Savoir-Faire
           </h2>
           <div className="gold-divider bg-brand-gold w-12 my-2" />
           
           <p className="text-brand-cream/80 max-w-2xl text-sm md:text-base font-light leading-relaxed mb-12">
-            The expert hands of Yen Nhi Jewerly's master artisans, known for their golden touch, pass down ancestral secrets within our private workshops, molding precious metals and selecting spectacular natural minerals to bring complex mechanical tales to life.
+            Những bàn tay điêu luyện của các nghệ nhân bậc thầy Rì Rào Store, nổi tiếng với sự khéo léo kỳ diệu, truyền giữ các bí mật gia truyền trong các xưởng chế tác khép kín, uốn nắn những kim loại quý và tuyển chọn các khoáng vật tự nhiên lộng lẫy để thổi hồn vào các câu chuyện cơ khí chế tác phức tạp.
           </p>
 
           {/* Video Placeholder Box */}
           <div className="relative w-full max-w-4xl aspect-video overflow-hidden border border-brand-gold/20 bg-brand-charcoal shadow-2xl group">
             <Image
               src="https://images.unsplash.com/photo-1617038260897-41a1f14a8ca0?auto=format&fit=crop&q=80&w=1200"
-              alt="Crafting High Jewelry Close Up"
+              alt="Chế tác trang sức tinh xảo cận cảnh"
               fill
               sizes="(max-width: 1024px) 100vw, 1000px"
               className="object-cover opacity-85 transition-transform duration-1000 group-hover:scale-102"
@@ -206,12 +206,12 @@ export default function TheMaisonPage() {
 
             {/* Floating Title details */}
             <div className="absolute bottom-4 left-4 bg-brand-charcoal/80 backdrop-blur-sm text-[9px] uppercase tracking-[0.25em] text-brand-gold px-3 py-1 text-left font-medium">
-              Cinema Feature: The Crafting of Alhambra
+              Phim Tài Liệu: Nghệ Thuật Chế Tác Xà Cừ Bốn Lá
             </div>
           </div>
 
           <span className="text-brand-cream/60 text-xs font-light tracking-wide mt-6">
-            The Hand of the Artisan — Masterful settings defining Haute Joaillerie excellence.
+            Bàn tay Nghệ nhân — Sự sắp đặt đá quý bậc thầy định nghĩa đỉnh cao Trang sức Cao cấp.
           </span>
         </div>
       </section>
@@ -241,11 +241,10 @@ export default function TheMaisonPage() {
               className="relative w-[90vw] max-w-4xl aspect-video bg-black shadow-2xl border border-brand-gold/20 flex flex-col justify-center items-center text-center p-6"
               onClick={(e) => e.stopPropagation()}
             >
-              {/* Display mock high resolution overlay */}
               <iframe
                 className="w-full h-full"
                 src="https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1"
-                title="Yen Nhi Jewerly Cinematic Craftsmanship"
+                title="Nghệ thuật Chế tác Điện ảnh Rì Rào Store"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                 allowFullScreen
               />
@@ -288,23 +287,23 @@ export default function TheMaisonPage() {
             className="flex flex-col"
           >
             <span className="text-xs uppercase tracking-[0.25em] text-brand-burgundy font-semibold mb-3">
-              Jewelry Arts Academy
+              Học Viện Nghệ Thuật Trang Sức
             </span>
             <h2 className="text-4xl md:text-5xl font-light font-serif text-brand-charcoal mb-6 leading-tight">
-              The Yen Nhi Jewerly Academy
+              Học Viện Rì Rào Store
             </h2>
             <div className="w-12 h-[1px] bg-brand-gold mb-6" />
             <p className="text-brand-charcoal/80 text-sm md:text-base font-light leading-relaxed mb-6">
-              Founded to share the beauty of gemology and artisan crafts with the public, our Academy of Jewelry Arts offers hands-on courses in gemstone history, design, and artisan techniques. Supported by Yen Nhi Jewerly, the academy invites diamond lovers and novices alike to discover the secrets of high jewelry.
+              Được thành lập để chia sẻ vẻ đẹp của ngọc học và nghệ thuật thủ công với công chúng, Học viện Nghệ thuật Trang sức của chúng tôi cung cấp các khóa học thực hành về lịch sử đá quý, thiết kế và kỹ thuật chế tác nghệ nhân. Với sự hỗ trợ từ Rì Rào Store, học viện chào đón những người yêu thích kim cương cũng như những người mới bắt đầu đến khám phá những bí mật của trang sức cao cấp.
             </p>
             <p className="text-brand-charcoal/80 text-sm md:text-base font-light leading-relaxed mb-8">
-              With campuses extending to Tokyo, Paris, and Hong Kong, the Academy hosts international exhibitions, partners with research institutes, and supports young designers worldwide, fostering an open culture of appreciation for jewelry history.
+              Với các cơ sở giảng dạy mở rộng đến Tokyo, Paris và Hồng Kông, Học viện tổ chức các cuộc triển lãm quốc tế, hợp tác với các viện nghiên cứu và hỗ trợ các nhà thiết kế trẻ trên toàn thế giới, thúc đẩy văn hóa mở về sự trân trọng lịch sử trang sức.
             </p>
             <Link
               href="/boutiques"
               className="btn-luxury self-start border-brand-charcoal hover:border-brand-burgundy text-xs"
             >
-              Locate Academy Boutique
+              Tìm Cửa Hàng Học Viện
             </Link>
           </motion.div>
 
@@ -322,7 +321,7 @@ export default function TheMaisonPage() {
             transition={{ duration: 0.8 }}
             className="text-2xl md:text-3xl lg:text-4xl font-light font-serif italic text-brand-charcoal leading-relaxed mb-6"
           >
-            "In every jewel, there lies a poem waiting to be read, a tale of luck and love crafted in gold."
+            &ldquo;Trong mỗi viên ngọc quý, có một bài thơ đang chờ được thưởng thức, một câu chuyện về sự may mắn và tình yêu được chế tác bằng vàng.&rdquo;
           </motion.blockquote>
           <motion.div
             initial={{ opacity: 0 }}
@@ -331,7 +330,7 @@ export default function TheMaisonPage() {
             transition={{ delay: 0.3 }}
             className="text-xs uppercase tracking-[0.25em] text-brand-gold font-bold"
           >
-            — Yen Nhi Jewerly Curation
+            — Giám tuyển Rì Rào Store
           </motion.div>
           <div className="w-10 h-[1px] bg-brand-gold/60 mx-auto mt-8" />
         </div>

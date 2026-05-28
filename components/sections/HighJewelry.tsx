@@ -6,6 +6,8 @@ import { motion } from "framer-motion";
 import Link from "next/link";
 import { CHARCOAL_BLUR_DATA_URL } from "@/lib/constants";
 
+import { SITE_IMAGES } from "@/lib/imageConfig";
+
 export default function HighJewelry() {
   return (
     <section className="w-full bg-brand-charcoal text-brand-cream section-padding overflow-hidden">
@@ -27,7 +29,7 @@ export default function HighJewelry() {
               className="absolute inset-0"
             >
               <Image
-                src="https://images.unsplash.com/photo-1601121141461-9d6647bca1ed?auto=format&fit=crop&q=80&w=1600"
+                src={SITE_IMAGES.sections.highJewelryShowcase}
                 alt="Haute Joaillerie Statement Piece"
                 fill
                 placeholder="blur"
@@ -40,20 +42,20 @@ export default function HighJewelry() {
           </div>
 
           {/* Text */}
-          <div className="flex flex-col items-center lg:items-start text-center lg:text-left gap-5 lg:col-span-4 lg:pl-4">
-            <span className="section-label text-brand-gold">Haute Joaillerie</span>
+          <div className="flex flex-col gap-5 items-center lg:items-start text-center lg:text-left lg:col-span-4 lg:pl-4">
+            <span className="section-label text-brand-gold">Trang Sức Cao Cấp</span>
             <h2 className="font-serif text-[2.25rem] lg:text-[3.25rem] font-light text-white leading-none tracking-[0.04em]">
-              Treasures<br className="hidden lg:block" /> of Exception
+              Tuyệt Tác<br className="hidden lg:block" /> Độc Bản Xuất Chúng
             </h2>
             <div className="w-8 h-px bg-brand-gold/60" />
             <p className="text-[0.8125rem] text-brand-cream/65 leading-[1.9] font-light max-w-sm">
-              Uniting rare gems of peerless character with dazzling metalwork, Yen Nhi Jewerly&rsquo;s High Jewelry creations embody the height of pure artistic expression. Each asymmetric setting and poetic complication tells a unique tale of magic, luck, and timeless love.
+              Kết hợp những viên đá quý hiếm có vô song với tay nghề chế tác kim loại rực rỡ, các tạo tác Trang sức Cao cấp (Haute Joaillerie) của Rì Rào Store thể hiện đỉnh cao của sự biểu đạt nghệ thuật thuần khiết. Mỗi thiết kế bất đối xứng và tuyệt tác thơ mộng đều kể một câu chuyện độc bản về phép màu, sự may mắn và tình yêu vĩnh cửu.
             </p>
             <Link
-              href="/collections?search=Snowflake"
+              href="/collections?search=Sao Biển Tuyết"
               className="mt-3 btn-luxury btn-luxury-gold text-[0.6875rem]"
             >
-              Explore High Jewelry
+              Khám Phá Trang Sức Cao Cấp
             </Link>
           </div>
         </motion.div>

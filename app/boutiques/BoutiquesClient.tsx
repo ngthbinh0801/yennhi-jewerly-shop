@@ -2,25 +2,34 @@
 
 import React, { useState, useMemo, useEffect } from "react";
 import Image from "next/image";
-import Link from "next/link";
-import { Search, MapPin, Phone, Clock, Compass, ArrowRight, Check } from "lucide-react";
+import { Search, MapPin, Phone, Clock, ArrowRight, Check, X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { BOUTIQUES_DATA, Boutique } from "@/lib/mockData";
 import { CREAM_BLUR_DATA_URL } from "@/lib/constants";
 import { useSearchParams } from "next/navigation";
 
-const REGIONS = ["All", "Europe", "Asia", "Americas", "Middle East"];
+const REGIONS = ["Tất cả", "Miền Bắc", "Miền Trung", "Miền Nam"];
 
-// Custom SVG coordinates for flagships on a stylized luxury 2D world map frame
+const REGION_MAP: Record<string, string> = {
+  "Tất cả": "All",
+  "Miền Bắc": "North",
+  "Miền Trung": "Central",
+  "Miền Nam": "South"
+};
+
+const REGION_VN: Record<string, string> = {
+  "North": "MIỀN BẮC",
+  "Central": "MIỀN TRUNG",
+  "South": "MIỀN NAM"
+};
+
 const MAP_MARKERS = [
-  { name: "Place Vendôme Flagship Boutique", x: "49%", y: "34%" },
-  { name: "Fifth Avenue Boutique", x: "28%", y: "38%" },
-  { name: "Ginza Flagship Boutique", x: "83%", y: "42%" },
-  { name: "New Bond Street Boutique", x: "47%", y: "32%" },
-  { name: "The Landmark Prince's Boutique", x: "77%", y: "52%" },
-  { name: "Marina Bay Sands Duplex", x: "75%", y: "63%" },
-  { name: "Rue du Rhône Salon", x: "49.5%", y: "35.5%" },
-  { name: "Dubai Mall Boutique", x: "59%", y: "47%" }
+  { name: "Flagship Hà Nội – Hoàn Kiếm", x: "45%", y: "28%" },
+  { name: "Hà Nội – Vincom Bà Triệu", x: "52%", y: "28%" },
+  { name: "Đà Nẵng – Hùng Vương", x: "48%", y: "50%" },
+  { name: "Hội An – Phố Cổ", x: "55%", y: "55%" },
+  { name: "TP. Hồ Chí Minh – Đồng Khởi", x: "44%", y: "75%" },
+  { name: "TP. Hồ Chí Minh – Phú Mỹ Hưng", x: "54%", y: "75%" }
 ];
 
 export default function BoutiquesClient() {
@@ -28,9 +37,9 @@ export default function BoutiquesClient() {
   const initialSearch = searchParams.get("search") || "";
 
   const [searchQuery, setSearchQuery] = useState("");
-  const [selectedRegion, setSelectedRegion] = useState("All");
+  const [selectedRegion, setSelectedRegion] = useState("Tất cả");
   const [activeBoutiqueName, setActiveBoutiqueName] = useState<string | null>(
-    "Place Vendôme Flagship Boutique"
+    "Flagship Hà Nội – Hoàn Kiếm"
   );
   const [bookingBoutique, setBookingBoutique] = useState<Boutique | null>(null);
   const [bookingSuccess, setBookingSuccess] = useState(false);
@@ -38,17 +47,19 @@ export default function BoutiquesClient() {
   // Sync URL search query parameters
   useEffect(() => {
     if (initialSearch) {
-      setSearchQuery(initialSearch);
-      
-      // Look for the first matching boutique to focus on map coordinates automatically
-      const matched = BOUTIQUES_DATA.find((boutique) => 
-        boutique.name.toLowerCase().includes(initialSearch.toLowerCase()) ||
-        boutique.city.toLowerCase().includes(initialSearch.toLowerCase()) ||
-        boutique.address.toLowerCase().includes(initialSearch.toLowerCase())
-      );
-      if (matched) {
-        setActiveBoutiqueName(matched.name);
-      }
+      setTimeout(() => {
+        setSearchQuery(initialSearch);
+        
+        // Look for the first matching boutique to focus on map coordinates automatically
+        const matched = BOUTIQUES_DATA.find((boutique) => 
+          boutique.name.toLowerCase().includes(initialSearch.toLowerCase()) ||
+          boutique.city.toLowerCase().includes(initialSearch.toLowerCase()) ||
+          boutique.address.toLowerCase().includes(initialSearch.toLowerCase())
+        );
+        if (matched) {
+          setActiveBoutiqueName(matched.name);
+        }
+      }, 0);
     }
   }, [initialSearch]);
 
@@ -60,9 +71,10 @@ export default function BoutiquesClient() {
         boutique.city.toLowerCase().includes(searchQuery.toLowerCase()) ||
         boutique.address.toLowerCase().includes(searchQuery.toLowerCase());
 
+      const englishRegion = REGION_MAP[selectedRegion] || "All";
       const matchesRegion =
-        selectedRegion === "All" ||
-        boutique.region.toLowerCase() === selectedRegion.toLowerCase();
+        englishRegion === "All" ||
+        boutique.region.toLowerCase() === englishRegion.toLowerCase();
 
       return matchesSearch && matchesRegion;
     });
@@ -108,7 +120,7 @@ export default function BoutiquesClient() {
                 onClick={() => setBookingBoutique(null)}
                 className="absolute top-4 right-4 text-brand-charcoal hover:text-brand-burgundy transition-all"
               >
-                <Clock size={20} className="rotate-45" />
+                <X size={20} />
               </button>
 
               {bookingSuccess ? (
@@ -116,25 +128,25 @@ export default function BoutiquesClient() {
                   <div className="w-16 h-16 bg-brand-burgundy text-brand-white rounded-full flex items-center justify-center mb-6">
                     <Check size={32} />
                   </div>
-                  <h3 className="text-2xl font-light font-serif text-brand-charcoal mb-2">Appointment Scheduled</h3>
+                  <h3 className="text-2xl font-light font-serif text-brand-charcoal mb-2">Lịch Hẹn Đã Thiết Lập</h3>
                   <p className="text-brand-gray text-xs leading-relaxed max-w-xs">
-                    Thank you. A Yen Nhi Jewerly concierge will contact you shortly to confirm your booking details.
+                    Cảm ơn bạn. Quản lý dịch vụ concierge của Rì Rào Store sẽ liên hệ với bạn trong thời gian sớm nhất để xác nhận thông tin chi tiết lịch hẹn tư vấn.
                   </p>
                 </div>
               ) : (
                 <form onSubmit={submitAppointment} className="flex flex-col gap-4">
                   <span className="text-[10px] uppercase tracking-[0.25em] text-brand-gold font-bold">
-                    Concierge Booking
+                    Đăng Ký Tư Vấn Concierge
                   </span>
                   <h3 className="text-2xl font-light font-serif text-brand-charcoal leading-tight">
-                    Visit {bookingBoutique.city} Flagship
+                    Ghé Thăm Flagship {bookingBoutique.city}
                   </h3>
                   <p className="text-brand-gray text-xs leading-relaxed mb-2">
-                    Schedule a private consultation at {bookingBoutique.name}.
+                    Lịch hẹn tư vấn riêng tư và cá nhân hóa tại {bookingBoutique.name}.
                   </p>
                   
                   <div className="flex flex-col gap-1">
-                    <label className="text-[10px] uppercase tracking-widest text-brand-gray font-semibold">Date</label>
+                    <label className="text-[10px] uppercase tracking-widest text-brand-gray font-semibold">Ngày Hẹn</label>
                     <input
                       required
                       type="date"
@@ -143,33 +155,33 @@ export default function BoutiquesClient() {
                   </div>
 
                   <div className="flex flex-col gap-1">
-                    <label className="text-[10px] uppercase tracking-widest text-brand-gray font-semibold">Time Preference</label>
+                    <label className="text-[10px] uppercase tracking-widest text-brand-gray font-semibold">Khung Giờ Mong Muốn</label>
                     <select
                       required
                       className="border border-brand-charcoal/10 px-3 py-2 text-xs font-semibold focus:outline-none focus:border-brand-burgundy bg-brand-cream"
                     >
-                      <option>Morning (10:00 AM - 12:00 PM)</option>
-                      <option>Afternoon (12:00 PM - 4:00 PM)</option>
-                      <option>Evening (4:00 PM - 7:00 PM)</option>
+                      <option>Buổi sáng (10:00 sáng - 12:00 trưa)</option>
+                      <option>Buổi chiều (12:00 trưa - 4:00 chiều)</option>
+                      <option>Buổi tối (4:00 chiều - 7:00 tối)</option>
                     </select>
                   </div>
 
                   <div className="flex flex-col gap-1">
-                    <label className="text-[10px] uppercase tracking-widest text-brand-gray font-semibold">Full Name</label>
+                    <label className="text-[10px] uppercase tracking-widest text-brand-gray font-semibold">Họ và Tên</label>
                     <input
                       required
                       type="text"
-                      placeholder="e.g. Jean Yen"
+                      placeholder="Ví dụ: Nguyễn Yến Nhi"
                       className="border border-brand-charcoal/10 px-3 py-2 text-xs focus:outline-none focus:border-brand-burgundy bg-brand-cream"
                     />
                   </div>
 
                   <div className="flex flex-col gap-1 mb-2">
-                    <label className="text-[10px] uppercase tracking-widest text-brand-gray font-semibold">Email Address</label>
+                    <label className="text-[10px] uppercase tracking-widest text-brand-gray font-semibold">Địa Chỉ Email</label>
                     <input
                       required
                       type="email"
-                      placeholder="e.g. jean@yennhi.com"
+                      placeholder="Ví dụ: yennhi@gmail.com"
                       className="border border-brand-charcoal/10 px-3 py-2 text-xs focus:outline-none focus:border-brand-burgundy bg-brand-cream"
                     />
                   </div>
@@ -178,7 +190,7 @@ export default function BoutiquesClient() {
                     type="submit"
                     className="w-full py-3 btn-luxury btn-luxury-burgundy font-semibold text-xs tracking-widest"
                   >
-                    Request Appointment
+                    Yêu Cầu Đặt Lịch Hẹn
                   </button>
                 </form>
               )}
@@ -201,11 +213,11 @@ export default function BoutiquesClient() {
         />
         <div className="relative z-10 text-center px-4">
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-light text-brand-white font-serif tracking-widest leading-none mb-3">
-            Find a Boutique
+            Tìm Cửa Hàng
           </h1>
           <div className="gold-divider my-3 bg-brand-gold w-12" />
           <p className="text-brand-cream/80 text-[10px] md:text-xs font-sans tracking-[0.2em] uppercase">
-            Locate a global flagship salon for a private curation experience
+            Khám phá hệ thống cửa hàng Rì Rào Store tại Việt Nam — trải nghiệm tư vấn riêng biệt
           </p>
         </div>
       </section>
@@ -220,7 +232,7 @@ export default function BoutiquesClient() {
             <Search size={16} className="absolute left-3.5 top-1/2 -translate-y-1/2 text-brand-gold" />
             <input
               type="text"
-              placeholder="Search by city, country, address..."
+              placeholder="Tìm kiếm theo thành phố, quốc gia, địa chỉ..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               className="w-full bg-brand-white pl-10 pr-4 py-2 text-xs rounded-md shadow-sm border border-brand-charcoal/5 focus:outline-none focus:border-brand-burgundy text-brand-charcoal font-medium placeholder-brand-gray/60"
@@ -229,7 +241,7 @@ export default function BoutiquesClient() {
 
           {/* Region pills */}
           <div className="flex flex-wrap gap-2 items-center">
-            <span className="text-[10px] uppercase tracking-widest text-brand-gray font-bold mr-1">Region:</span>
+            <span className="text-[10px] uppercase tracking-widest text-brand-gray font-bold mr-1">Khu Vực:</span>
             {REGIONS.map((reg) => {
               const isActive = selectedRegion === reg;
               return (
@@ -258,14 +270,14 @@ export default function BoutiquesClient() {
           
           {/* Stylized high end global schematic backdrop */}
           <div className="absolute opacity-25 w-[110%] h-[110%] pointer-events-none select-none flex items-center justify-center">
-            <div className="text-[200px] font-serif font-light text-brand-white/5 tracking-widest leading-none select-none select-none rotate-6 select-none select-none select-none select-none select-none select-none select-none select-none select-none italic select-none">
-              Yen Nhi Jewerly
+            <div className="text-[200px] font-serif font-light text-brand-white/5 tracking-widest leading-none select-none rotate-6 select-none italic select-none">
+              Rì Rào Store
             </div>
           </div>
 
           {/* Map Title overlay */}
           <div className="absolute top-4 left-4 z-10 bg-brand-charcoal/80 border border-brand-gold/15 px-3 py-1.5 text-[9px] uppercase tracking-[0.2em] font-medium text-brand-white select-none">
-            Flagship Coordinates Radar — Stylized Vector Map
+            Hệ Thống Cửa Hàng Rì Rào Store — Trên Khắp Việt Nam
           </div>
 
           {/* Stylized World Vector Dots Mapping */}
@@ -325,7 +337,7 @@ export default function BoutiquesClient() {
           {/* Active boutique status indicator */}
           <div className="absolute bottom-4 right-4 z-10 bg-brand-charcoal/80 border border-brand-gold/15 p-4 max-w-sm rounded-none shadow-xl text-brand-white">
             <span className="text-[9px] uppercase tracking-[0.2em] text-brand-gold font-bold block mb-1">
-              Active Coordinates Selection
+              Tọa Độ Cửa Hàng Đang Chọn
             </span>
             <h4 className="text-sm font-light font-serif mb-1 truncate text-brand-cream">{activeBoutique.name}</h4>
             <p className="text-[10px] text-brand-cream/80 font-light truncate mb-2">{activeBoutique.address}</p>
@@ -333,7 +345,7 @@ export default function BoutiquesClient() {
               onClick={() => handleBookAppointment(activeBoutique)}
               className="text-[10px] uppercase tracking-widest text-brand-gold font-semibold hover:text-brand-burgundy transition-colors flex items-center gap-1.5"
             >
-              Book consultation <ArrowRight size={12} />
+              Đặt lịch hẹn tư vấn <ArrowRight size={12} />
             </button>
           </div>
         </div>
@@ -342,17 +354,17 @@ export default function BoutiquesClient() {
         <div className="w-full flex flex-col mb-16">
           <div className="mb-10 text-center">
             <span className="text-[10px] uppercase tracking-[0.25em] text-brand-gold font-semibold block mb-1">
-              Directory Listing
+              Danh Mục Tra Cứu
             </span>
             <h2 className="text-3xl font-light font-serif text-brand-charcoal">
-              Global Salon Directory
+              Hệ Thống Cửa Hàng Tại Việt Nam
             </h2>
             <div className="gold-divider bg-brand-gold w-12 my-3" />
           </div>
 
           {filteredBoutiques.length === 0 ? (
             <div className="text-center py-16 bg-brand-white border border-brand-charcoal/5">
-              <p className="text-brand-gray text-sm">No flagship boutiques found matching your query details.</p>
+              <p className="text-brand-gray text-sm">Không tìm thấy cửa hàng flagship nào khớp với thông tin tìm kiếm của bạn.</p>
             </div>
           ) : (
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -372,7 +384,7 @@ export default function BoutiquesClient() {
                     <div className="flex justify-between items-start gap-4 mb-4">
                       <div>
                         <span className="text-[10px] uppercase tracking-[0.2em] text-brand-gold font-bold block mb-1">
-                          {boutique.region} FLAGSHIP
+                          FLAGSHIP {REGION_VN[boutique.region] || boutique.region}
                         </span>
                         <h3 className="text-xl font-light font-serif text-brand-charcoal hover:text-brand-burgundy transition-colors">
                           <button onClick={() => {
@@ -417,7 +429,7 @@ export default function BoutiquesClient() {
                         onClick={() => handleBookAppointment(boutique)}
                         className="btn-luxury btn-luxury-burgundy flex-1 py-2.5 text-[10px] font-semibold uppercase tracking-widest shadow-sm hover:shadow-md"
                       >
-                        Book Appointment
+                        Đặt Lịch Hẹn
                       </button>
                       <a
                         href={`https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(boutique.address)}`}
@@ -425,7 +437,7 @@ export default function BoutiquesClient() {
                         rel="noopener noreferrer"
                         className="text-[10px] uppercase tracking-widest font-bold text-brand-charcoal hover:text-brand-burgundy py-2 px-4 border border-brand-charcoal/10 hover:border-brand-burgundy/30 transition-all flex items-center gap-1 shrink-0"
                       >
-                        Get Directions
+                        Chỉ Đường
                       </a>
                     </div>
                   </motion.div>

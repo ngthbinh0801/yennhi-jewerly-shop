@@ -1,6 +1,7 @@
 "use client";
 
 import React, { createContext, useContext, useState, useEffect, useCallback } from "react";
+import { PRODUCTS_DATA } from "@/lib/mockData";
 
 export interface CartItem {
   slug: string;
@@ -25,8 +26,8 @@ const CartContext = createContext<CartContextValue | null>(null);
 const STORAGE_KEY = "yen-nhi-cart";
 
 export function getPriceNumber(price: string): number | null {
-  if (!price || price === "Price on request") return null;
-  const cleaned = price.replace(/[^0-9.]/g, "");
+  if (!price || price === "Price on request" || price.toLowerCase().includes("liên hệ")) return null;
+  const cleaned = price.replace(/[^0-9]/g, "");
   const parsed = parseFloat(cleaned);
   return isNaN(parsed) ? null : parsed;
 }
@@ -37,7 +38,26 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
   useEffect(() => {
     try {
       const stored = localStorage.getItem(STORAGE_KEY);
-      if (stored) setItems(JSON.parse(stored));
+      if (stored) {
+        const parsed = JSON.parse(stored) as CartItem[];
+        // Automatically sync stored items with the latest PRODUCTS_DATA to update images, prices, and names
+        const updated = parsed.map((item) => {
+          const latestProduct = PRODUCTS_DATA.find((p) => p.slug === item.slug);
+          if (latestProduct) {
+            return {
+              ...item,
+              name: latestProduct.name,
+              price: latestProduct.price,
+              image: latestProduct.images[0] || item.image,
+              collectionSlug: latestProduct.collectionSlug || item.collectionSlug,
+            };
+          }
+          return item;
+        });
+        setTimeout(() => {
+          setItems(updated);
+        }, 0);
+      }
     } catch {
       // ignore parse errors
     }

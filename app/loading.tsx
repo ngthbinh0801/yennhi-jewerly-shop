@@ -17,7 +17,7 @@ export default function Loading() {
           Haute Horlogerie & Joaillerie
         </span>
         <h2 className="text-3xl md:text-4xl font-light font-serif tracking-[0.2em] uppercase text-brand-charcoal mb-4">
-          Yen Nhi Jewerly
+          Rì Rào Store
         </h2>
         
         {/* Circling Gold Loader */}

@@ -1,33 +1,39 @@
 "use client";
 
 import React, { useState, useEffect, useRef } from "react";
-import { Search, ShoppingBag, Menu, X, Heart } from "lucide-react";
+import { Search, ShoppingBag, Menu, X, Heart, ArrowRight } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
+import Image from "next/image";
+import { useRouter, usePathname } from "next/navigation";
 import { BRAND_INFO } from "@/lib/constants";
 import { useCart } from "@/lib/cartContext";
+import { COLLECTIONS_DATA } from "@/lib/mockData";
 import MegaMenu from "./MegaMenu";
 import MobileNav from "./MobileNav";
 
 const NAV_ITEMS = [
-  "HIGH JEWELRY",
-  "JEWELRY",
-  "WATCHES",
-  "BRIDAL",
-  "FRAGRANCE",
-  "THE ATELIER",
-  "SERVICES",
+  { key: "HIGH JEWELRY", label: "TRANG SỨC CAO CẤP" },
+  { key: "JEWELRY", label: "TRANG SỨC" },
+  { key: "WATCHES", label: "ĐỒNG HỒ" },
+  { key: "BRIDAL", label: "BỘ SƯU TẬP CƯỚI" },
+  { key: "FRAGRANCE", label: "NƯỚC HOA" },
+  { key: "THE ATELIER", label: "XƯỞNG CHẾ TÁC" },
+  { key: "SERVICES", label: "DỊCH VỤ" },
 ];
 
 export default function Header() {
   const router = useRouter();
+  const pathname = usePathname();
+  const isHome = pathname === "/";
   const [isScrolled, setIsScrolled] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
+  const [hoveredCollection, setHoveredCollection] = useState<string | null>(null);
   const [searchOpen, setSearchOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
   const [mobileNavOpen, setMobileNavOpen] = useState(false);
   const closeTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+  const dropdownTimeoutRef = useRef<NodeJS.Timeout | null>(null);
   const { totalCount } = useCart();
 
   useEffect(() => {
@@ -38,6 +44,8 @@ export default function Header() {
 
   const handleMouseEnterItem = (item: string) => {
     if (closeTimeoutRef.current) clearTimeout(closeTimeoutRef.current);
+    if (dropdownTimeoutRef.current) clearTimeout(dropdownTimeoutRef.current);
+    setHoveredCollection(null);
     setActiveDropdown(item);
   };
 
@@ -51,11 +59,33 @@ export default function Header() {
 
   const handleMouseLeaveMenu = () => setActiveDropdown(null);
 
+  const handleMouseEnterCollection = (slug: string) => {
+    if (dropdownTimeoutRef.current) clearTimeout(dropdownTimeoutRef.current);
+    if (closeTimeoutRef.current) clearTimeout(closeTimeoutRef.current);
+    setActiveDropdown(null);
+    setHoveredCollection(slug);
+  };
+
+  const handleMouseLeaveCollection = () => {
+    dropdownTimeoutRef.current = setTimeout(() => {
+      setHoveredCollection(null);
+    }, 250);
+  };
+
+  const handleMouseEnterHoverCard = () => {
+    if (dropdownTimeoutRef.current) clearTimeout(dropdownTimeoutRef.current);
+  };
+
+  const handleMouseLeaveHoverCard = () => {
+    setHoveredCollection(null);
+  };
+
+  const headerClasses = isScrolled
+    ? "fixed top-0 w-full z-40 select-none transition-all duration-500 bg-brand-white/96 backdrop-blur-md border-b border-brand-gold/10 shadow-sm"
+    : "absolute top-[34px] md:top-[38px] left-0 w-full z-40 select-none transition-all duration-500 bg-transparent border-b border-transparent";
+
   return (
-    <header className={`sticky top-0 w-full z-40 select-none transition-all duration-500 ${isScrolled
-        ? "bg-brand-white/96 backdrop-blur-md border-b border-brand-gold/10 shadow-sm"
-        : "bg-transparent border-b border-transparent"
-      }`}>
+    <header className={headerClasses}>
       <div
         className={`page-content transition-all duration-500 ease-in-out ${isScrolled ? "py-3" : "py-5"
           }`}
@@ -76,7 +106,7 @@ export default function Header() {
               className="hidden md:flex items-center gap-2 text-brand-charcoal hover:text-brand-burgundy transition-colors duration-300 focus:outline-none"
             >
               <Search className="w-4 h-4 text-brand-gold" />
-              <span className="text-[10px] font-medium uppercase tracking-[0.2em]">Search</span>
+              <span className="text-[10px] font-medium uppercase tracking-[0.2em]">Tìm kiếm</span>
             </button>
           </div>
 
@@ -121,7 +151,7 @@ export default function Header() {
               className="hidden md:flex items-center gap-1.5 text-brand-charcoal hover:text-brand-burgundy transition-colors duration-300"
             >
               <Heart className="w-4 h-4 text-brand-gold" />
-              <span className="text-[10px] font-medium uppercase tracking-[0.2em]">Wishlist</span>
+              <span className="text-[10px] font-medium uppercase tracking-[0.2em]">Yêu thích</span>
             </Link>
 
             {/* Cart */}
@@ -147,38 +177,51 @@ export default function Header() {
                   )}
                 </AnimatePresence>
               </div>
-              <span className="hidden md:inline text-[10px] font-medium uppercase tracking-[0.2em]">Cart</span>
+              <span className="hidden md:inline text-[10px] font-medium uppercase tracking-[0.2em]">Giỏ hàng</span>
             </Link>
           </div>
         </div>
 
-        {/* ── Desktop Navigation Bar ── */}
-        <div
-          className={`hidden md:block overflow-hidden transition-all duration-500 ease-in-out ${isScrolled ? "max-h-0 opacity-0 mt-0" : "max-h-12 opacity-100 mt-4"
+        {/* Collections Taskbar (only on homepage, desktop only) */}
+        {isHome && (
+          <motion.div
+            initial={{ opacity: 0, y: -4 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.15 }}
+            className={`hidden md:flex items-center justify-center gap-6 lg:gap-8 mt-5 pt-3.5 border-t transition-all duration-500 ${
+              isScrolled ? "border-brand-gold/10" : "border-brand-gold/15"
             }`}
-        >
-          <nav className="flex items-center justify-center gap-7 lg:gap-9 border-t border-brand-gold/8 pt-3.5">
-            {NAV_ITEMS.map((item) => {
-              let href = "/collections";
-              if (item === "HIGH JEWELRY") href = "/collections?search=Snowflake";
-              else if (item === "WATCHES") href = "/collections?category=watches";
-              else if (item === "THE ATELIER") href = "/the-maison";
-              else if (item === "SERVICES") href = "/contact";
-              return (
+          >
+            {COLLECTIONS_DATA.map((collection, index) => (
+              <React.Fragment key={collection.slug}>
+                {index > 0 && <span className="text-brand-gold/30 text-[8px] select-none">•</span>}
                 <div
-                  key={item}
-                  className="relative"
-                  onMouseEnter={() => handleMouseEnterItem(item)}
-                  onMouseLeave={handleMouseLeaveItem}
+                  onMouseEnter={() => handleMouseEnterCollection(collection.slug)}
+                  onMouseLeave={handleMouseLeaveCollection}
+                  className="relative py-1"
                 >
-                  <Link href={href} className="nav-link">
-                    {item}
+                  <Link
+                    href={`/collections/${collection.slug}`}
+                    className={`text-[10px] font-medium uppercase tracking-[0.25em] transition-all duration-300 relative group py-1.5 ${
+                      isScrolled
+                        ? "text-brand-charcoal hover:text-brand-burgundy"
+                        : "text-brand-charcoal/80 hover:text-brand-burgundy"
+                    }`}
+                  >
+                    {collection.name}
+                    {/* Subtle hover underline */}
+                    <span
+                      className={`absolute bottom-0 left-0 h-[1.5px] bg-brand-gold/70 transition-all duration-300 ${
+                        hoveredCollection === collection.slug ? "w-full" : "w-0 group-hover:w-full"
+                      }`}
+                    />
                   </Link>
                 </div>
-              );
-            })}
-          </nav>
-        </div>
+              </React.Fragment>
+            ))}
+          </motion.div>
+        )}
+
       </div>
 
       {/* Mega Menu */}
@@ -190,6 +233,72 @@ export default function Header() {
             onMouseEnter={handleMouseEnterMenu}
             onMouseLeave={handleMouseLeaveMenu}
           />
+        )}
+      </AnimatePresence>
+
+      {/* Collections Quick View Hover Card */}
+      <AnimatePresence>
+        {hoveredCollection && (
+          (() => {
+            const collection = COLLECTIONS_DATA.find((c) => c.slug === hoveredCollection);
+            if (!collection) return null;
+
+            return (
+              <motion.div
+                initial={{ opacity: 0, y: -10 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -10 }}
+                transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
+                onMouseEnter={handleMouseEnterHoverCard}
+                onMouseLeave={handleMouseLeaveHoverCard}
+                className={`absolute left-1/2 -translate-x-1/2 w-[92%] max-w-[1200px] z-30 transition-all duration-500 overflow-hidden shadow-2xl rounded-2xl border top-full mt-2 lg:mt-3 ${
+                  isScrolled
+                    ? "bg-brand-white/95 backdrop-blur-lg border-brand-gold/15"
+                    : "bg-brand-white/20 backdrop-blur-xl border-brand-white/20"
+                }`}
+              >
+                <div className="grid grid-cols-12 gap-8 py-8 pl-16 md:pl-24 lg:pl-32 pr-10 lg:pr-16 items-center">
+                  {/* Left info column */}
+                  <div className="col-span-7 flex flex-col pr-6">
+                    <span className="text-[9px] uppercase tracking-[0.35em] text-brand-gold font-semibold mb-3">
+                      Bộ Sưu Tập Nổi Bật
+                    </span>
+                    <h3 className="font-serif text-3xl font-light text-brand-charcoal tracking-wide mb-3">
+                      {collection.name}
+                    </h3>
+                    <p className="text-xs font-serif italic text-brand-burgundy/80 tracking-wide mb-4">
+                      "{collection.tagline}"
+                    </p>
+                    <div className="w-12 h-px bg-brand-gold/30 mb-4" />
+                    <p className="text-xs text-brand-charcoal/80 leading-relaxed font-light mb-6 max-w-lg">
+                      {collection.description}
+                    </p>
+                    <Link
+                      href={`/collections/${collection.slug}`}
+                      onClick={() => setHoveredCollection(null)}
+                      className="text-[10px] uppercase tracking-[0.2em] font-bold text-brand-charcoal hover:text-brand-burgundy inline-flex items-center gap-2 group/btn border-b border-brand-charcoal/10 pb-1.5 self-start transition-all duration-300"
+                    >
+                      <span>Khám phá bộ sưu tập</span>
+                      <ArrowRight className="w-3.5 h-3.5 text-brand-gold transition-transform duration-300 group-hover/btn:translate-x-1.5" />
+                    </Link>
+                  </div>
+
+                  {/* Right image column */}
+                  <div className="col-span-5 relative aspect-[4/3] w-full overflow-hidden rounded-sm border border-brand-gold/10 group shadow-md">
+                    <Image
+                      src={collection.image}
+                      alt={collection.name}
+                      fill
+                      className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+                      sizes="(max-width: 1024px) 100vw, 30vw"
+                      priority
+                    />
+                    <div className="absolute inset-0 bg-brand-charcoal/5" />
+                  </div>
+                </div>
+              </motion.div>
+            );
+          })()
         )}
       </AnimatePresence>
 
@@ -217,7 +326,7 @@ export default function Header() {
               className="max-w-2xl w-full flex flex-col gap-6"
             >
               <div className="flex items-center justify-between">
-                <span className="section-label">What are you looking for?</span>
+                <span className="section-label">Bạn đang tìm kiếm sản phẩm gì?</span>
                 <button
                   type="button"
                   onClick={() => setSearchOpen(false)}
@@ -233,7 +342,7 @@ export default function Header() {
                   type="text"
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
-                  placeholder="Search collections, jewelry, watches..."
+                  placeholder="Tìm kiếm bộ sưu tập, trang sức, đồng hồ..."
                   autoFocus
                   className="w-full bg-transparent border-none text-brand-charcoal placeholder-brand-gray/55 text-xl font-light focus:outline-none focus:ring-0 select-text font-serif"
                 />
@@ -243,9 +352,9 @@ export default function Header() {
               </div>
 
               <div>
-                <span className="section-label mb-3 block">Trending</span>
+                <span className="section-label mb-3 block">Xu hướng tìm kiếm</span>
                 <div className="flex flex-wrap gap-2">
-                  {["Alhambra Pendant", "Frivole Earring", "Perlée Bracelet", "Bridal Solitaires"].map((trend) => (
+                  {["Mặt dây chuyền Xà Cừ Bốn Lá", "Bông tai Hoa Khơi Biển", "Vòng tay Hạt Ngọc Biển", "Nhẫn cưới Solitaire"].map((trend) => (
                     <button
                       key={trend}
                       type="button"

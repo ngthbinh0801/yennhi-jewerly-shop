@@ -26,14 +26,14 @@ export default function NotFound() {
 
         {/* Poetic title */}
         <h2 className="text-xl uppercase tracking-[0.2em] font-semibold text-brand-charcoal mb-4">
-          Creation Not Found
+          Không Tìm Thấy Trang
         </h2>
         
         <div className="gold-divider bg-brand-gold w-12 my-2" />
 
         {/* Descriptive copy */}
         <p className="text-brand-gray text-xs md:text-sm font-light leading-relaxed mb-8 max-w-xs">
-          The poetic corridor you are seeking is temporarily unavailable. It may have migrated to another boutique catalog or is currently being refined by our artisans.
+          Hành lang thơ mộng mà bạn đang tìm kiếm tạm thời không khả dụng. Liên kết có thể đã được chuyển sang danh mục cửa hàng khác hoặc đang được hoàn thiện tinh xảo bởi các nghệ nhân của chúng tôi.
         </p>
 
         {/* Action button triggers */}
@@ -42,13 +42,13 @@ export default function NotFound() {
             href="/"
             className="w-full py-3 btn-luxury btn-luxury-burgundy text-[10px] font-semibold tracking-widest uppercase"
           >
-            Return to Salon Home
+            Quay Lại Trang Chủ
           </Link>
           <Link
             href="/collections"
             className="w-full py-3 border border-brand-charcoal/10 hover:border-brand-burgundy text-brand-charcoal hover:text-brand-burgundy text-[10px] font-semibold tracking-widest uppercase flex items-center justify-center gap-1.5 transition-all duration-300"
           >
-            Browse Collections <ArrowRight size={12} />
+            Khám Phá Các Bộ Sưu Tập <ArrowRight size={12} />
           </Link>
         </div>
       </motion.div>

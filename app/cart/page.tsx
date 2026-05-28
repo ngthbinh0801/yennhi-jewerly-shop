@@ -24,14 +24,14 @@ export default function CartPage() {
       <div className="bg-brand-charcoal text-brand-white" style={{ height: "28vh", minHeight: "160px" }}>
         <div className="page-content h-full flex flex-col justify-end pb-10">
           <span className="text-xs uppercase tracking-[0.3em] text-brand-gold font-semibold block mb-2">
-            Your Selection
+            Bộ Sưu Tập Đã Chọn
           </span>
           <h1 className="text-4xl md:text-5xl font-light font-serif tracking-wide">
-            Shopping Cart
+            Giỏ Hàng Của Bạn
           </h1>
           {totalCount > 0 && (
             <p className="text-brand-gray text-sm mt-2 font-light">
-              {totalCount} {totalCount === 1 ? "creation" : "creations"} reserved
+              Đang bảo lưu {totalCount} tác phẩm
             </p>
           )}
         </div>
@@ -48,16 +48,16 @@ export default function CartPage() {
           >
             <ShoppingBag size={48} className="text-brand-gold/40 mb-6" strokeWidth={1} />
             <h2 className="text-2xl font-light font-serif text-brand-charcoal mb-3">
-              Your cart is empty
+              Giỏ hàng của bạn đang trống
             </h2>
             <p className="text-brand-gray text-sm font-light mb-8 max-w-xs leading-relaxed">
-              Discover our collections and reserve exceptional creations for you.
+              Hãy khám phá các bộ sưu tập của chúng tôi và đặt giữ riêng các tạo tác xuất sắc dành cho bạn.
             </p>
             <Link
               href="/collections"
               className="btn-luxury btn-luxury-burgundy flex items-center gap-2"
             >
-              Explore Collections <ArrowRight size={14} />
+              Khám Phá Các Bộ Sưu Tập <ArrowRight size={14} />
             </Link>
           </motion.div>
         ) : (
@@ -102,9 +102,9 @@ export default function CartPage() {
                           <div>
                             <Link
                               href={`/collections/${item.collectionSlug}`}
-                              className="text-xs uppercase tracking-[0.2em] text-brand-gold font-semibold block mb-1 hover:text-brand-burgundy transition-colors duration-300"
+                              className="text-xs uppercase tracking-[0.2em] text-brand-gold font-semibold block mb-1 hover:text-brand-burgundy transition-colors duration-300 capitalize"
                             >
-                              {item.collectionSlug}
+                              Bộ sưu tập {item.collectionSlug}
                             </Link>
                             <Link
                               href={`/products/${item.slug}`}
@@ -120,7 +120,7 @@ export default function CartPage() {
                           {/* Remove button */}
                           <button
                             onClick={() => removeFromCart(item.slug)}
-                            aria-label="Remove item"
+                            aria-label="Xóa khỏi giỏ"
                             className="text-brand-gray hover:text-brand-burgundy transition-colors duration-300 p-1 shrink-0"
                           >
                             <X size={16} />
@@ -129,13 +129,13 @@ export default function CartPage() {
 
                         {/* Quantity Controls */}
                         <div className="flex items-center gap-3 mt-4">
-                          <span className="text-xs uppercase tracking-widest text-brand-gray font-medium">Qty</span>
+                          <span className="text-xs uppercase tracking-widest text-brand-gray font-medium">SL</span>
                           <div className="flex items-center border border-brand-charcoal/20 bg-brand-white">
                             <button
                               onClick={() => updateQuantity(item.slug, item.quantity - 1)}
                               disabled={item.quantity <= 1}
                               className="w-11 h-11 flex items-center justify-center text-brand-charcoal hover:text-brand-burgundy disabled:opacity-30 transition-colors duration-300"
-                              aria-label="Decrease quantity"
+                              aria-label="Giảm số lượng"
                             >
                               <Minus size={12} />
                             </button>
@@ -145,7 +145,7 @@ export default function CartPage() {
                             <button
                               onClick={() => updateQuantity(item.slug, item.quantity + 1)}
                               className="w-11 h-11 flex items-center justify-center text-brand-charcoal hover:text-brand-burgundy transition-colors duration-300"
-                              aria-label="Increase quantity"
+                              aria-label="Tăng số lượng"
                             >
                               <Plus size={12} />
                             </button>
@@ -153,7 +153,7 @@ export default function CartPage() {
 
                           {priceNum !== null && (
                             <span className="text-xs text-brand-gray font-light ml-2">
-                              = ${(priceNum * item.quantity).toLocaleString()}
+                              = {(priceNum * item.quantity).toLocaleString('vi-VN')} VND
                             </span>
                           )}
                         </div>
@@ -172,7 +172,7 @@ export default function CartPage() {
               className="lg:col-span-5 lg:sticky lg:top-32 bg-brand-white border border-brand-charcoal/5 p-8 shadow-sm"
             >
               <h2 className="text-xl font-light font-serif text-brand-charcoal mb-6 tracking-wide">
-                Order Summary
+                Tóm Tắt Đơn Hàng
               </h2>
               <div className="w-8 h-[1px] bg-brand-gold/40 mb-6" />
 
@@ -190,8 +190,8 @@ export default function CartPage() {
                       </span>
                       <span className="text-brand-charcoal font-semibold shrink-0 text-xs uppercase tracking-wider">
                         {priceNum !== null
-                          ? `$${(priceNum * item.quantity).toLocaleString()}`
-                          : "On request"}
+                          ? `${(priceNum * item.quantity).toLocaleString('vi-VN')} VND`
+                          : "Liên hệ"}
                       </span>
                     </div>
                   );
@@ -201,17 +201,17 @@ export default function CartPage() {
               <div className="border-t border-brand-charcoal/10 pt-4 mb-6">
                 {subtotal > 0 && (
                   <div className="flex justify-between items-center mb-2">
-                    <span className="text-xs uppercase tracking-widest text-brand-gray font-medium">Subtotal</span>
-                    <span className="text-base font-semibold text-brand-charcoal">${subtotal.toLocaleString()}</span>
+                    <span className="text-xs uppercase tracking-widest text-brand-gray font-medium">Tổng tiền tạm tính</span>
+                    <span className="text-base font-semibold text-brand-charcoal">{subtotal.toLocaleString('vi-VN')} VND</span>
                   </div>
                 )}
                 {hasPOA && (
                   <p className="text-xs text-brand-gray font-light italic mt-2 leading-relaxed">
-                    * Creations marked "Price on request" will be confirmed by our concierge team.
+                    * Các tạo tác đánh dấu &ldquo;Liên hệ để biết giá&rdquo; sẽ được xác nhận trực tiếp bởi đội ngũ tư vấn concierge của chúng tôi.
                   </p>
                 )}
                 <p className="text-xs text-brand-gray font-light mt-2">
-                  Shipping & taxes calculated at checkout
+                  Thuế và phí giao hàng sẽ được tính đầy đủ khi tiến hành thanh toán.
                 </p>
               </div>
 
@@ -221,19 +221,23 @@ export default function CartPage() {
                   href="/checkout"
                   className="w-full py-4 btn-luxury btn-luxury-burgundy flex items-center justify-center font-sans uppercase font-semibold text-xs tracking-widest text-center"
                 >
-                  Proceed to Checkout <ArrowRight size={14} className="ml-2" />
+                  Tiến Hành Thanh Toán <ArrowRight size={14} className="ml-2" />
                 </Link>
                 <Link
                   href="/collections"
                   className="w-full py-3.5 text-center text-xs uppercase tracking-widest font-semibold text-brand-charcoal hover:text-brand-burgundy border border-brand-charcoal/20 hover:border-brand-burgundy transition-all duration-300"
                 >
-                  Continue Shopping
+                  Tiếp Tục Mua Sắm
                 </Link>
               </div>
 
               {/* Trust badges */}
               <div className="mt-6 pt-6 border-t border-brand-charcoal/10 flex flex-col gap-1.5">
-                {["Secure payment · SSL encrypted", "Complimentary gift packaging", "Free returns within 30 days"].map((text) => (
+                {[
+                  "Thanh toán bảo mật · Mã hóa mã SSL",
+                  "Hộp quà đóng gói sang trọng miễn phí",
+                  "Đổi trả miễn phí trong vòng 30 ngày"
+                ].map((text) => (
                   <p key={text} className="text-xs text-brand-gray font-light tracking-wide flex items-center gap-1.5">
                     <span className="w-1 h-1 rounded-full bg-brand-gold/60 shrink-0" />
                     {text}

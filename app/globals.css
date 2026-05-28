@@ -2,11 +2,11 @@
 
 @theme {
   --color-brand-white: #FFFFFF;
-  --color-brand-cream: #FAF8F5;
-  --color-brand-charcoal: #1A1A1A;
-  --color-brand-burgundy: #722F37;
-  --color-brand-gold: #C9A961;
-  --color-brand-gray: #8B8B8B;
+  --color-brand-cream: #FAF6F0;
+  --color-brand-charcoal: #1B2A30;
+  --color-brand-burgundy: #C7756D;
+  --color-brand-gold: #BEA37B;
+  --color-brand-gray: #8A999E;
 
   --font-serif: var(--font-cormorant), "Playfair Display", Georgia, serif;
   --font-sans: var(--font-inter), "Helvetica Neue", Arial, sans-serif;

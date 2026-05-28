@@ -7,29 +7,31 @@ import { ArrowRight } from "lucide-react";
 import Link from "next/link";
 import { CREAM_BLUR_DATA_URL } from "@/lib/constants";
 
+import { SITE_IMAGES } from "@/lib/imageConfig";
+
 const HERITAGE_CARDS = [
   {
     id: 1,
-    image: "https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?auto=format&fit=crop&q=80&w=800",
-    label: "History",
-    title: "Since 2026",
-    description: "Born from an exquisite love of gemstone artistry, our atelier establishes custom jewelry designs, starting an exceptional journey of beauty and fine craft.",
+    image: SITE_IMAGES.sections.maisonHistory,
+    label: "Lịch Sử",
+    title: "Từ Năm 2026",
+    description: "Khởi nguồn từ tình yêu mãnh liệt với nghệ thuật đá quý, xưởng chế tác của chúng tôi thiết lập những thiết kế trang sức thủ công tinh xảo, bắt đầu một hành trình phi thường của cái đẹp và tay nghề thủ công mỹ nghệ.",
     href: "/the-maison",
   },
   {
     id: 2,
-    image: "https://images.unsplash.com/photo-1573408301185-9146fe634ad0?auto=format&fit=crop&q=80&w=800",
-    label: "Savoir-Faire",
-    title: "Our Craftsmanship",
-    description: "Our legendary master artisans bring exceptional drawings to life at our elite workshops, masterfully setting precious stones and hand-polishing pure gold beads.",
+    image: SITE_IMAGES.sections.maisonCraft,
+    label: "Bí Quyết Savoir-Faire",
+    title: "Nghệ Thuật Thủ Công",
+    description: "Những nghệ nhân bậc thầy huyền thoại của chúng tôi thổi hồn vào những bản vẽ thiết kế xuất chúng tại các xưởng chế tác tinh hoa, đính đá quý một cách tài tình và đánh bóng thủ công từng hạt viền vàng rực rỡ.",
     href: "/the-maison",
   },
   {
     id: 3,
-    image: "https://images.unsplash.com/photo-1506630448388-4e683c67ddb0?auto=format&fit=crop&q=80&w=800",
-    label: "Academy",
-    title: "School of Jewelry Arts",
-    description: "Supported by Yen Nhi Jewerly, our academy invites the public to discover the secret worlds of gemology, historical jewelry designs, and ancestral crafting workshops.",
+    image: SITE_IMAGES.sections.maisonSchool,
+    label: "Học Viện",
+    title: "Trường Nghệ Thuật Trang Sức",
+    description: "Được bảo trợ bởi Rì Rào Store, học viện của chúng tôi chào đón công chúng đến khám phá thế giới bí ẩn của ngọc học, các thiết kế trang sức lịch sử và những khóa học trải nghiệm chế tác truyền thống.",
     href: "/the-maison",
   },
 ];
@@ -41,11 +43,11 @@ export default function TheMaison() {
         {/* Heading */}
         <div className="text-center max-w-xl self-center w-full">
           <h2 className="section-title text-center text-[2rem] md:text-[2.75rem] [padding-left:0.06em]">
-            The Yen Nhi Jewerly Atelier
+            Xưởng Chế Tác Rì Rào Store
           </h2>
           <div className="gold-divider" />
           <p className="text-[0.8125rem] text-brand-gray font-light tracking-wide">
-            A Heritage of Poetry and Excellence
+            Di Sản Của Chất Thơ Và Sự Tinh Hoa
           </p>
         </div>
 
@@ -61,7 +63,7 @@ export default function TheMaison() {
             >
               <Link href={card.href} className="group block">
                 {/* Image */}
-                <div className="relative aspect-[4/5] w-full overflow-hidden border border-brand-gold/15 bg-brand-cream shadow-sm group-hover:shadow-lg group-hover:border-brand-gold/30 transition-all duration-500 mb-5">
+                <div className="relative aspect-[4/5] w-full overflow-hidden border border-brand-gold/15 bg-brand-cream rounded-2xl shadow-sm group-hover:shadow-lg group-hover:border-brand-gold/30 transition-all duration-500 mb-5">
                   <Image
                     src={card.image}
                     alt={card.title}
@@ -83,7 +85,7 @@ export default function TheMaison() {
                   {card.description}
                 </p>
                 <span className="inline-flex items-center gap-1.5 text-[10px] uppercase tracking-[0.2em] text-brand-gold font-semibold border-b border-transparent pb-0.5 group-hover:border-brand-gold transition-all duration-300">
-                  Discover
+                  Khám phá
                   <ArrowRight className="w-3 h-3 group-hover:translate-x-1.5 transition-transform duration-300" />
                 </span>
               </Link>

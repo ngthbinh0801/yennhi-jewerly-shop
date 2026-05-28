@@ -23,17 +23,17 @@ export default function CheckoutPage() {
       <div className="bg-brand-charcoal text-brand-white" style={{ height: "28vh", minHeight: "160px" }}>
         <div className="page-content h-full flex flex-col justify-end pb-10">
           <nav className="text-xs uppercase tracking-[0.2em] text-brand-white/40 mb-3 flex items-center gap-1.5 font-medium">
-            <Link href="/" className="hover:text-brand-gold transition-colors duration-300">Home</Link>
+            <Link href="/" className="hover:text-brand-gold transition-colors duration-300">Trang Chủ</Link>
             <ChevronRight size={10} className="text-brand-white/20" />
-            <Link href="/cart" className="hover:text-brand-gold transition-colors duration-300">Cart</Link>
+            <Link href="/cart" className="hover:text-brand-gold transition-colors duration-300">Giỏ Hàng</Link>
             <ChevronRight size={10} className="text-brand-white/20" />
-            <span className="text-brand-gold">Checkout</span>
+            <span className="text-brand-gold">Thanh Toán</span>
           </nav>
           <span className="text-xs uppercase tracking-[0.3em] text-brand-gold font-semibold block mb-2">
-            Secure Payment
+            Thanh Toán Bảo Mật
           </span>
           <h1 className="text-4xl md:text-5xl font-light font-serif tracking-wide">
-            Checkout
+            Thanh Toán
           </h1>
         </div>
       </div>
@@ -51,18 +51,18 @@ export default function CheckoutPage() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
-            className="lg:col-span-5 lg:sticky lg:top-32 bg-brand-white border border-brand-charcoal/5 p-8 shadow-sm"
+            className="lg:col-span-5 lg:sticky lg:top-32 bg-brand-white border border-brand-charcoal/5 p-8 shadow-sm rounded-2xl"
           >
             <h2 className="text-xl font-light font-serif text-brand-charcoal mb-6 tracking-wide">
-              Your Order
+              Đơn Hàng Của Bạn
             </h2>
             <div className="w-8 h-[1px] bg-brand-gold/40 mb-6" />
 
             {items.length === 0 ? (
               <p className="text-brand-gray text-sm font-light">
-                Your cart is empty.{" "}
+                Giỏ hàng của bạn đang trống.{" "}
                 <Link href="/collections" className="text-brand-burgundy underline">
-                  Browse collections
+                  Khám phá các bộ sưu tập
                 </Link>
               </p>
             ) : (
@@ -93,14 +93,14 @@ export default function CheckoutPage() {
                             <p className="text-sm font-light font-serif text-brand-charcoal leading-tight line-clamp-1">
                               {item.name}
                             </p>
-                            <p className="text-xs uppercase tracking-wider text-brand-gold font-medium mt-0.5">
-                              {item.collectionSlug}
+                            <p className="text-xs uppercase tracking-wider text-brand-gold font-medium mt-0.5 capitalize">
+                              Bộ sưu tập {item.collectionSlug}
                             </p>
                           </div>
                           <p className="text-xs font-semibold uppercase tracking-wider text-brand-charcoal">
                             {priceNum !== null
-                              ? `$${(priceNum * item.quantity).toLocaleString()}`
-                              : "Price on request"}
+                              ? `${(priceNum * item.quantity).toLocaleString('vi-VN')} VND`
+                              : "Liên hệ để biết giá"}
                           </p>
                         </div>
                       </div>
@@ -111,13 +111,13 @@ export default function CheckoutPage() {
                 <div className="border-t border-brand-charcoal/10 pt-4 flex flex-col gap-2">
                   {subtotal > 0 && (
                     <div className="flex justify-between items-center">
-                      <span className="text-xs uppercase tracking-widest text-brand-gray font-medium">Subtotal</span>
-                      <span className="text-sm font-semibold text-brand-charcoal">${subtotal.toLocaleString()}</span>
+                      <span className="text-xs uppercase tracking-widest text-brand-gray font-medium">Tổng tạm tính</span>
+                      <span className="text-sm font-semibold text-brand-charcoal">{subtotal.toLocaleString('vi-VN')} VND</span>
                     </div>
                   )}
                   <div className="flex justify-between items-center">
-                    <span className="text-xs uppercase tracking-widest text-brand-gray font-medium">Shipping</span>
-                    <span className="text-xs text-brand-gold font-medium">Complimentary</span>
+                    <span className="text-xs uppercase tracking-widest text-brand-gray font-medium">Giao hàng</span>
+                    <span className="text-xs text-brand-gold font-medium">Miễn phí giao hàng</span>
                   </div>
                 </div>
               </>
@@ -130,11 +130,11 @@ export default function CheckoutPage() {
                   <div className="w-1.5 h-1.5 bg-brand-gold/60 rounded-full" />
                 </div>
                 <p className="text-xs uppercase tracking-[0.15em] text-brand-gray font-medium">
-                  SSL Secured Checkout
+                  Cổng Thanh Toán Bảo Mật SSL
                 </p>
               </div>
               <p className="text-xs text-brand-gray font-light leading-relaxed">
-                Your payment information is encrypted and never stored. This is a portfolio demonstration — no real charges will occur.
+                Thông tin thanh toán của bạn luôn được mã hóa bảo mật và không bao giờ được lưu trữ. Đây là phiên bản thử nghiệm trải nghiệm — không có giao dịch tiền thực tế nào được thực hiện.
               </p>
             </div>
           </motion.div>

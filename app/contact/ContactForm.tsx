@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import Link from "next/link";
-import { Phone, Mail, Clock, Calendar, Check, Send, AlertCircle, ArrowRight } from "lucide-react";
+import { Phone, Mail, Clock, Check, Send, AlertCircle, ArrowRight } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
 export default function ContactForm() {
@@ -10,7 +10,7 @@ export default function ContactForm() {
     name: "",
     email: "",
     phone: "",
-    subject: "High Jewelry Inquiries",
+    subject: "Yêu cầu Trang sức Cao cấp",
     message: ""
   });
   
@@ -33,15 +33,15 @@ export default function ContactForm() {
 
     // Basic Validation
     if (!formData.name.trim()) {
-      setValidationError("Please enter your full name.");
+      setValidationError("Vui lòng nhập họ và tên của bạn.");
       return;
     }
     if (!formData.email.trim() || !formData.email.includes("@")) {
-      setValidationError("Please enter a valid email address.");
+      setValidationError("Vui lòng nhập địa chỉ email hợp lệ.");
       return;
     }
     if (!formData.message.trim() || formData.message.length < 10) {
-      setValidationError("Please enter a message containing at least 10 characters.");
+      setValidationError("Vui lòng nhập nội dung tin nhắn dài ít nhất 10 ký tự.");
       return;
     }
 
@@ -54,7 +54,7 @@ export default function ContactForm() {
         name: "",
         email: "",
         phone: "",
-        subject: "High Jewelry Inquiries",
+        subject: "Yêu cầu Trang sức Cao cấp",
         message: ""
       });
     }, 1800);
@@ -72,7 +72,7 @@ export default function ContactForm() {
             transition={{ duration: 0.6 }}
             className="text-xs uppercase tracking-[0.3em] text-brand-gold font-semibold mb-2 block"
           >
-            Yen Nhi Jewerly Client Services
+            Dịch vụ Khách hàng Rì Rào Store
           </motion.span>
           <motion.h1
             initial={{ opacity: 0, y: 20 }}
@@ -80,7 +80,7 @@ export default function ContactForm() {
             transition={{ duration: 0.8, delay: 0.1 }}
             className="text-4xl md:text-5xl lg:text-6xl font-light text-brand-white font-serif tracking-widest leading-none mb-3"
           >
-            Contact Us
+            Liên Hệ Chúng Tôi
           </motion.h1>
           <div className="gold-divider my-3 bg-brand-gold w-12" />
           <motion.p
@@ -89,7 +89,7 @@ export default function ContactForm() {
             transition={{ duration: 0.8, delay: 0.3 }}
             className="text-brand-cream/80 text-[10px] md:text-xs font-sans tracking-[0.2em] uppercase"
           >
-            Inquire with our dedicated Place Vendôme concierge team
+            Gửi yêu cầu tới đội ngũ tư vấn viên Place Vendôme tận tâm của chúng tôi
           </motion.p>
         </div>
       </section>
@@ -101,13 +101,13 @@ export default function ContactForm() {
           {/* LEFT SECTION (7 cols - Form) */}
           <div className="lg:col-span-7 bg-brand-white border border-brand-charcoal/5 p-6 md:p-10 shadow-lg relative">
             <span className="text-[10px] uppercase tracking-[0.25em] text-brand-gold font-bold block mb-1">
-              Client Intake Form
+              Biểu Mẫu Đăng Ký Yêu Cầu
             </span>
             <h2 className="text-3xl font-light font-serif text-brand-charcoal mb-4 leading-tight">
-              Concierge Inquiries
+              Yêu Cầu Concierge
             </h2>
             <p className="text-brand-gray text-xs md:text-sm font-light leading-relaxed mb-8">
-              Whether requesting high-jewelry curation details or requiring boutique appointment coordination, please submit your inquiry below. Our advisors will respond within 24 business hours.
+              Cho dù bạn muốn yêu cầu chi tiết giám tuyển trang sức cao cấp hay cần điều phối lịch hẹn cửa hàng, vui lòng gửi yêu cầu của bạn dưới đây. Các cố vấn của chúng tôi sẽ phản hồi trong vòng 24 giờ làm việc.
             </p>
 
             <AnimatePresence mode="wait">
@@ -122,15 +122,15 @@ export default function ContactForm() {
                   <div className="w-16 h-16 bg-brand-burgundy text-brand-white rounded-full flex items-center justify-center mb-6 shadow-md">
                     <Check size={28} />
                   </div>
-                  <h3 className="text-2xl font-light font-serif text-brand-charcoal mb-2">Message Sent</h3>
+                  <h3 className="text-2xl font-light font-serif text-brand-charcoal mb-2">Yêu Cầu Đã Được Gửi</h3>
                   <p className="text-brand-gray text-xs leading-relaxed max-w-sm px-6">
-                    Your inquiry has been registered securely. A luxury advisor has been assigned to your reference and will email you shortly.
+                    Yêu cầu của bạn đã được ghi nhận bảo mật. Một cố vấn cao cấp đã được phân công hỗ trợ bạn và sẽ sớm gửi email phản hồi thông tin chi tiết.
                   </p>
                   <button
                     onClick={() => setFormStatus("idle")}
                     className="mt-8 text-xs uppercase tracking-widest font-semibold text-brand-burgundy border-b border-brand-burgundy pb-0.5 hover:text-brand-charcoal hover:border-brand-charcoal transition-all"
                   >
-                    Submit Another Inquiry
+                    Gửi Thêm Yêu Cầu Khác
                   </button>
                 </motion.div>
               ) : (
@@ -150,13 +150,13 @@ export default function ContactForm() {
                   {/* Name field */}
                   <div className="flex flex-col gap-1.5">
                     <label className="text-[10px] uppercase tracking-widest text-brand-gray font-bold">
-                      Full Name <span className="text-brand-burgundy">*</span>
+                      Họ và Tên <span className="text-brand-burgundy">*</span>
                     </label>
                     <input
                       type="text"
                       name="name"
                       required
-                      placeholder="e.g. Estelle Yen"
+                      placeholder="Ví dụ: Nguyễn Yến Nhi"
                       value={formData.name}
                       onChange={handleChange}
                       disabled={formStatus === "submitting"}
@@ -168,13 +168,13 @@ export default function ContactForm() {
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div className="flex flex-col gap-1.5">
                       <label className="text-[10px] uppercase tracking-widest text-brand-gray font-bold">
-                        Email Address <span className="text-brand-burgundy">*</span>
+                        Địa Chỉ Email <span className="text-brand-burgundy">*</span>
                       </label>
                       <input
                         type="email"
                         name="email"
                         required
-                        placeholder="e.g. estelle@yennhi.com"
+                        placeholder="Ví dụ: yennhi@gmail.com"
                         value={formData.email}
                         onChange={handleChange}
                         disabled={formStatus === "submitting"}
@@ -183,12 +183,12 @@ export default function ContactForm() {
                     </div>
                     <div className="flex flex-col gap-1.5">
                       <label className="text-[10px] uppercase tracking-widest text-brand-gray font-bold">
-                        Phone Number
+                        Số Điện Thoại
                       </label>
                       <input
                         type="tel"
                         name="phone"
-                        placeholder="e.g. +33 6 1234 5678"
+                        placeholder="Ví dụ: 0912 345 678"
                         value={formData.phone}
                         onChange={handleChange}
                         disabled={formStatus === "submitting"}
@@ -200,7 +200,7 @@ export default function ContactForm() {
                   {/* Subject dropdown */}
                   <div className="flex flex-col gap-1.5">
                     <label className="text-[10px] uppercase tracking-widest text-brand-gray font-bold">
-                      Nature of Inquiry
+                      Mục Đích Yêu Cầu
                     </label>
                     <div className="relative bg-brand-cream/30 border border-brand-charcoal/10 px-2 py-1 focus-within:border-brand-burgundy focus-within:bg-brand-white transition-all">
                       <select
@@ -210,11 +210,11 @@ export default function ContactForm() {
                         disabled={formStatus === "submitting"}
                         className="w-full bg-transparent border-none py-2 px-2 text-xs font-semibold uppercase tracking-widest text-brand-charcoal focus:outline-none cursor-pointer"
                       >
-                        <option>High Jewelry Inquiries</option>
-                        <option>Bridal Consultations</option>
-                        <option>Horology & Timepieces</option>
-                        <option>Heritage & Exhibition Tours</option>
-                        <option>General Custom Services</option>
+                        <option>Yêu cầu Trang sức Cao cấp</option>
+                        <option>Tư vấn Trang sức Cưới</option>
+                        <option>Đồng hồ & Nghệ thuật Chế tác</option>
+                        <option>Tham quan Triển lãm & Di sản</option>
+                        <option>Dịch vụ Cá nhân hóa chung</option>
                       </select>
                     </div>
                   </div>
@@ -222,13 +222,13 @@ export default function ContactForm() {
                   {/* Message field */}
                   <div className="flex flex-col gap-1.5">
                     <label className="text-[10px] uppercase tracking-widest text-brand-gray font-bold">
-                      Your Message <span className="text-brand-burgundy">*</span>
+                      Nội Dung Tin Nhắn <span className="text-brand-burgundy">*</span>
                     </label>
                     <textarea
                       name="message"
                       required
                       rows={5}
-                      placeholder="Please describe your interest, desired gemstone settings, or reference numbers..."
+                      placeholder="Vui lòng mô tả mong muốn của bạn, kiểu dáng đính đá quý mong muốn hoặc mã số sản phẩm tham chiếu..."
                       value={formData.message}
                       onChange={handleChange}
                       disabled={formStatus === "submitting"}
@@ -245,11 +245,11 @@ export default function ContactForm() {
                     {formStatus === "submitting" ? (
                       <>
                         <span className="w-3.5 h-3.5 border-2 border-brand-white border-t-transparent rounded-full animate-spin mr-1" />
-                        Transmitting Message...
+                        Đang truyền tin nhắn...
                       </>
                     ) : (
                       <>
-                        <Send size={14} /> Send Message
+                        <Send size={14} /> Gửi Tin Nhắn
                       </>
                     )}
                   </button>
@@ -264,13 +264,13 @@ export default function ContactForm() {
             {/* Customer Care Hotline Box */}
             <div className="bg-brand-white border border-brand-charcoal/5 p-6 md:p-8 shadow-md">
               <span className="text-[9px] uppercase tracking-[0.25em] text-brand-gold font-bold block mb-1">
-                Client Relations
+                Quan Hệ Khách Hàng
               </span>
               <h3 className="text-xl font-light font-serif text-brand-charcoal mb-4">
-                Yen Nhi Jewerly Telephone Concierge
+                Tổng Đài Concierge Điện Thoại Rì Rào Store
               </h3>
               <p className="text-brand-gray text-xs leading-relaxed mb-6 font-light">
-                Our luxury client relations officers are pleased to offer personalized assistance regarding orders, size customization, and boutique coordination.
+                Đội ngũ nhân viên quan hệ khách hàng cao cấp của chúng tôi rất hân hạnh được hỗ trợ cá nhân hóa liên quan đến đơn đặt hàng, tùy chỉnh kích thước và điều phối cửa hàng.
               </p>
               
               <div className="flex flex-col gap-3 font-sans text-xs">
@@ -291,8 +291,8 @@ export default function ContactForm() {
                 <div className="flex items-start gap-3 text-brand-gray">
                   <Clock size={14} className="text-brand-burgundy shrink-0 mt-0.5" />
                   <div className="flex flex-col gap-0.5">
-                    <span>Monday - Saturday: 10:00 AM - 7:00 PM</span>
-                    <span>Sunday: Closed (Paris Time)</span>
+                    <span>Thứ Hai - Thứ Bảy: 10:00 sáng - 7:00 tối</span>
+                    <span>Chủ Nhật: Đóng cửa (Giờ Paris)</span>
                   </div>
                 </div>
               </div>
@@ -302,13 +302,13 @@ export default function ContactForm() {
             <div className="bg-brand-white border border-brand-charcoal/5 p-6 md:p-8 shadow-md flex flex-col justify-between">
               <div>
                 <span className="text-[9px] uppercase tracking-[0.25em] text-brand-gold font-bold block mb-1">
-                  Private Curations
+                  Giám Tuyển Riêng Biệt
                 </span>
                 <h3 className="text-xl font-light font-serif text-brand-charcoal mb-3">
-                  Schedule a Boutique Consult
+                  Đặt Lịch Hẹn Tư Vấn Cửa Hàng
                 </h3>
                 <p className="text-brand-gray text-xs leading-relaxed mb-6 font-light">
-                  To explore creations in person, reserve a private viewing lounge at one of our global flags in Paris, New York, London, or Tokyo.
+                  Để trải nghiệm trực tiếp các tạo tác, vui lòng đặt trước phòng chờ xem riêng tư tại một trong các cửa hàng flagship toàn cầu của chúng tôi ở Paris, New York, London hoặc Tokyo.
                 </p>
               </div>
 
@@ -316,13 +316,13 @@ export default function ContactForm() {
                 href="/boutiques"
                 className="py-3 px-6 border border-brand-charcoal/20 text-brand-charcoal hover:border-brand-burgundy hover:text-brand-burgundy text-[10px] font-semibold uppercase tracking-widest flex items-center justify-center gap-1.5 transition-all duration-300 self-stretch text-center"
               >
-                Locate & Book Boutique <ArrowRight size={12} />
+                Định Vị & Đặt Lịch Hẹn Cửa Hàng <ArrowRight size={12} />
               </Link>
             </div>
 
             {/* Social Channels directory */}
             <div className="bg-brand-white border border-brand-charcoal/5 p-6 shadow-md flex items-center justify-between">
-              <span className="text-[9px] uppercase tracking-widest text-brand-gray font-bold">Our Socials:</span>
+              <span className="text-[9px] uppercase tracking-widest text-brand-gray font-bold">Mạng xã hội:</span>
               <div className="flex gap-4 text-xs font-semibold uppercase tracking-widest text-brand-charcoal font-sans">
                 <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="hover:text-brand-burgundy transition-all">Instagram</a>
                 <span className="text-brand-gold/40">|</span>

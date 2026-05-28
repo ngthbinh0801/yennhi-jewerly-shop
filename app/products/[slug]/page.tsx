@@ -15,14 +15,14 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   
   if (!product) {
     return {
-      title: "Creation Not Found | Yen Nhi Jewerly",
+      title: "Creation Not Found | Rì Rào Store",
     };
   }
 
   const collection = COLLECTIONS_DATA.find((c) => c.slug === product.collectionSlug);
 
   return {
-    title: `${product.name} - ${collection?.name || ""} Jewelry | Yen Nhi Jewerly`,
+    title: `${product.name} - ${collection?.name || ""} Jewelry | Rì Rào Store`,
     description: `Discover ${product.name} in ${product.material}. ${product.description.substring(0, 150)}...`,
     keywords: `${product.name}, ${collection?.name || ""}, luxury jewelry, gold jewelry, ${product.material}`,
   };

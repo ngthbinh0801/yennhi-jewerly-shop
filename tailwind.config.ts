@@ -11,11 +11,11 @@ const config: Config = {
       colors: {
         brand: {
           white: '#FFFFFF',
-          cream: '#FAF8F5',
-          charcoal: '#1A1A1A',
-          burgundy: '#722F37',
-          gold: '#C9A961',
-          gray: '#8B8B8B',
+          cream: '#FAF6F0',
+          charcoal: '#1B2A30',
+          burgundy: '#C7756D',
+          gold: '#BEA37B',
+          gray: '#8A999E',
         },
       },
       fontFamily: {

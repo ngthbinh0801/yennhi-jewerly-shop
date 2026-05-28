@@ -5,13 +5,15 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 import { CREAM_BLUR_DATA_URL } from "@/lib/constants";
 
+import { SITE_IMAGES } from "@/lib/imageConfig";
+
 const POSTS = [
-  { id: 1, image: "https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?auto=format&fit=crop&q=80&w=600" },
-  { id: 2, image: "https://images.unsplash.com/photo-1605100804763-247f67b3557e?auto=format&fit=crop&q=80&w=600" },
-  { id: 3, image: "https://images.unsplash.com/photo-1573408301185-9146fe634ad0?auto=format&fit=crop&q=80&w=600" },
-  { id: 4, image: "https://images.unsplash.com/photo-1531995811006-35cb42e1a022?auto=format&fit=crop&q=80&w=600" },
-  { id: 5, image: "https://images.unsplash.com/photo-1602751584552-8ba73aad10e1?auto=format&fit=crop&q=80&w=600" },
-  { id: 6, image: "https://images.unsplash.com/photo-1543294001-f7cd5d7fb516?auto=format&fit=crop&q=80&w=600" },
+  { id: 1, image: SITE_IMAGES.social[0] },
+  { id: 2, image: SITE_IMAGES.social[1] },
+  { id: 3, image: SITE_IMAGES.social[2] },
+  { id: 4, image: SITE_IMAGES.social[3] },
+  { id: 5, image: SITE_IMAGES.social[4] },
+  { id: 6, image: SITE_IMAGES.social[5] },
 ];
 
 const InstagramIcon = () => (
@@ -29,7 +31,7 @@ export default function SocialFeed() {
         {/* Heading */}
         <div className="text-center">
           <h2 className="section-title text-[1.625rem] md:text-[2rem]">
-            Follow Our Journey
+            Theo Dõi Hành Trình Của Chúng Tôi
           </h2>
           <p className="text-[0.75rem] uppercase tracking-[0.22em] text-brand-gold font-light mt-1.5">
             @yennhi.jewelry
@@ -52,7 +54,7 @@ export default function SocialFeed() {
             >
               <Image
                 src={post.image}
-                alt={`Yen Nhi Jewerly ${post.id}`}
+                alt={`Rì Rào Store ${post.id}`}
                 fill
                 placeholder="blur"
                 blurDataURL={CREAM_BLUR_DATA_URL}

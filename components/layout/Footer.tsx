@@ -22,38 +22,38 @@ const YoutubeIcon = (props: React.SVGProps<SVGSVGElement>) => (
   </svg>
 );
 
-const REGIONS = ["United States ($)", "France (€)", "United Kingdom (£)", "Vietnam (₫)", "Japan (¥)", "Hong Kong ($)"];
+const REGIONS = ["Việt Nam (₫)", "United States ($)", "France (€)", "United Kingdom (£)", "Japan (¥)", "Hong Kong ($)"];
 
 const FOOTER_LINKS = [
   {
-    title: "Customer Service",
+    title: "Dịch Vụ Khách Hàng",
     links: [
-      { label: "Contact Us", href: "/contact" },
-      { label: "FAQ", href: "/contact" },
-      { label: "Shipping & Delivery", href: "/contact" },
-      { label: "Returns & Exchanges", href: "/contact" },
-      { label: "Care Guide", href: "/contact" },
-      { label: "Size Guide", href: "/contact" },
+      { label: "Liên Hệ Chúng Tôi", href: "/contact" },
+      { label: "Câu Hỏi Thường Gặp", href: "/contact" },
+      { label: "Giao Hàng & Nhận Hàng", href: "/contact" },
+      { label: "Chính Sách Đổi Trả", href: "/contact" },
+      { label: "Hướng Dẫn Bảo Quản", href: "/contact" },
+      { label: "Hướng Dẫn Chọn Cỡ", href: "/contact" },
     ],
   },
   {
-    title: "The Atelier",
+    title: "Về Xưởng Chế Tác",
     links: [
-      { label: "Our Legacy", href: "/the-maison" },
-      { label: "Savoir-Faire", href: "/the-maison" },
-      { label: "Atelier News", href: "/the-maison" },
-      { label: "Sustainability", href: "/the-maison" },
-      { label: "Careers", href: "/the-maison" },
+      { label: "Di Sản Của Chúng Tôi", href: "/the-maison" },
+      { label: "Nghệ Thuật Savoir-Faire", href: "/the-maison" },
+      { label: "Tin Tức Xưởng Chế Tác", href: "/the-maison" },
+      { label: "Phát Triển Bền Vững", href: "/the-maison" },
+      { label: "Cơ Hội Nghề Nghiệp", href: "/the-maison" },
     ],
   },
   {
-    title: "Legal",
+    title: "Pháp Lý",
     links: [
-      { label: "Terms of Sale", href: "/contact" },
-      { label: "Privacy Policy", href: "/contact" },
-      { label: "Cookies Preferences", href: "/contact" },
-      { label: "Accessibility", href: "/contact" },
-      { label: "Sitemap", href: "/contact" },
+      { label: "Điều Khoản Bán Hàng", href: "/contact" },
+      { label: "Chính Sách Bảo Mật", href: "/contact" },
+      { label: "Tùy Chọn Cookies", href: "/contact" },
+      { label: "Khả Năng Tiếp Cận", href: "/contact" },
+      { label: "Sơ Đồ Trang Web", href: "/contact" },
     ],
   },
 ];
@@ -62,7 +62,7 @@ export default function Footer() {
   const [email, setEmail] = useState("");
   const [subscribed, setSubscribed] = useState(false);
   const [regionOpen, setRegionOpen] = useState(false);
-  const [selectedRegion, setSelectedRegion] = useState("United States ($)");
+  const [selectedRegion, setSelectedRegion] = useState("Việt Nam (₫)");
 
   const handleSubscribe = (e: React.FormEvent) => {
     e.preventDefault();
@@ -70,43 +70,55 @@ export default function Footer() {
   };
 
   return (
-    <footer className="w-full bg-brand-cream border-t border-brand-gold/12 pt-14 pb-8 text-brand-charcoal select-none">
-      <div className="page-content flex flex-col gap-12">
+    <footer className="w-full text-brand-charcoal select-none">
 
-        {/* Newsletter */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center border-b border-brand-gold/10 pb-12">
-          <div className="lg:col-span-5">
-            <h3 className="font-serif text-[1.5rem] md:text-[1.875rem] font-light tracking-wide mb-2">Stay Informed</h3>
-            <p className="text-[0.8125rem] text-brand-gray leading-relaxed font-light max-w-sm">
-              Subscribe to receive the latest collections, exhibitions, and exclusive Yen Nhi Jewerly invitations.
-            </p>
-          </div>
-          <div className="lg:col-span-7">
-            {subscribed ? (
-              <div className="border border-brand-gold/20 p-4 text-center text-[10px] uppercase tracking-[0.2em] text-brand-burgundy font-semibold">
-                Thank you for subscribing. Welcome to the world of Yen Nhi Jewerly.
-              </div>
-            ) : (
-              <form onSubmit={handleSubscribe} className="flex flex-col sm:flex-row items-stretch gap-3 w-full">
-                <input
-                  type="email"
-                  required
-                  placeholder="Enter your email address"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  className="flex-1 bg-transparent border-b border-brand-gold/25 hover:border-brand-gold/50 focus:border-brand-burgundy text-[0.8125rem] text-brand-charcoal placeholder-brand-gray/55 font-light py-2.5 px-1 focus:outline-none transition-colors duration-300 select-text"
-                />
-                <button
-                  type="submit"
-                  className="flex items-center justify-center gap-2 bg-brand-charcoal hover:bg-brand-gold text-brand-white text-[10px] uppercase tracking-[0.2em] font-semibold px-7 py-3 transition-all duration-400 whitespace-nowrap"
-                >
-                  Subscribe
-                  <Send className="w-3 h-3" />
-                </button>
-              </form>
-            )}
+      {/* ── NEWSLETTER BAND ─────────────────────────────────── */}
+      <div className="w-full bg-brand-charcoal">
+        <div className="page-content py-16 md:py-20">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+            <div className="lg:col-span-5">
+              <span className="text-[9px] uppercase tracking-[0.4em] text-brand-gold font-semibold mb-4 block">
+                Rì Rào Store
+              </span>
+              <h3 className="font-serif text-[1.5rem] md:text-[1.875rem] font-light tracking-wide text-white mb-3">
+                Đăng Ký Nhận Bản Tin
+              </h3>
+              <p className="text-[0.8125rem] text-brand-cream/50 leading-relaxed font-light max-w-sm">
+                Nhận thông tin về các bộ sưu tập mới nhất, triển lãm và những lời mời độc quyền từ Rì Rào Store.
+              </p>
+            </div>
+            <div className="lg:col-span-7">
+              {subscribed ? (
+                <div className="border border-brand-gold/25 p-4 text-center text-[10px] uppercase tracking-[0.2em] text-brand-gold font-semibold">
+                  Cảm ơn bạn đã đăng ký. Chào mừng bạn đến với thế giới của Rì Rào Store.
+                </div>
+              ) : (
+                <form onSubmit={handleSubscribe} className="flex flex-col sm:flex-row items-stretch gap-3 w-full">
+                  <input
+                    type="email"
+                    required
+                    placeholder="Nhập địa chỉ email của bạn"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    className="flex-1 bg-transparent border-b border-brand-gold/30 hover:border-brand-gold/60 focus:border-brand-gold text-[0.8125rem] text-white placeholder-brand-cream/30 font-light py-2.5 px-1 focus:outline-none transition-colors duration-300 select-text"
+                  />
+                  <button
+                    type="submit"
+                    className="flex items-center justify-center gap-2 bg-brand-gold hover:bg-brand-cream text-brand-charcoal text-[10px] uppercase tracking-[0.2em] font-semibold px-7 py-3 transition-all duration-300 whitespace-nowrap"
+                  >
+                    Đăng ký
+                    <Send className="w-3 h-3" />
+                  </button>
+                </form>
+              )}
+            </div>
           </div>
         </div>
+      </div>
+
+      {/* ── MAIN FOOTER ─────────────────────────────────────── */}
+      <div className="w-full bg-brand-cream border-t border-brand-gold/12 pt-14 pb-8">
+      <div className="page-content flex flex-col gap-12">
 
         {/* Links grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10">
@@ -132,7 +144,7 @@ export default function Footer() {
 
           {/* Social column */}
           <div>
-            <h4 className="section-label text-brand-gold mb-5 pb-2 border-b border-brand-gold/10">Follow Us</h4>
+            <h4 className="section-label text-brand-gold mb-5 pb-2 border-b border-brand-gold/10">Theo Dõi Chúng Tôi</h4>
             <ul className="space-y-3.5">
               {[
                 { label: "Instagram", icon: <InstagramIcon />, href: "https://instagram.com" },
@@ -185,17 +197,18 @@ export default function Footer() {
           </div>
 
           <span className="text-[10px] uppercase tracking-[0.18em] text-brand-gray text-center">
-            &copy; 2026 {BRAND_INFO.name}. All Rights Reserved.
+            &copy; 2026 {BRAND_INFO.name}. Bảo lưu mọi quyền.
           </span>
 
           <button
             onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
             className="group flex items-center gap-1.5 text-[10px] uppercase tracking-[0.18em] text-brand-gold hover:text-brand-burgundy transition-colors duration-300 focus:outline-none"
           >
-            Back to top
+            Về đầu trang
             <ChevronUp className="w-3.5 h-3.5 group-hover:-translate-y-0.5 transition-transform duration-300" />
           </button>
         </div>
+      </div>
       </div>
     </footer>
   );

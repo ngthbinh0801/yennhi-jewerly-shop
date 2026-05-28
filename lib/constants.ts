@@ -16,108 +16,105 @@ export interface CollectionItem {
 
 export const NAVIGATION_ITEMS: NavigationItem[] = [
   {
-    label: "High Jewelry",
-    href: "/high-jewelry",
+    label: "Trang Sức",
+    href: "/collections",
     dropdownItems: [
-      { label: "Legend of Diamonds", href: "/high-jewelry/legend-of-diamonds" },
-      { label: "The Collection", href: "/high-jewelry/collection" },
-      { label: "Our Savoir-Faire", href: "/high-jewelry/savoir-faire" },
+      { label: "Dây Chuyền Vỏ Sò", href: "/collections/day_chuyen_vo_so" },
+      { label: "Nhẫn Vỏ Ốc", href: "/collections/nhan_vo_oc" },
+      { label: "Vòng Tay Vỏ Sò", href: "/collections/vong_tay" },
+      { label: "Tất Cả Bộ Sưu Tập", href: "/collections" },
     ],
   },
   {
-    label: "Jewelry",
-    href: "/jewelry",
+    label: "Đồ Thủ Công",
+    href: "/collections",
     dropdownItems: [
-      { label: "Alhambra", href: "/jewelry/alhambra" },
-      { label: "Frivole", href: "/jewelry/frivole" },
-      { label: "Perlée", href: "/jewelry/perlee" },
-      { label: "Fauna & Flora", href: "/jewelry/fauna-flora" },
-      { label: "Bouton d'or", href: "/jewelry/bouton-dor" },
-      { label: "All Jewelry Creations", href: "/jewelry/all" },
+      { label: "Giỏ Vỏ Sò", href: "/collections/gio_vo_so" },
+      { label: "Gương Đính Vỏ Sò", href: "/collections/guong_vo_so" },
+      { label: "Khuyên Tai Vỏ Sò", href: "/collections/khuyen_tai" },
     ],
   },
   {
-    label: "Watches",
-    href: "/watches",
-    dropdownItems: [
-      { label: "Poetic Complications", href: "/watches/poetic-complications" },
-      { label: "Charms", href: "/watches/charms" },
-      { label: "Alhambra Watches", href: "/watches/alhambra" },
-      { label: "High Jewelry Timepieces", href: "/watches/high-jewelry" },
-    ],
-  },
-  {
-    label: "Bridal",
-    href: "/bridal",
-    dropdownItems: [
-      { label: "Engagement Rings", href: "/bridal/engagement-rings" },
-      { label: "Wedding Bands", href: "/bridal/wedding-bands" },
-      { label: "Bridal Sets", href: "/bridal/sets" },
-      { label: "Unique Solitaires", href: "/bridal/unique-solitaires" },
-    ],
-  },
-  {
-    label: "The Atelier",
+    label: "Xưởng Chế Tác",
     href: "/the-maison",
     dropdownItems: [
-      { label: "Since 2026", href: "/the-maison" },
-      { label: "Our Story", href: "/the-maison" },
-      { label: "Exhibitions & Events", href: "/the-maison" },
-      { label: "The Academy of Jewelry Arts", href: "/the-maison" },
+      { label: "Kể Từ 2026", href: "/the-maison" },
+      { label: "Hành Trình Nghệ Nhân", href: "/the-maison" },
+      { label: "Triển Lãm & Sự Kiện", href: "/the-maison" },
+      { label: "Học Viện Nghệ Thuật", href: "/the-maison" },
     ],
   },
 ];
 
 export const COLLECTIONS: CollectionItem[] = [
   {
-    id: "alhambra",
-    name: "Alhambra",
-    tagline: "An Icon of Luck Since 1968",
-    description: "Created in 1968, the Alhambra collection has established itself as an enduring symbol of luck. Elegant, timeless, and feminine, it is adorned with borders of golden beads and showcases beautiful natural materials in a four-leaf clover motif.",
-    image: "/images/collections/alhambra.jpg",
-    href: "/jewelry/alhambra",
-    year: "1968",
+    id: "day_chuyen_vo_so",
+    name: "Dây Chuyền Vỏ Sò",
+    tagline: "Chất thơ đại dương trên đôi vai trần gợi cảm",
+    description: "Tuyển chọn những mảnh vỏ sò điệp tự nhiên và ngọc trai tươi được mài bóng khảm bạc Ý 925 tạo nên nét kiêu sa, thanh khiết của biển cả.",
+    image: "/images/collections/day_chuyen_vo_so/perlee.jpg",
+    href: "/collections/day_chuyen_vo_so",
+    year: "2026",
   },
   {
-    id: "frivole",
-    name: "Frivole",
-    tagline: "A Luminous and Graphic Bouquet",
-    description: "Like a bouquet of flowers dancing in the wind, the Frivole collection stands out with its airy and graphic style. Mirror-polished gold structures give each heart-shaped petal an intense glow, reflecting the brilliant light of precious diamonds.",
-    image: "/images/collections/frivole.jpg",
-    href: "/jewelry/frivole",
-    year: "2003",
+    id: "nhan_vo_oc",
+    name: "Nhẫn Vỏ Ốc",
+    tagline: "Ánh cầu vồng lấp lánh đọng trên ngón tay xinh",
+    description: "Nhẫn bạc đính vỏ ốc xà cừ tự nhiên được nghệ nhân cắt gọt khéo léo để bắt trọn từng vệt phản quang đa sắc lung linh như thủy triều ban mai.",
+    image: "/images/collections/nhan_vo_oc/nhan_vo_oc.jpg",
+    href: "/collections/nhan_vo_oc",
+    year: "2026",
   },
   {
-    id: "perlee",
-    name: "Perlée",
-    tagline: "The Joyful Sparkle of Golden Beads",
-    description: "Embodying a legacy of playfulness and sophistication, the Perlée collection features infinitely refined golden beads. From delicate rings to bold bracelets, each piece is handcrafted, catching the light with unmatched radiance and endless combinations.",
-    image: "/images/collections/perlee.jpg",
-    href: "/jewelry/perlee",
-    year: "2008",
+    id: "gio_vo_so",
+    name: "Giỏ Vỏ Sò",
+    tagline: "Giỏ tre bện mây khảm sò biển mộc mạc và hoang sơ",
+    description: "Những chiếc túi và giỏ cói dệt tay tự nhiên, đính kết vỏ sò, sao biển sinh động, đưa cả hương vị biển khơi phóng khoáng bên bạn trong mọi chuyến đi.",
+    image: "/images/collections/gio_vo_so/alhambra.jpg",
+    href: "/collections/gio_vo_so",
+    year: "2026",
   },
   {
-    id: "fauna",
-    name: "Fauna & Flora",
-    tagline: "Nature's Benevolent Beauty",
-    description: "Celebrating the poetry of nature, Yen Nhi Jewerly pays tribute to the animal and botanical worlds. Butterflies, ladybugs, and flowers are brought to life through extraordinary gems, capturing the constant movement and graceful elegance of life.",
-    image: "/images/collections/fauna-flora.jpg",
-    href: "/jewelry/fauna-flora",
+    id: "guong_vo_so",
+    name: "Gương Đính Vỏ Sò",
+    tagline: "Khung gương nghệ thuật làm từ ngàn vỏ điệp biển sâu",
+    description: "Vật phẩm trang trí nội thất tinh xảo mang hơi thở thanh bình của biển cả vào không gian phòng tắm hay phòng khách thơ mộng của bạn.",
+    image: "/images/collections/guong_vo_so/guong_vo_so.jpg",
+    href: "/collections/guong_vo_so",
+    year: "2027",
+  },
+  {
+    id: "khuyen_tai",
+    name: "Khuyên Tai Vỏ Sò",
+    tagline: "Ánh xà cừ lung linh đung đưa bên khóe mắt",
+    description: "Những đôi khuyên tai thủ công kết từ vỏ điệp, ngọc trai và xà cừ tự nhiên — nhẹ nhàng, tinh tế, mang cả đại dương theo từng bước đi.",
+    image: "/images/collections/khuyen_tai/khuyen_tai.jpg",
+    href: "/collections/khuyen_tai",
+    year: "2027",
+  },
+  {
+    id: "vong_tay",
+    name: "Vòng Tay Vỏ Sò",
+    tagline: "Nhịp điệu sóng vỗ dịu êm bện chặt cổ tay",
+    description: "Vòng bện dây thủ công đính mảnh xà cừ tròn và ngọc trai tươi thuần khiết, biểu tượng cho năng lượng tích cực và sự bình an từ khơi xa.",
+    image: "/images/collections/vong_tay/vong_tay.jpg",
+    href: "/collections/vong_tay",
+    year: "2026",
   },
 ];
 
 export const BRAND_INFO = {
-  name: "Yen Nhi Jewerly",
-  tagline: "Haute Joaillerie & Horlogerie since 2026",
+  name: "Rì Rào Store",
+  tagline: "Premium Artisanal Seashell Jewelry since 2026",
   founded: "2026",
   place: "Vietnam",
-  footerQuote: "Since 2026, Yen Nhi Jewerly has combined excellence, poetry, and creativity in the service of unique jewelry and watchmaking collections.",
+  footerQuote: "Kể từ năm 2026, Rì Rào Store đã kết hợp sự tinh hoa, chất thơ và thiên nhiên trong các bộ sưu tập trang sức vỏ sò và ngọc trai thủ công độc bản.",
 };
 
 // Base64 Solid Color Placeholders for Next.js Image Component
-// Warm Cream (#FAF8F5)
-export const CREAM_BLUR_DATA_URL = "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxIiBoZWlnaHQ9IjEiPjxyZWN0IHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbGw9IiNGQUY4RjUiLz48L3N2Zz4=";
+// Warm Cream (#FAF6F0)
+export const CREAM_BLUR_DATA_URL = "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxIiBoZWlnaHQ9IjEiPjxyZWN0IHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbGw9IiNGQUY2RjAiLz48L3N2Zz4=";
 
-// Charcoal Black (#1A1A1A)
-export const CHARCOAL_BLUR_DATA_URL = "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxIiBoZWlnaHQ9IjEiPjxyZWN0IHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbGw9IiMxQTFBMUEiLz48L3N2Zz4=";
+// Deep sea navy (#1B2A30)
+export const CHARCOAL_BLUR_DATA_URL = "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxIiBoZWlnaHQ9IjEiPjxyZWN0IHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbGw9IiMxQjJBMzAiLz48L3N2Zz4=";
 

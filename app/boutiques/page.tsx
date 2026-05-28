@@ -3,12 +3,12 @@ import { Metadata } from "next";
 import BoutiquesClient from "./BoutiquesClient";
 
 export const metadata: Metadata = {
-  title: "Find a Boutique Flagship Locator | Yen Nhi Jewerly",
-  description: "Locate a flagship Yen Nhi Jewerly boutique globally. Explore addresses in Paris, New York Fifth Avenue, Tokyo Ginza, London Bond Street, and book a concierge appointment.",
-  keywords: "Yen Nhi Jewerly boutique, luxury jewelry shop, Fifth Avenue watch store, Ginza boutique, global boutique finder",
+  title: "Tìm Cửa Hàng | Rì Rào Store",
+  description: "Khám phá hệ thống cửa hàng Rì Rào Store tại Việt Nam — Hà Nội, Đà Nẵng, Hội An, TP. Hồ Chí Minh. Đặt lịch tư vấn trang sức vỏ sò thủ công.",
+  keywords: "Rì Rào Store cửa hàng, trang sức vỏ sò Hà Nội, trang sức vỏ sò Hội An, cửa hàng trang sức Đà Nẵng, trang sức vỏ sò TP. HCM",
   openGraph: {
-    title: "Find a Boutique Flagship Locator | Yen Nhi Jewerly",
-    description: "Locate a flagship Yen Nhi Jewerly boutique globally and book a concierge appointment.",
+    title: "Tìm Cửa Hàng | Rì Rào Store",
+    description: "Khám phá hệ thống cửa hàng Rì Rào Store tại Việt Nam và đặt lịch hẹn tư vấn trang sức vỏ sò.",
     type: "website",
   },
 };
@@ -21,7 +21,7 @@ export default function BoutiquesPage() {
           Haute Horlogerie & Joaillerie
         </span>
         <h2 className="text-2xl font-light font-serif tracking-[0.2em] uppercase text-brand-charcoal mb-4">
-          Yen Nhi Jewerly
+          Rì Rào Store
         </h2>
         <div className="relative w-8 h-8">
           <span className="absolute inset-0 rounded-full border-2 border-brand-gold/15" />

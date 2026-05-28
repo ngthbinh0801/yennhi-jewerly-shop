@@ -8,8 +8,8 @@ import Link from "next/link";
 const SERVICES = [
   {
     id: 1,
-    name: "Personalization",
-    description: "Make your creations truly unique with our bespoke engraving and custom design services.",
+    name: "Cá Nhân Hóa",
+    description: "Làm cho tạo tác của bạn trở nên độc nhất vô nhị với dịch vụ khắc chữ và thiết kế tùy chỉnh theo yêu cầu.",
     href: "/contact",
     icon: (
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" className="w-10 h-10">
@@ -19,8 +19,8 @@ const SERVICES = [
   },
   {
     id: 2,
-    name: "Repair & Care",
-    description: "Preserve the exceptional radiance of your precious jewelry with our expert restoration and polishing.",
+    name: "Sửa Chữa & Bảo Quản",
+    description: "Gìn giữ vẻ rực rỡ vượt trội cho các món trang sức quý giá của bạn bằng dịch vụ phục hồi và đánh bóng chuyên nghiệp.",
     href: "/contact",
     icon: (
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" className="w-10 h-10">
@@ -30,8 +30,8 @@ const SERVICES = [
   },
   {
     id: 3,
-    name: "Private Appointment",
-    description: "Book a private appointment in one of our global boutiques for personalized expert guidance.",
+    name: "Hẹn Lịch Riêng",
+    description: "Đặt lịch hẹn riêng tại một trong các cửa hàng toàn cầu của chúng tôi để được tư vấn chuyên sâu cá nhân hóa.",
     href: "/boutiques",
     icon: (
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" className="w-10 h-10">
@@ -42,8 +42,8 @@ const SERVICES = [
   },
   {
     id: 4,
-    name: "Authentication",
-    description: "Acquire an official certificate of authenticity verifying the value and heritage of your pieces.",
+    name: "Chứng Nhận Độc Bản",
+    description: "Nhận chứng thư xác thực chính thức để xác minh giá trị di sản và nguồn gốc xuất xứ các tác phẩm của bạn.",
     href: "/contact",
     icon: (
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" className="w-10 h-10">
@@ -59,10 +59,10 @@ export default function Services() {
       <div className="page-content flex flex-col gap-14">
         {/* Heading */}
         <div className="text-center max-w-xl self-center w-full">
-          <h2 className="section-title text-center text-[2rem] md:text-[2.75rem]">Our Services</h2>
+          <h2 className="section-title text-center text-[2rem] md:text-[2.75rem]">Dịch Vụ Khách Hàng</h2>
           <div className="gold-divider" />
           <p className="text-[0.8125rem] text-brand-gray font-light">
-            Dedicated care and bespoke guidance to preserve your Yen Nhi Jewerly creations
+            Sự chăm sóc tận tâm và hướng dẫn chuyên biệt để gìn giữ trọn vẹn các tác phẩm Rì Rào Store của bạn
           </p>
         </div>
 
@@ -78,7 +78,7 @@ export default function Services() {
             >
               <Link
                 href={s.href}
-                className="group flex flex-col items-center text-center bg-brand-white border border-brand-gold/10 p-5 sm:p-8 shadow-sm hover:shadow-lg hover:border-brand-gold/25 transition-all duration-500 h-full sm:min-h-[320px] justify-between"
+                className="group flex flex-col items-center text-center bg-brand-white border border-brand-gold/10 p-5 sm:p-8 rounded-2xl shadow-sm hover:shadow-lg hover:border-brand-gold/25 transition-all duration-500 h-full sm:min-h-[320px] justify-between"
               >
                 {/* Icon */}
                 <div className="text-brand-burgundy group-hover:text-brand-gold transition-colors duration-500 p-4 bg-brand-cream/60 group-hover:bg-brand-cream rounded-full transition-all duration-500 mb-2">
@@ -97,7 +97,7 @@ export default function Services() {
 
                 {/* Link */}
                 <span className="inline-flex items-center gap-1.5 text-[10px] uppercase tracking-[0.2em] text-brand-gold font-semibold mt-auto">
-                  Learn more
+                  Tìm hiểu thêm
                   <ArrowRight className="w-3 h-3 group-hover:translate-x-1.5 transition-transform duration-300" />
                 </span>
               </Link>

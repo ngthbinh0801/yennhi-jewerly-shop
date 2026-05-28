@@ -1,11 +1,22 @@
+import { SITE_IMAGES } from "@/lib/imageConfig";
+
+export interface CollectionTheme {
+  heroBg: string;
+  heroText: string;
+  heroMuted: string;
+  dark?: boolean;
+}
+
 export interface Collection {
   slug: string;
   name: string;
   tagline: string;
   description: string;
   image: string;
+  heroImage?: string;
   itemCount: number;
   category: "necklaces" | "bracelets" | "earrings" | "rings" | "watches";
+  theme: CollectionTheme;
 }
 
 export interface Product {
@@ -27,7 +38,7 @@ export interface Product {
 export interface Boutique {
   name: string;
   city: string;
-  region: "Asia" | "Europe" | "Americas" | "Middle East";
+  region: "North" | "Central" | "South";
   address: string;
   phone: string;
   hours: string[];
@@ -41,242 +52,191 @@ export interface TimelineMilestone {
   image: string;
 }
 
-// 9 Luxury Collections
+// 6 Seashell Collections
 export const COLLECTIONS_DATA: Collection[] = [
   {
-    slug: "alhambra",
-    name: "Alhambra",
-    tagline: "An Enduring Icon of Luck Since 1968",
-    description: "Elegant, timeless, and feminine, the Alhambra collection is adorned with borders of golden beads and showcases beautiful natural materials in a four-leaf clover motif, symbolizing luck, love, and health.",
-    image: "https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?auto=format&fit=crop&q=80&w=800",
-    itemCount: 12,
-    category: "necklaces"
+    slug: "day_chuyen_vo_so",
+    name: "Dây Chuyền Vỏ Sò",
+    tagline: "Chất thơ đại dương trên đôi vai trần gợi cảm",
+    description: "Tuyển chọn những mảnh vỏ sò điệp tự nhiên và ngọc trai tươi được mài bóng khảm bạc Ý 925 tạo nên nét kiêu sa, thanh khiết của biển cả.",
+    image: SITE_IMAGES.collections.editorial_day_chuyen,
+    heroImage: SITE_IMAGES.collections.day_chuyen_hero,
+    itemCount: 6,
+    category: "necklaces",
+    theme: { heroBg: "#12282E", heroText: "#A8D4D8", heroMuted: "rgba(168,212,216,0.65)", dark: true },
   },
   {
-    slug: "perlee",
-    name: "Perlée",
-    tagline: "The Radiance of Golden Beads",
-    description: "Joyful and sophisticated, the Perlée collection features infinitely refined gold beads. Handcrafted with precision, each pearl catches and mirrors the light for an unmatched play of reflections.",
-    image: "https://images.unsplash.com/photo-1589674781759-c21c37956a44?auto=format&fit=crop&q=80&w=800",
-    itemCount: 10,
-    category: "rings"
+    slug: "nhan_vo_oc",
+    name: "Nhẫn Vỏ Ốc",
+    tagline: "Ánh cầu vồng lấp lánh đọng trên ngón tay xinh",
+    description: "Nhẫn bạc đính vỏ ốc xà cừ tự nhiên được nghệ nhân cắt gọt khéo léo để bắt trọn từng vệt phản quang đa sắc lung linh như thủy triều ban mai.",
+    image: SITE_IMAGES.collections.nhan_editorial,
+    heroImage: SITE_IMAGES.collections.nhan,
+    itemCount: 4,
+    category: "rings",
+    theme: { heroBg: "#12282E", heroText: "#A8D4D8", heroMuted: "rgba(168,212,216,0.65)", dark: true },
   },
   {
-    slug: "frivole",
-    name: "Frivole",
-    tagline: "A Luminous and Airy Floral Bouquet",
-    description: "Like a bouquet of flowers dancing in the wind, the Frivole collection stands out with its graphic and airy style. Mirror-polished gold structures give each heart-shaped petal intense shimmer.",
-    image: "https://images.unsplash.com/photo-1602751584552-8ba73aad10e1?auto=format&fit=crop&q=80&w=800",
-    itemCount: 9,
-    category: "earrings"
+    slug: "gio_vo_so",
+    name: "Giỏ Vỏ Sò",
+    tagline: "Giỏ tre bện mây khảm sò biển mộc mạc và hoang sơ",
+    description: "Những chiếc túi và giỏ cói dệt tay tự nhiên, đính kết vỏ sò, sao biển sinh động, đưa cả hương vị biển khơi phóng khoáng bên bạn trong mọi chuyến đi.",
+    image: SITE_IMAGES.collections.tui_xach_editorial,
+    heroImage: SITE_IMAGES.collections.tui_xach,
+    itemCount: 4,
+    category: "necklaces",
+    theme: { heroBg: "#12282E", heroText: "#A8D4D8", heroMuted: "rgba(168,212,216,0.65)", dark: true },
   },
   {
-    slug: "lucky-spring",
-    name: "Lucky Spring",
-    tagline: "A Poetic Springtime Awakening",
-    description: "A tribute to nature's rebirth, the Lucky Spring collection brings together ladybugs, flowers, and leaves in a bright array of rose gold, carnelian, and mother-of-pearl.",
-    image: "https://images.unsplash.com/photo-1596462502278-27bfdc403348?auto=format&fit=crop&q=80&w=800",
-    itemCount: 10,
-    category: "bracelets"
+    slug: "guong_vo_so",
+    name: "Gương Đính Vỏ Sò",
+    tagline: "Khung gương nghệ thuật làm từ ngàn vỏ điệp biển sâu",
+    description: "Vật phẩm trang trí nội thất tinh xảo mang hơi thở thanh bình của biển cả vào không gian phòng tắm hay phòng khách thơ mộng của bạn.",
+    image: SITE_IMAGES.collections.guong_editorial,
+    heroImage: SITE_IMAGES.collections.guong,
+    itemCount: 5,
+    category: "rings",
+    theme: { heroBg: "#12282E", heroText: "#A8D4D8", heroMuted: "rgba(168,212,216,0.65)", dark: true },
   },
   {
-    slug: "lotus",
-    name: "Lotus",
-    tagline: "A Sacred Floral Sacred Grace",
-    description: "Symbolizing purity, wisdom, and beauty, the Lotus collection showcases delicate, diamond-paved layers of gold, reflecting the light like morning dew on sacred petals.",
-    image: "https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?auto=format&fit=crop&q=80&w=800",
-    itemCount: 9,
-    category: "necklaces"
+    slug: "khuyen_tai",
+    name: "Khuyên Tai Vỏ Sò",
+    tagline: "Ánh xà cừ lung linh đung đưa bên khóe mắt",
+    description: "Những đôi khuyên tai thủ công kết từ vỏ điệp, ngọc trai và xà cừ tự nhiên — nhẹ nhàng, tinh tế, mang cả đại dương theo từng bước đi.",
+    image: SITE_IMAGES.collections.khuyen_tai_editorial,
+    heroImage: SITE_IMAGES.collections.khuyen_tai,
+    itemCount: 6,
+    category: "earrings",
+    theme: { heroBg: "#12282E", heroText: "#A8D4D8", heroMuted: "rgba(168,212,216,0.65)", dark: true },
   },
   {
-    slug: "fauna-flora",
-    name: "Fauna & Flora",
-    tagline: "Celebrating Nature's Grace",
-    description: "Inspired by the movement and grace of living creatures, this line captures butterflies and ladybugs in exceptional precious gems, illustrating the poetry of wild gardens.",
-    image: "https://images.unsplash.com/photo-1543294001-f7cd5d7fb516?auto=format&fit=crop&q=80&w=800",
-    itemCount: 11,
-    category: "brooches" as any
+    slug: "vong_tay",
+    name: "Vòng Tay Vỏ Sò",
+    tagline: "Nhịp điệu sóng vỗ dịu êm bện chặt cổ tay",
+    description: "Vòng bện dây thủ công đính mảnh xà cừ tròn và ngọc trai tươi thuần khiết, biểu tượng cho năng lượng tích cực và sự bình an từ khơi xa.",
+    image: SITE_IMAGES.collections.vong_tay_editorial,
+    heroImage: SITE_IMAGES.collections.vong_tay,
+    itemCount: 4,
+    category: "bracelets",
+    theme: { heroBg: "#12282E", heroText: "#A8D4D8", heroMuted: "rgba(168,212,216,0.65)", dark: true },
   },
-  {
-    slug: "poetic-complications",
-    name: "Poetic Complications",
-    tagline: "Time Telling Through Enchantment",
-    description: "Redefining the mechanical wonders of Swiss horology, this watchmaking marvel depicts stories of lovers, fairies, and stars across poetic hand-painted gold dials.",
-    image: "https://images.unsplash.com/photo-1524805444758-089113d48a6d?auto=format&fit=crop&q=80&w=800",
-    itemCount: 9,
-    category: "watches"
-  },
-  {
-    slug: "snowflake",
-    name: "Snowflake",
-    tagline: "Dazzling Shimmer of Winter Glow",
-    description: "Inspired by snow-draped landscapes, this high-jewelry creation arrays round-cut white diamonds in geometric openworks resembling frozen crystals reflecting morning rays.",
-    image: "https://images.unsplash.com/photo-1601121141461-9d6647bca1ed?auto=format&fit=crop&q=80&w=800",
-    itemCount: 9,
-    category: "rings"
-  },
-  {
-    slug: "flying-butterfly",
-    name: "Flying Butterfly",
-    tagline: "Asymmetric Flight of Precious Wings",
-    description: "With their openwork details and dynamic angles, these asymmetrical earrings and rings capture the flutter of butterflies in a shimmering cage of gold and white diamonds.",
-    image: "https://images.unsplash.com/photo-1605100804763-247f67b3557e?auto=format&fit=crop&q=80&w=800",
-    itemCount: 9,
-    category: "rings"
-  }
 ];
 
-// High-Fidelity Products (9-12 items sample)
-export const PRODUCTS_DATA: Product[] = [];
+// 36 sản phẩm — 6 sản phẩm × 6 bộ sưu tập
+export const PRODUCTS_DATA: Product[] = [
 
-// Helper to generate mock products for each collection dynamically to maintain high fidelity
-COLLECTIONS_DATA.forEach((col) => {
-  const materials = [
-    "18K Yellow Gold, Mother-of-pearl",
-    "18K Rose Gold, Carnelian",
-    "18K White Gold, Onyx, Diamonds",
-    "18K Yellow Gold, Malachite, Diamonds",
-    "18K Rose Gold, Diamonds"
-  ];
-  
-  const baseImages = [
-    "https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?auto=format&fit=crop&q=80&w=800",
-    "https://images.unsplash.com/photo-1605100804763-247f67b3557e?auto=format&fit=crop&q=80&w=800",
-    "https://images.unsplash.com/photo-1589674781759-c21c37956a44?auto=format&fit=crop&q=80&w=800",
-    "https://images.unsplash.com/photo-1602751584552-8ba73aad10e1?auto=format&fit=crop&q=80&w=800",
-    "https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?auto=format&fit=crop&q=80&w=800",
-    "https://images.unsplash.com/photo-1596462502278-27bfdc403348?auto=format&fit=crop&q=80&w=800"
-  ];
+  // ── DÂY CHUYỀN VỎ SÒ ──────────────────────────────────────
+  { slug: "day_chuyen_vo_so-001", name: "Dây Chuyền Vỏ Sò Điệp", collectionSlug: "day_chuyen_vo_so", material: "Vỏ sò điệp tự nhiên, Ngọc trai nước ngọt, Bạc Ý 925", price: "850.000 VND", description: "Kết từ những mảnh vỏ sò điệp tự nhiên và hạt ngọc trai nước ngọt khảm bạc Ý 925 bền màu. Mỗi chiếc sò điệp được chọn lọc thủ công, đánh bóng nhẹ để giữ nguyên vân màu xà cừ lung linh.", images: [SITE_IMAGES.collections.day_chuyen_1], specifications: { materials: "Vỏ sò điệp tự nhiên, Ngọc trai nước ngọt, Bạc Ý 925", dimensions: "Sò điệp 18mm, Dài 42cm (±3cm)", reference: "RRS-DC-001" }, featured: true },
+  { slug: "day_chuyen_vo_so-002", name: "Dây Chuyền Ngọc Trai Chuỗi", collectionSlug: "day_chuyen_vo_so", material: "Ngọc trai nước ngọt, Vỏ sò điệp nhỏ, Bạc Ý 925", price: "1.100.000 VND", description: "Chuỗi ngọc trai nước ngọt xếp đều xen kẽ vỏ sò điệp nhỏ tạo nhịp điệu nhẹ nhàng như sóng biển. Khóa bạc 925 chắc chắn, dây có thể chỉnh dài ngắn theo sở thích.", images: [SITE_IMAGES.collections.day_chuyen_2], specifications: { materials: "Ngọc trai nước ngọt 6mm, Sò điệp 10mm, Bạc Ý 925", dimensions: "Dài 45cm (có thể điều chỉnh)", reference: "RRS-DC-002" }, featured: false },
+  { slug: "day_chuyen_vo_so-003", name: "Dây Chuyền Xà Cừ Thả", collectionSlug: "day_chuyen_vo_so", material: "Mặt xà cừ oval, Dây vàng 14K, Bạc Ý 925", price: "720.000 VND", description: "Mặt dây chuyền xà cừ oval tự nhiên được cắt gọt tinh xảo, treo trên dây vàng mảnh 14K. Ánh xà cừ đổi màu từ trắng ngà sang hồng phấn, rất hợp với trang phục mùa hè.", images: [SITE_IMAGES.collections.day_chuyen_3], specifications: { materials: "Xà cừ oval 20×14mm, Dây vàng 14K, Bạc Ý 925", dimensions: "Mặt dây 20×14mm, Dây dài 40cm", reference: "RRS-DC-003" }, featured: false },
+  { slug: "day_chuyen_vo_so-004", name: "Dây Chuyền Sao Biển Vàng", collectionSlug: "day_chuyen_vo_so", material: "Sao biển nhỏ mạ vàng, Hạt vỏ sò, Dây bạc 925", price: "680.000 VND", description: "Charm sao biển được mạ vàng tỉ mỉ treo cùng chuỗi hạt vỏ sò nhỏ xinh. Thiết kế nhẹ nhàng, nữ tính, gợi lên hình ảnh bãi biển lúc bình minh.", images: [SITE_IMAGES.collections.day_chuyen_4], specifications: { materials: "Sao biển mạ vàng 14K, Hạt vỏ sò 4mm, Dây bạc 925", dimensions: "Charm 15mm, Dây dài 38cm (±2cm)", reference: "RRS-DC-004" }, featured: false },
+  { slug: "day_chuyen_vo_so-005", name: "Dây Chuyền Vỏ Ốc Mini Pastel", collectionSlug: "day_chuyen_vo_so", material: "Vỏ ốc nhỏ nhuộm màu pastel, Dây bện linen", price: "590.000 VND", description: "Những chiếc vỏ ốc nhỏ được nhuộm màu pastel nhẹ nhàng — hồng, xanh mint, tím lavender — kết thành chuỗi dây bện linen thủ công. Phong cách bohemian duyên dáng.", images: [SITE_IMAGES.collections.day_chuyen_5], specifications: { materials: "Vỏ ốc nhỏ nhuộm pastel, Dây linen tự nhiên, Khóa gỗ", dimensions: "Dài 42–50cm (điều chỉnh được)", reference: "RRS-DC-005" }, featured: false },
+  { slug: "day_chuyen_vo_so-006", name: "Dây Chuyền Mặt Vỏ Điệp Lớn", collectionSlug: "day_chuyen_vo_so", material: "Vỏ điệp lớn nguyên chiếc, Dây bạc 925 mạ vàng", price: "950.000 VND", description: "Một chiếc vỏ điệp nguyên chiếc được chọn lọc kỹ lưỡng, đánh bóng hai mặt và khảm bạc cẩn thận. Tạo điểm nhấn táo bạo, sang trọng cho bộ trang phục tối giản.", images: [SITE_IMAGES.collections.day_chuyen_6], specifications: { materials: "Vỏ điệp tự nhiên 35–40mm, Bạc 925 mạ vàng", dimensions: "Mặt dây 35–40mm, Dây dài 45cm", reference: "RRS-DC-006" }, featured: true },
 
-  for (let i = 1; i <= col.itemCount; i++) {
-    const material = materials[(i - 1) % materials.length];
-    
-    // Choose product-specific Unsplash gallery items
-    const imgIndex = (i - 1) % baseImages.length;
-    const secondImgIndex = (i) % baseImages.length;
-    const thirdImgIndex = (i + 1) % baseImages.length;
-    const fourthImgIndex = (i + 2) % baseImages.length;
+  // ── NHẪN VỎ ỐC ────────────────────────────────────────────
+  { slug: "nhan_vo_oc-001", name: "Nhẫn Xà Cừ Ngũ Sắc", collectionSlug: "nhan_vo_oc", material: "Vỏ ốc xà cừ ngũ sắc, Bạc Ý 925 mạ rhodium", price: "650.000 VND", description: "Nhẫn bạc 925 mạ rhodium đính mảnh xà cừ ngũ sắc cắt và mài thủ công. Lớp xà cừ đổi màu theo ánh sáng từ trắng ngà sang hồng phấn và xanh biển.", images: [SITE_IMAGES.collections.nhan_1], specifications: { materials: "Xà cừ ngũ sắc, Bạc Ý 925 mạ rhodium", dimensions: "Mặt nhẫn 14×10mm, Size: 5–9", reference: "RRS-NH-001" }, featured: true },
+  { slug: "nhan_vo_oc-002", name: "Nhẫn Vỏ Điệp Trắng", collectionSlug: "nhan_vo_oc", material: "Vỏ điệp trắng ngà, Bạc Ý 925", price: "520.000 VND", description: "Mảnh vỏ điệp trắng ngà tinh khiết được gắn trên đế bạc 925 tối giản. Vẻ đẹp thuần khiết của biển đọng lại trên từng đường vân tự nhiên của vỏ điệp.", images: [SITE_IMAGES.collections.nhan_2], specifications: { materials: "Vỏ điệp trắng ngà, Bạc Ý 925", dimensions: "Mặt nhẫn 12×8mm, Size: 5–9", reference: "RRS-NH-002" }, featured: false },
+  { slug: "nhan_vo_oc-003", name: "Nhẫn Sao Biển Bạc", collectionSlug: "nhan_vo_oc", material: "Sao biển nhỏ, Bạc Ý 925, Mạ vàng 14K", price: "480.000 VND", description: "Charm sao biển nhỏ xinh được đúc từ bạc 925 và mạ vàng 14K nhẹ nhàng. Chiếc nhẫn mang vẻ đẹp biển cả tinh tế, phù hợp đeo hàng ngày.", images: [SITE_IMAGES.collections.nhan_3], specifications: { materials: "Bạc Ý 925, Mạ vàng 14K", dimensions: "Charm sao biển 10mm, Size: 5–9", reference: "RRS-NH-003" }, featured: false },
+  { slug: "nhan_vo_oc-004", name: "Nhẫn Xà Cừ Đen Huyền", collectionSlug: "nhan_vo_oc", material: "Vỏ ốc xà cừ đen, Bạc Ý 925 xi đen", price: "580.000 VND", description: "Mảnh xà cừ đen ánh tím huyền bí được gắn trên đế bạc 925 xi đen tạo nên sự tương phản độc đáo. Phong cách tối giản mà đầy cá tính.", images: [SITE_IMAGES.collections.nhan_4], specifications: { materials: "Xà cừ đen, Bạc Ý 925 xi đen", dimensions: "Mặt nhẫn 12×9mm, Size: 5–9", reference: "RRS-NH-004" }, featured: false },
 
-    const price = i % 3 === 0 ? "Price on request" : `$${(4500 + i * 1350).toLocaleString()}`;
+  // ── GIỎ VỎ SÒ ─────────────────────────────────────────────
+  { slug: "gio_vo_so-001", name: "Giỏ Cói Khảm Sò Lớn", collectionSlug: "gio_vo_so", material: "Cói dệt tay tự nhiên, Vỏ sò biển, Sao biển nhỏ", price: "1.200.000 VND", description: "Giỏ cói dệt tay từ sợi cói tự nhiên không tẩy màu, đính kết vỏ sò biển và sao biển theo hoa văn sóng nước thủ công. Phù hợp đi biển, dã ngoại hoặc làm quà đặc sắc.", images: [SITE_IMAGES.collections.tui_xach_1], specifications: { materials: "Cói tự nhiên, Vỏ sò biển, Sao biển nhỏ", dimensions: "28×22×12cm, Quai dài 35cm", reference: "RRS-GI-001" }, featured: true },
+  { slug: "gio_vo_so-002", name: "Giỏ Cói Khảm Sò Nhỏ", collectionSlug: "gio_vo_so", material: "Cói dệt tay tự nhiên, Vỏ sò nhỏ, Hạt gỗ", price: "850.000 VND", description: "Phiên bản nhỏ gọn của dòng giỏ cói khảm sò, tiện lợi cho buổi đi dạo hay cafe. Vỏ sò được sắp xếp thưa thoáng, điểm xuyết hạt gỗ tự nhiên.", images: [SITE_IMAGES.collections.tui_xach_2], specifications: { materials: "Cói tự nhiên, Vỏ sò nhỏ, Hạt gỗ", dimensions: "20×16×8cm, Quai dài 28cm", reference: "RRS-GI-002" }, featured: false },
+  { slug: "gio_vo_so-003", name: "Túi Đeo Chéo Vỏ Sò", collectionSlug: "gio_vo_so", material: "Vải canvas tự nhiên, Dây cói bện, Vỏ sò trang trí", price: "980.000 VND", description: "Túi đeo chéo phong cách boho với thân vải canvas tự nhiên, dây đeo bện từ cói và trang trí vỏ sò biển dọc theo nắp túi. Nhẹ nhàng, bền bỉ cho mọi hành trình.", images: [SITE_IMAGES.collections.tui_xach_3], specifications: { materials: "Vải canvas, Cói bện, Vỏ sò biển", dimensions: "24×18×6cm, Dây đai dài 60–110cm", reference: "RRS-GI-003" }, featured: false },
+  { slug: "gio_vo_so-004", name: "Giỏ Tròn Sao Biển", collectionSlug: "gio_vo_so", material: "Cói đan tròn, Sao biển khô tự nhiên, Dây da lộn", price: "1.050.000 VND", description: "Giỏ hình tròn đan từ cói thô tự nhiên, trang trí sao biển khô nguyên chiếc và buộc nơ dây da lộn. Kiểu dáng độc đáo, là phụ kiện thời trang nổi bật.", images: [SITE_IMAGES.collections.tui_xach_4], specifications: { materials: "Cói đan, Sao biển tự nhiên, Dây da lộn", dimensions: "Đường kính 26cm × Sâu 10cm, Quai dài 30cm", reference: "RRS-GI-004" }, featured: false },
 
-    PRODUCTS_DATA.push({
-      slug: `${col.slug}-item-${i}`,
-      name: `${col.name.replace("®", "").replace("™", "")} ${i === 1 ? "Pendant" : i === 2 ? "Bracelet" : i === 3 ? "Earrings" : i === 4 ? "Ring" : i === 5 ? "Clip" : "Creation"} ${i}`,
-      collectionSlug: col.slug,
-      material: material,
-      price: price,
-      description: `An exquisite creation of fine artistry from the ${col.name} collection. Masterfully set with high-grade natural gemstones, this luxury piece catches the light beautifully and reflects the poetic di sản of our Place Vendôme artisans. Perfect for celebrating luck, love, and sophisticated styling.`,
-      images: [
-        baseImages[imgIndex],
-        baseImages[secondImgIndex],
-        baseImages[thirdImgIndex],
-        baseImages[fourthImgIndex]
-      ],
-      specifications: {
-        materials: material,
-        dimensions: `${15 + i * 2}mm clover motif size, chain length: ${40 + i}cm`,
-        reference: `VCARD${89000 + i * 142}`
-      },
-      featured: i === 1 || i === 3
-    });
-  }
-});
+  // ── GƯƠNG ĐÍNH VỎ SÒ ──────────────────────────────────────
+  { slug: "guong_vo_so-001", name: "Gương Tay Khảm Vỏ Điệp", collectionSlug: "guong_vo_so", material: "Khung gỗ thông sơn mài, Vỏ điệp biển, Kính gương bạc", price: "950.000 VND", description: "Gương tay với khung gỗ thông được khảm kín vỏ điệp biển nhỏ tạo hoa văn vảy cá. Kính gương bạc độ phản chiếu cao, phù hợp trang trí bàn phấn.", images: [SITE_IMAGES.collections.guong_1], specifications: { materials: "Gỗ thông sơn mài, Vỏ điệp biển, Kính bạc", dimensions: "Dài 28cm, Mặt gương Ø14cm", reference: "RRS-GU-001" }, featured: true },
+  { slug: "guong_vo_so-002", name: "Gương Tường Tròn Vỏ Sò", collectionSlug: "guong_vo_so", material: "Khung gỗ MDF sơn trắng, Vỏ sò đa dạng, Kính gương", price: "1.850.000 VND", description: "Gương tường tròn có khung gỗ sơn trắng, quanh viền đính kết các loại vỏ sò đa dạng theo lớp đồng tâm. Trang trí phòng ngủ hay phòng tắm thêm phần tươi mát.", images: [SITE_IMAGES.collections.guong_2], specifications: { materials: "Gỗ MDF, Vỏ sò tự nhiên, Kính gương", dimensions: "Ø50cm, Móc treo kèm theo", reference: "RRS-GU-002" }, featured: false },
+  { slug: "guong_vo_so-003", name: "Gương Bàn Phấn Biển", collectionSlug: "guong_vo_so", material: "Đế gỗ tự nhiên, Vỏ điệp trắng, Kính hai chiều", price: "1.200.000 VND", description: "Gương bàn phấn đứng với đế gỗ ổn định, mặt kính hai chiều (thường và phóng đại). Viền gương được khảm vỏ điệp trắng mịn, tao nhã trên bàn trang điểm.", images: [SITE_IMAGES.collections.guong_3], specifications: { materials: "Gỗ tự nhiên, Vỏ điệp trắng, Kính hai chiều", dimensions: "Mặt gương 18×18cm, Đế 15×10cm", reference: "RRS-GU-003" }, featured: false },
+  { slug: "guong_vo_so-004", name: "Gương Oval Khảm Trai", collectionSlug: "guong_vo_so", material: "Khung gỗ óc chó, Xà cừ khảm, Kính gương bạc", price: "1.400.000 VND", description: "Gương hình oval sang trọng với khung gỗ óc chó được khảm xà cừ nghệ thuật. Đường viền khảm trai tạo cảm giác như một tác phẩm nghệ thuật treo tường.", images: [SITE_IMAGES.collections.guong_4], specifications: { materials: "Gỗ óc chó, Xà cừ tự nhiên, Kính gương bạc", dimensions: "60×40cm, Có thể treo dọc hoặc ngang", reference: "RRS-GU-004" }, featured: false },
+  { slug: "guong_vo_so-005", name: "Gương Mini Móc Chìa Khóa", collectionSlug: "guong_vo_so", material: "Vỏ điệp nguyên chiếc, Kính mini, Móc inox", price: "380.000 VND", description: "Chiếc vỏ điệp nguyên chiếc được khoét nhẹ và gắn kính gương mini bên trong, thêm móc inox để đeo túi xách. Món phụ kiện nhỏ xinh và thực dụng.", images: [SITE_IMAGES.collections.guong_5], specifications: { materials: "Vỏ điệp tự nhiên, Kính mini, Móc inox 304", dimensions: "Vỏ điệp 6–8cm, Kính 3cm", reference: "RRS-GU-005" }, featured: false },
 
-// 8 Flagship Global Boutiques
+  // ── HỘP ĐỰNG TRANG SỨC ────────────────────────────────────
+  { slug: "khuyen_tai-001", name: "Khuyên Tai Vỏ Điệp Thả", collectionSlug: "khuyen_tai", material: "Vỏ điệp tự nhiên, Móc bạc 925", price: "420.000 VND", description: "Đôi khuyên tai thả với mảnh vỏ điệp tự nhiên được mài bóng nhẹ, treo trên móc bạc 925 mảnh mai. Ánh xà cừ lung linh đung đưa theo từng chuyển động.", images: [SITE_IMAGES.collections.khuyen_tai_1], specifications: { materials: "Vỏ điệp tự nhiên, Bạc 925", dimensions: "Mảnh điệp 25mm, Dài tổng 45mm", reference: "RRS-KT-001" }, featured: true },
+  { slug: "khuyen_tai-002", name: "Khuyên Tai Ngọc Trai Tròn", collectionSlug: "khuyen_tai", material: "Ngọc trai nước ngọt 8mm, Chốt vàng 14K", price: "580.000 VND", description: "Hạt ngọc trai nước ngọt tròn mọng óng ánh trắng hồng, gắn trên chốt vàng 14K tinh tế. Kiểu dáng cổ điển, sang trọng, phù hợp mọi dịp.", images: [SITE_IMAGES.collections.khuyen_tai_2], specifications: { materials: "Ngọc trai nước ngọt 8mm, Vàng 14K", dimensions: "Ø8mm, Chốt dài 12mm", reference: "RRS-KT-002" }, featured: false },
+  { slug: "khuyen_tai-003", name: "Khuyên Tai Xà Cừ Oval", collectionSlug: "khuyen_tai", material: "Xà cừ oval tự nhiên, Bạc Ý 925 mạ vàng", price: "490.000 VND", description: "Mảnh xà cừ oval được cắt gọt tinh xảo, khung bạc 925 mạ vàng bao viền mỏng. Màu sắc đổi chiều từ trắng ngà sang xanh nhạt tùy góc ánh sáng.", images: [SITE_IMAGES.collections.khuyen_tai_3], specifications: { materials: "Xà cừ oval 18×12mm, Bạc 925 mạ vàng", dimensions: "18×12mm, Móc dài 10mm", reference: "RRS-KT-003" }, featured: false },
+  { slug: "khuyen_tai-004", name: "Khuyên Tai Vỏ Sò Mini Cụm", collectionSlug: "khuyen_tai", material: "Vỏ sò nhỏ tự nhiên, Dây bạc 925", price: "350.000 VND", description: "Ba chiếc vỏ sò nhỏ xinh kết thành cụm, treo trên móc bạc 925 mảnh mai. Phong cách boho nhẹ nhàng, thích hợp đi biển hay dạo phố mùa hè.", images: [SITE_IMAGES.collections.khuyen_tai_4], specifications: { materials: "Vỏ sò nhỏ tự nhiên, Bạc 925", dimensions: "Cụm 20mm, Tổng dài 35mm", reference: "RRS-KT-004" }, featured: false },
+  { slug: "khuyen_tai-005", name: "Khuyên Tai Hoa Biển Mạ Vàng", collectionSlug: "khuyen_tai", material: "Hoa biển mạ vàng 14K, Chốt bạc 925", price: "460.000 VND", description: "Charm hoa biển tinh xảo được mạ vàng 14K tỉ mỉ, bề mặt có hoa văn nổi mô phỏng san hô. Nhỏ nhắn, sang trọng, điểm nhấn tinh tế cho đôi tai.", images: [SITE_IMAGES.collections.khuyen_tai_5], specifications: { materials: "Hoa biển mạ vàng 14K, Bạc 925", dimensions: "Ø14mm, Chốt dài 10mm", reference: "RRS-KT-005" }, featured: false },
+  { slug: "khuyen_tai-006", name: "Khuyên Tai Chuỗi Sao Biển", collectionSlug: "khuyen_tai", material: "Sao biển nhỏ mạ vàng, Hạt xà cừ, Móc bạc 925", price: "530.000 VND", description: "Chuỗi thả gồm sao biển mạ vàng và hạt xà cừ nhỏ xếp xen kẽ. Nhẹ nhàng đung đưa, tạo chuyển động duyên dáng, gợi lên cảm giác biển trong từng khoảnh khắc.", images: [SITE_IMAGES.collections.khuyen_tai_6], specifications: { materials: "Sao biển mạ vàng, Xà cừ 4mm, Bạc 925", dimensions: "Tổng dài 55mm", reference: "RRS-KT-006" }, featured: true },
+
+  // ── VÒNG TAY VỎ SÒ ────────────────────────────────────────
+  { slug: "vong_tay-001", name: "Vòng Bện Xà Cừ Tròn", collectionSlug: "vong_tay", material: "Dây linen bện thủ công, Xà cừ tròn 8mm, Ngọc trai 4mm", price: "480.000 VND", description: "Vòng tay bện dây thủ công kết hợp mảnh xà cừ tròn đánh bóng và hạt ngọc trai nước ngọt thuần khiết. Dây linen tự nhiên bền màu, khóa điều chỉnh 14–19cm.", images: [SITE_IMAGES.collections.vong_tay_1], specifications: { materials: "Linen tự nhiên, Xà cừ tròn 8mm, Ngọc trai 4mm", dimensions: "Điều chỉnh 14–19cm", reference: "RRS-VT-001" }, featured: true },
+  { slug: "vong_tay-002", name: "Vòng Charm Sao Biển", collectionSlug: "vong_tay", material: "Chuỗi bạc 925, Charm sao biển mạ vàng, Vỏ sò nhỏ", price: "380.000 VND", description: "Vòng tay chuỗi bạc 925 mảnh mai với charm sao biển mạ vàng 14K và vỏ sò nhỏ xen kẽ. Nhẹ nhàng, nữ tính, phù hợp đeo hàng ngày hay đi biển.", images: [SITE_IMAGES.collections.vong_tay_2], specifications: { materials: "Bạc Ý 925, Charm mạ vàng 14K, Vỏ sò nhỏ", dimensions: "Dài 16–18cm, Khóa cá hồi", reference: "RRS-VT-002" }, featured: false },
+  { slug: "vong_tay-003", name: "Vòng Chuỗi Ngọc Trai", collectionSlug: "vong_tay", material: "Ngọc trai nước ngọt 6mm, Vỏ điệp nhỏ, Dây đàn hồi", price: "650.000 VND", description: "Chuỗi vòng tay kết từ ngọc trai nước ngọt 6mm óng ánh, xen kẽ vỏ điệp nhỏ mài bóng. Dây đàn hồi co giãn linh hoạt, vừa mọi cỡ tay, không cần khóa.", images: [SITE_IMAGES.collections.vong_tay_3], specifications: { materials: "Ngọc trai nước ngọt 6mm, Vỏ điệp nhỏ, Dây đàn hồi", dimensions: "Chu vi 15–18cm (đàn hồi)", reference: "RRS-VT-003" }, featured: false },
+  { slug: "vong_tay-004", name: "Vòng Đôi Vỏ Ốc Mini", collectionSlug: "vong_tay", material: "Dây da lộn, Vỏ ốc mini, Khóa gỗ", price: "420.000 VND", description: "Bộ hai vòng tay da lộn mảnh, đính vỏ ốc mini rải thưa tự nhiên. Khóa gỗ thô mộc tạo nét bohemian đặc trưng. Phù hợp đeo đơn lẻ hoặc kết hợp cùng nhau.", images: [SITE_IMAGES.collections.vong_tay_4], specifications: { materials: "Da lộn, Vỏ ốc mini, Gỗ tự nhiên", dimensions: "Bộ 2 chiếc, Điều chỉnh 14–18cm", reference: "RRS-VT-004" }, featured: false },
+];
+
+// 6 Cửa hàng tại Việt Nam
 export const BOUTIQUES_DATA: Boutique[] = [
   {
-    name: "Place Vendôme Flagship Boutique",
-    city: "Paris",
-    region: "Europe",
-    address: "22 Place Vendôme, 75001 Paris, France",
-    phone: "+33 1 55 04 11 11",
+    name: "Flagship Hà Nội – Hoàn Kiếm",
+    city: "Hà Nội",
+    region: "North",
+    address: "18 Hàng Bài, Hoàn Kiếm, Hà Nội",
+    phone: "+84 24 3825 1188",
     hours: [
-      "Monday - Saturday: 10:30 AM - 7:00 PM",
-      "Sunday: Closed"
+      "Thứ Hai - Thứ Bảy: 9:00 sáng - 8:00 tối",
+      "Chủ Nhật: 10:00 sáng - 6:00 tối"
     ],
-    coordinates: { lat: 48.86725, lng: 2.32943 }
+    coordinates: { lat: 21.02278, lng: 105.85209 }
   },
   {
-    name: "Fifth Avenue Boutique",
-    city: "New York",
-    region: "Americas",
-    address: "712 Fifth Avenue, New York, NY 10019, USA",
-    phone: "+1 212 896 9000",
+    name: "Hà Nội – Vincom Bà Triệu",
+    city: "Hà Nội",
+    region: "North",
+    address: "191 Bà Triệu, Hai Bà Trưng, Hà Nội",
+    phone: "+84 24 3974 9988",
     hours: [
-      "Monday - Saturday: 10:00 AM - 6:00 PM",
-      "Sunday: 12:00 PM - 5:00 PM"
+      "Thứ Hai - Chủ Nhật: 9:30 sáng - 9:30 tối"
     ],
-    coordinates: { lat: 40.76214, lng: -73.97412 }
+    coordinates: { lat: 21.01155, lng: 105.84612 }
   },
   {
-    name: "Ginza Flagship Boutique",
-    city: "Tokyo",
-    region: "Asia",
-    address: "5-6-15 Ginza, Chuo-ku, Tokyo 104-0061, Japan",
-    phone: "+81 3 3569 1906",
+    name: "Đà Nẵng – Hùng Vương",
+    city: "Đà Nẵng",
+    region: "Central",
+    address: "255 Hùng Vương, Hải Châu, Đà Nẵng",
+    phone: "+84 236 3822 668",
     hours: [
-      "Monday - Sunday: 11:00 AM - 8:00 PM"
+      "Thứ Hai - Thứ Bảy: 9:00 sáng - 8:00 tối",
+      "Chủ Nhật: 10:00 sáng - 6:00 tối"
     ],
-    coordinates: { lat: 35.67055, lng: 139.76345 }
+    coordinates: { lat: 16.06778, lng: 108.22083 }
   },
   {
-    name: "New Bond Street Boutique",
-    city: "London",
-    region: "Europe",
-    address: "150 New Bond Street, London W1S 2TU, United Kingdom",
-    phone: "+44 20 7429 2700",
+    name: "Hội An – Phố Cổ",
+    city: "Hội An",
+    region: "Central",
+    address: "23 Lê Lợi, Phường Minh An, Hội An, Quảng Nam",
+    phone: "+84 235 3861 223",
     hours: [
-      "Monday - Saturday: 10:00 AM - 6:00 PM",
-      "Sunday: Closed"
+      "Thứ Hai - Chủ Nhật: 9:00 sáng - 9:00 tối"
     ],
-    coordinates: { lat: 51.51263, lng: -0.14421 }
+    coordinates: { lat: 15.87978, lng: 108.33503 }
   },
   {
-    name: "The Landmark Prince's Boutique",
-    city: "Hong Kong",
-    region: "Asia",
-    address: "Shop G23-26, G/F, Prince's Building, Central, Hong Kong",
-    phone: "+852 2522 9677",
+    name: "TP. Hồ Chí Minh – Đồng Khởi",
+    city: "TP. Hồ Chí Minh",
+    region: "South",
+    address: "38 Đồng Khởi, Bến Nghé, Quận 1, TP. HCM",
+    phone: "+84 28 3829 9988",
     hours: [
-      "Monday - Sunday: 10:00 AM - 7:30 PM"
+      "Thứ Hai - Thứ Bảy: 9:00 sáng - 8:30 tối",
+      "Chủ Nhật: 10:00 sáng - 7:00 tối"
     ],
-    coordinates: { lat: 22.28156, lng: 114.15934 }
+    coordinates: { lat: 10.77695, lng: 106.70322 }
   },
   {
-    name: "Marina Bay Sands Duplex",
-    city: "Singapore",
-    region: "Asia",
-    address: "2 Bayfront Avenue, B1-41/42, Singapore 018972",
-    phone: "+65 6688 7377",
+    name: "TP. Hồ Chí Minh – Phú Mỹ Hưng",
+    city: "TP. Hồ Chí Minh",
+    region: "South",
+    address: "Crescent Mall, 101 Tôn Dật Tiên, Quận 7, TP. HCM",
+    phone: "+84 28 5413 6688",
     hours: [
-      "Monday - Sunday: 11:00 AM - 10:00 PM"
+      "Thứ Hai - Chủ Nhật: 10:00 sáng - 10:00 tối"
     ],
-    coordinates: { lat: 1.28475, lng: 103.85963 }
-  },
-  {
-    name: "Rue du Rhône Salon",
-    city: "Geneva",
-    region: "Europe",
-    address: "31 Rue du Rhône, 1204 Geneva, Switzerland",
-    phone: "+41 22 310 37 37",
-    hours: [
-      "Monday - Friday: 10:00 AM - 6:30 PM",
-      "Saturday: 10:00 AM - 5:00 PM",
-      "Sunday: Closed"
-    ],
-    coordinates: { lat: 46.20455, lng: 6.14812 }
-  },
-  {
-    name: "Dubai Mall Boutique",
-    city: "Dubai",
-    region: "Middle East",
-    address: "Fashion Avenue, The Dubai Mall, Downtown Dubai, UAE",
-    phone: "+971 4 339 8000",
-    hours: [
-      "Monday - Thursday: 10:00 AM - 11:00 PM",
-      "Friday - Sunday: 10:00 AM - 12:00 AM"
-    ],
-    coordinates: { lat: 25.19725, lng: 55.27963 }
+    coordinates: { lat: 10.72988, lng: 106.71812 }
   }
 ];
 
@@ -284,32 +244,32 @@ export const BOUTIQUES_DATA: Boutique[] = [
 export const TIMELINE_DATA: TimelineMilestone[] = [
   {
     year: "2026",
-    title: "Atelier Establishment",
-    description: "The founders of Yen Nhi Jewerly establish the very first luxury design atelier, starting an exquisite journey of pure love and fine gemstone artistry.",
-    image: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&q=80&w=800"
+    title: "Thành Lập Xưởng Chế Tác",
+    description: "Những người sáng lập Rì Rào Store mở xưởng thiết kế thủ công đầu tiên tại bờ biển Việt Nam, bắt đầu hành trình lãng mạn khơi nguồn cảm hứng nghệ thuật từ biển cả.",
+    image: SITE_IMAGES.megaMenu.atelierFeatured1
   },
   {
     year: "2027",
-    title: "Signature Invisible Setting",
-    description: "The Atelier introduces its iconic invisible gemstone settings, an exceptional framework that holds precious gems seamlessly to elevate the brilliant fire of diamonds.",
-    image: "https://images.unsplash.com/photo-1617038260897-41a1f14a8ca0?auto=format&fit=crop&q=80&w=800"
+    title: "Kỹ Thuật Sắp Đặt Xà Cừ Độc Quyền",
+    description: "Xưởng giới thiệu kỹ thuật khảm và đánh bóng vỏ trai tự nhiên óng ánh (NacrePolish™), giúp giữ nguyên vẹn lớp màu xà cừ rực rỡ và lộng lẫy bền bỉ với thời gian.",
+    image: SITE_IMAGES.sections.editorial
   },
   {
     year: "2028",
-    title: "Empress Collection",
-    description: "Yen Nhi Jewerly introduces the Empress clover necklace, set with four-leaf clover motifs outlined with gold beads, cementing it as an enduring signature icon of luck and love.",
-    image: "https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?auto=format&fit=crop&q=80&w=800"
+    title: "Tuyệt Tác Xà Cừ Bốn Lá (Alhambra)",
+    description: "Rì Rào Store ra mắt mẫu vòng cổ cỏ bốn lá may mắn khảm xà cừ trắng tự nhiên, nhanh chóng trở thành biểu tượng tinh tế được săn đón toàn cầu.",
+    image: SITE_IMAGES.collections.alhambra
   },
   {
     year: "2029",
-    title: "Poetic Complications",
-    description: "Celebrating decades of mastery, the Atelier introduces poetic watchmaking compilations that display romantic mechanical theater on precious diamond dials.",
-    image: "https://images.unsplash.com/photo-1524805444758-089113d48a6d?auto=format&fit=crop&q=80&w=800"
+    title: "Tuyệt Tác Poetic Complications",
+    description: "Đánh dấu sự phát triển vượt bậc, xưởng cho ra mắt dòng đồng hồ Thủy triều cơ khí hiển thị chuyển động trăng khuyết và tiếng sóng vỗ trên mặt số xà cừ.",
+    image: SITE_IMAGES.collections.poeticComplications
   },
   {
     year: "2030",
-    title: "High Jewelry Exhibition",
-    description: "The Atelier launches its latest artistic high-jewelry curation, demonstrating the continuing power of masterful hand craftsmanship to shape rare natural stones.",
-    image: "https://images.unsplash.com/photo-1601121141461-9d6647bca1ed?auto=format&fit=crop&q=80&w=800"
+    title: "Triển Lãm Nghệ Thuật Đại Dương",
+    description: "Xưởng tổ chức triển lãm nghệ thuật quốc tế tôn vinh vẻ đẹp của rạn san hô hoang dã, tiếp tục truyền tải bức thông điệp bảo vệ môi trường biển bền vững.",
+    image: SITE_IMAGES.collections.snowflake
   }
 ];

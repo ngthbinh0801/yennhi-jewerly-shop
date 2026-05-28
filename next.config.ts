@@ -2,6 +2,8 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   images: {
+    minimumCacheTTL: 0,
+    unoptimized: process.env.NODE_ENV === "development",
     remotePatterns: [
       {
         protocol: "https",
@@ -18,8 +20,8 @@ const nextConfig: NextConfig = {
       // General Navigation Redirects
       { source: "/high-jewelry", destination: "/collections", permanent: false },
       { source: "/jewelry", destination: "/collections", permanent: false },
-      { source: "/watches", destination: "/collections/poetic-complications", permanent: false },
-      { source: "/bridal", destination: "/collections/snowflake", permanent: false },
+      { source: "/watches", destination: "/collections/vong_tay", permanent: false },
+      { source: "/bridal", destination: "/collections", permanent: false },
       { source: "/fragrance", destination: "/collections", permanent: false },
       { source: "/services", destination: "/boutiques", permanent: false },
       { source: "/account", destination: "/contact", permanent: false },
@@ -31,45 +33,56 @@ const nextConfig: NextConfig = {
       { source: "/jewelry/bracelets", destination: "/collections?category=bracelets", permanent: false },
       { source: "/jewelry/earrings", destination: "/collections?category=earrings", permanent: false },
 
-      // Jewelry Collections Redirects
-      { source: "/jewelry/alhambra", destination: "/collections/alhambra", permanent: false },
-      { source: "/jewelry/perlee", destination: "/collections/perlee", permanent: false },
-      { source: "/jewelry/frivole", destination: "/collections/frivole", permanent: false },
-      { source: "/jewelry/lucky-spring", destination: "/collections/lucky-spring", permanent: false },
-      { source: "/jewelry/lotus", destination: "/collections/lotus", permanent: false },
-      { source: "/jewelry/fauna-flora", destination: "/collections/fauna-flora", permanent: false },
-      { source: "/jewelry/magic-alhambra", destination: "/collections/alhambra", permanent: false },
-      { source: "/jewelry/vintage-alhambra", destination: "/collections/alhambra", permanent: false },
-      { source: "/jewelry/frivole-discover", destination: "/collections/frivole", permanent: false },
+      // Jewelry Collections Redirects (old Van Cleef slugs → Rì Rào equivalents)
+      { source: "/jewelry/alhambra", destination: "/collections/gio_vo_so", permanent: false },
+      { source: "/jewelry/perlee", destination: "/collections/day_chuyen_vo_so", permanent: false },
+      { source: "/jewelry/frivole", destination: "/collections/khuyen_tai", permanent: false },
+      { source: "/jewelry/lucky-spring", destination: "/collections", permanent: false },
+      { source: "/jewelry/lotus", destination: "/collections", permanent: false },
+      { source: "/jewelry/fauna-flora", destination: "/collections/nhan_vo_oc", permanent: false },
+      { source: "/jewelry/magic-alhambra", destination: "/collections/gio_vo_so", permanent: false },
+      { source: "/jewelry/vintage-alhambra", destination: "/collections/gio_vo_so", permanent: false },
+      { source: "/jewelry/frivole-discover", destination: "/collections/khuyen_tai", permanent: false },
 
       // High Jewelry Collections
-      { source: "/high-jewelry/legend", destination: "/collections/flying-butterfly", permanent: false },
-      { source: "/high-jewelry/romeo-juliet", destination: "/collections/snowflake", permanent: false },
-      { source: "/high-jewelry/rubies", destination: "/collections/snowflake", permanent: false },
-      { source: "/high-jewelry/luck", destination: "/collections/alhambra", permanent: false },
-      { source: "/high-jewelry/secret", destination: "/collections/flying-butterfly", permanent: false },
-      { source: "/high-jewelry/mystery-set", destination: "/collections/poetic-complications", permanent: false },
+      { source: "/high-jewelry/legend", destination: "/collections", permanent: false },
+      { source: "/high-jewelry/romeo-juliet", destination: "/collections", permanent: false },
+      { source: "/high-jewelry/rubies", destination: "/collections", permanent: false },
+      { source: "/high-jewelry/luck", destination: "/collections/gio_vo_so", permanent: false },
+      { source: "/high-jewelry/secret", destination: "/collections", permanent: false },
+      { source: "/high-jewelry/mystery-set", destination: "/collections/vong_tay", permanent: false },
       { source: "/high-jewelry/savoir-faire", destination: "/the-maison", permanent: false },
       { source: "/high-jewelry/gemstones", destination: "/the-maison", permanent: false },
 
       // Watches Collections
-      { source: "/watches/poetic", destination: "/collections/poetic-complications", permanent: false },
-      { source: "/watches/poetic-complications", destination: "/collections/poetic-complications", permanent: false },
-      { source: "/watches/charms", destination: "/collections/poetic-complications", permanent: false },
-      { source: "/watches/alhambra", destination: "/collections/poetic-complications", permanent: false },
-      { source: "/watches/sweet", destination: "/collections/poetic-complications", permanent: false },
+      { source: "/watches/poetic", destination: "/collections/vong_tay", permanent: false },
+      { source: "/watches/poetic-complications", destination: "/collections/vong_tay", permanent: false },
+      { source: "/watches/charms", destination: "/collections/vong_tay", permanent: false },
+      { source: "/watches/alhambra", destination: "/collections/gio_vo_so", permanent: false },
+      { source: "/watches/sweet", destination: "/collections/vong_tay", permanent: false },
       { source: "/watches/enameling", destination: "/the-maison", permanent: false },
       { source: "/watches/painting", destination: "/the-maison", permanent: false },
       { source: "/watches/mechanics", destination: "/the-maison", permanent: false },
 
       // Bridal Collections
-      { source: "/bridal/engagement", destination: "/collections/snowflake", permanent: false },
-      { source: "/bridal/bands", destination: "/collections/snowflake", permanent: false },
-      { source: "/bridal/sets", destination: "/collections/snowflake", permanent: false },
-      { source: "/bridal/solitaires", destination: "/collections/snowflake", permanent: false },
-      { source: "/bridal/custom", destination: "/collections/snowflake", permanent: false },
-      { source: "/bridal/diamonds", destination: "/collections/snowflake", permanent: false },
-      { source: "/bridal/engraving", destination: "/collections/snowflake", permanent: false },
+      { source: "/bridal/engagement", destination: "/collections/nhan_vo_oc", permanent: false },
+      { source: "/bridal/bands", destination: "/collections/vong_tay", permanent: false },
+      { source: "/bridal/sets", destination: "/collections", permanent: false },
+      { source: "/bridal/solitaires", destination: "/collections/nhan_vo_oc", permanent: false },
+      { source: "/bridal/custom", destination: "/contact", permanent: false },
+      { source: "/bridal/diamonds", destination: "/collections/nhan_vo_oc", permanent: false },
+      { source: "/bridal/engraving", destination: "/contact", permanent: false },
+
+      // Old Van Cleef collection slugs → direct redirect to Rì Rào equivalents
+      { source: "/collections/alhambra", destination: "/collections/gio_vo_so", permanent: false },
+      { source: "/collections/perlee", destination: "/collections/day_chuyen_vo_so", permanent: false },
+      { source: "/collections/frivole", destination: "/collections/khuyen_tai", permanent: false },
+      { source: "/collections/fauna-flora", destination: "/collections/nhan_vo_oc", permanent: false },
+      { source: "/collections/poetic-complications", destination: "/collections/vong_tay", permanent: false },
+      { source: "/collections/snowflake", destination: "/collections/guong_vo_so", permanent: false },
+      { source: "/collections/flying-butterfly", destination: "/collections", permanent: false },
+      { source: "/collections/lucky-spring", destination: "/collections", permanent: false },
+      { source: "/collections/lotus", destination: "/collections", permanent: false },
 
       // Customer Services Subpages
       { source: "/service/contact-us", destination: "/contact", permanent: false },

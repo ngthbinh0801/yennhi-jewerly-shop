@@ -24,145 +24,147 @@ interface MegaMenuContent {
   ctaHref: string;
 }
 
+import { SITE_IMAGES } from "@/lib/imageConfig";
+
 const MENU_CONTENT: Record<string, MegaMenuContent> = {
   "HIGH JEWELRY": {
-    featuredImage1: "https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?auto=format&fit=crop&q=80&w=800",
-    featuredTitle1: "Legend of Diamonds",
-    featuredSubtitle1: "A brilliant history written in white and gold.",
+    featuredImage1: SITE_IMAGES.megaMenu.highJewelryFeatured1,
+    featuredTitle1: "Huyền thoại Kim cương",
+    featuredSubtitle1: "Một lịch sử lộng lẫy được viết bằng vàng và bạch kim.",
     links: [
       {
-        category: "Exquisite Collections",
+        category: "Kiệt Tác Tuyệt Mỹ",
         items: [
-          { label: "Legend of Diamonds", href: "/collections?search=Snowflake" },
-          { label: "Romeo & Juliet Collection", href: "/collections?search=Butterfly" },
-          { label: "Treasure of Rubies", href: "/collections?search=spring" },
-          { label: "Palais de la chance", href: "/collections?search=Alhambra" },
+          { label: "Huyền thoại Kim cương", href: "/collections?search=Sao Biển Tuyết" },
+          { label: "Bộ sưu tập Romeo & Juliet", href: "/collections?search=Butterfly" },
+          { label: "Kho báu đá Ruby đỏ", href: "/collections?search=spring" },
+          { label: "Cung điện của sự may mắn", href: "/collections?search=Xà Cừ Bốn Lá" },
         ]
       },
       {
-        category: "Our Artistry",
+        category: "Bí Quyết Chế Tác",
         items: [
-          { label: "The Mystery Set™ Technique", href: "/the-maison" },
-          { label: "Savoir-Faire Workshops", href: "/the-maison" },
-          { label: "Unique Gemstones Selection", href: "/the-maison" }
+          { label: "Kỹ thuật đính đá ẩn Mystery Set™", href: "/the-maison" },
+          { label: "Xưởng thủ công Savoir-Faire", href: "/the-maison" },
+          { label: "Tuyển chọn đá quý độc bản", href: "/the-maison" }
         ]
       }
     ],
-    featuredImage2: "https://images.unsplash.com/photo-1601121141461-9d6647bca1ed?auto=format&fit=crop&q=80&w=400",
-    featuredTitle2: "Workshops Secret",
-    ctaText: "Discover the Mastery",
+    featuredImage2: SITE_IMAGES.megaMenu.highJewelryFeatured2,
+    featuredTitle2: "Bí mật từ Xưởng chế tác",
+    ctaText: "Khám phá tay nghề thủ công",
     ctaHref: "/the-maison"
   },
   "JEWELRY": {
-    featuredImage1: "https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?auto=format&fit=crop&q=80&w=800",
-    featuredTitle1: "The Alhambra® Collection",
-    featuredSubtitle1: "An icon of luck decorated with golden beads.",
+    featuredImage1: SITE_IMAGES.megaMenu.jewelryFeatured1,
+    featuredTitle1: "Bộ sưu tập Xà Cừ Bốn Lá®",
+    featuredSubtitle1: "Một biểu tượng may mắn đặc trưng được viền bằng các hạt hạt vàng tinh tế.",
     links: [
       {
-        category: "Iconic Lines",
+        category: "Dòng Sản Phẩm Kinh Điển",
         items: [
-          { label: "Alhambra®", href: "/collections/alhambra" },
-          { label: "Frivole™", href: "/collections/frivole" },
-          { label: "Perlée™", href: "/collections/perlee" },
-          { label: "Fauna & Flora", href: "/collections/fauna-flora" }
+          { label: "Xà Cừ Bốn Lá®", href: "/collections/alhambra" },
+          { label: "Hoa Khơi Biển™", href: "/collections/frivole" },
+          { label: "Hạt Ngọc Biển™", href: "/collections/perlee" },
+          { label: "Rạn San Hô", href: "/collections/fauna-flora" }
         ]
       },
       {
-        category: "Creations Types",
+        category: "Phân Loại Kiệt Tác",
         items: [
-          { label: "Rings", href: "/collections?category=rings" },
-          { label: "Necklaces & Pendants", href: "/collections?category=necklaces" },
-          { label: "Bracelets", href: "/collections?category=bracelets" },
-          { label: "Earrings & Brooches", href: "/collections?category=earrings" }
+          { label: "Nhẫn", href: "/collections?category=rings" },
+          { label: "Vòng cổ & Mặt dây chuyền", href: "/collections?category=necklaces" },
+          { label: "Vòng tay", href: "/collections?category=bracelets" },
+          { label: "Bông tai & Trâm cài", href: "/collections?category=earrings" }
         ]
       }
     ],
-    featuredImage2: "https://images.unsplash.com/photo-1602751584552-8ba73aad10e1?auto=format&fit=crop&q=80&w=400",
-    featuredTitle2: "Frivole Heart Ring",
-    ctaText: "Discover Frivole",
+    featuredImage2: SITE_IMAGES.megaMenu.jewelryFeatured2,
+    featuredTitle2: "Nhẫn Trái tim Hoa Khơi Biển",
+    ctaText: "Khám phá Hoa Khơi Biển",
     ctaHref: "/collections/frivole"
   },
   "WATCHES": {
-    featuredImage1: "https://images.unsplash.com/photo-1524805444758-089113d48a6d?auto=format&fit=crop&q=80&w=800",
-    featuredTitle1: "Poetic Complications",
-    featuredSubtitle1: "A story of time told through fairy-tale dials.",
+    featuredImage1: SITE_IMAGES.megaMenu.watchesFeatured1,
+    featuredTitle1: "Mặt số Thơ mộng (Nhịp Điệu Thủy Triều)",
+    featuredSubtitle1: "Câu chuyện thời gian được kể qua những mặt số cổ tích cơ khí tinh xảo.",
     links: [
       {
-        category: "Watch Families",
+        category: "Các Dòng Đồng Hồ",
         items: [
-          { label: "Poetic Complications®", href: "/collections/poetic-complications" },
-          { label: "Charms", href: "/collections?category=watches" },
-          { label: "Alhambra Timepieces", href: "/collections?category=watches" },
-          { label: "Sweet Alhambra", href: "/collections?category=watches" }
+          { label: "Nhịp Điệu Thủy Triều®", href: "/collections/poetic-complications" },
+          { label: "Đồng hồ Charms", href: "/collections?category=watches" },
+          { label: "Đồng hồ Xà Cừ Bốn Lá", href: "/collections?category=watches" },
+          { label: "Sweet Xà Cừ Bốn Lá", href: "/collections?category=watches" }
         ]
       },
       {
-        category: "Craftsmanship",
+        category: "Nghệ Thuật Chế Tác",
         items: [
-          { label: "Enameling Artistry", href: "/the-maison" },
-          { label: "Miniature Painting", href: "/the-maison" },
-          { label: "Mechanical Mastery", href: "/the-maison" }
+          { label: "Nghệ thuật tráng men thủ công", href: "/the-maison" },
+          { label: "Kỹ thuật vẽ tiểu họa", href: "/the-maison" },
+          { label: "Đỉnh cao cơ khí chế tác", href: "/the-maison" }
         ]
       }
     ],
-    featuredImage2: "https://images.unsplash.com/photo-1547996160-81dfa63595aa?auto=format&fit=crop&q=80&w=400",
-    featuredTitle2: "Lady Yen Watch",
-    ctaText: "Explore Poetic Time",
+    featuredImage2: SITE_IMAGES.megaMenu.watchesFeatured2,
+    featuredTitle2: "Đồng hồ Lady Yen",
+    ctaText: "Khám phá Thời gian Thơ mộng",
     ctaHref: "/collections/poetic-complications"
   },
   "BRIDAL": {
-    featuredImage1: "https://images.unsplash.com/photo-1605100804763-247f67b3557e?auto=format&fit=crop&q=80&w=800",
-    featuredTitle1: "Engagement Solitaires",
-    featuredSubtitle1: "Celebrate your unique love story.",
+    featuredImage1: SITE_IMAGES.megaMenu.bridalFeatured1,
+    featuredTitle1: "Nhẫn Đính Hôn Solitaire",
+    featuredSubtitle1: "Tôn vinh câu chuyện tình yêu độc nhất của bạn.",
     links: [
       {
-        category: "Love Creations",
+        category: "Tác Phẩm Tình Yêu",
         items: [
-          { label: "Engagement Rings", href: "/collections?category=rings" },
-          { label: "Wedding Bands", href: "/collections?category=rings" },
-          { label: "Bridal Sets", href: "/collections" },
-          { label: "Unique Diamond Cut Solitaires", href: "/collections" }
+          { label: "Nhẫn đính hôn", href: "/collections?category=rings" },
+          { label: "Nhẫn cưới", href: "/collections?category=rings" },
+          { label: "Bộ trang sức cưới", href: "/collections" },
+          { label: "Nhẫn cưới Solitaire đính kim cương độc bản", href: "/collections" }
         ]
       },
       {
-        category: "Atelier Commitment",
+        category: "Cam Kết từ Xưởng Chế Tác",
         items: [
-          { label: "Custom Solitaires Design", href: "/contact" },
-          { label: "Diamond Excellence & Selection", href: "/the-maison" },
-          { label: "Engraving Custom Service", href: "/contact" }
+          { label: "Thiết kế nhẫn Solitaire theo yêu cầu", href: "/contact" },
+          { label: "Tuyển chọn kim cương chất lượng tối cao", href: "/the-maison" },
+          { label: "Dịch vụ khắc chữ kỷ niệm riêng biệt", href: "/contact" }
         ]
       }
     ],
-    featuredImage2: "https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?auto=format&fit=crop&q=80&w=400",
-    featuredTitle2: "Platinum Wedding Band",
-    ctaText: "Explore Wedding Bands",
+    featuredImage2: SITE_IMAGES.megaMenu.bridalFeatured2,
+    featuredTitle2: "Nhẫn cưới Platinum",
+    ctaText: "Khám phá Nhẫn Cưới",
     ctaHref: "/collections"
   },
   "THE ATELIER": {
-    featuredImage1: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&q=80&w=800",
-    featuredTitle1: "Haute Legacy Since 2026",
-    featuredSubtitle1: "A story born in the heart of timeless elegance.",
+    featuredImage1: SITE_IMAGES.megaMenu.atelierFeatured1,
+    featuredTitle1: "Di Sản Lộng Lẫy Từ Năm 2026",
+    featuredSubtitle1: "Một câu chuyện bắt nguồn từ trung tâm của sự thanh lịch vượt thời gian.",
     links: [
       {
-        category: "History & Heritage",
+        category: "Lịch Sử & Di Sản",
         items: [
-          { label: "Our Story since 2026", href: "/the-maison" },
-          { label: "Atelier Museum Collection", href: "/the-maison" },
-          { label: "Exhibitions & Cultural Programs", href: "/the-maison" }
+          { label: "Câu chuyện của chúng tôi từ năm 2026", href: "/the-maison" },
+          { label: "Bộ sưu tập Bảo tàng Atelier", href: "/the-maison" },
+          { label: "Triển lãm & Chương trình văn hóa nghệ thuật", href: "/the-maison" }
         ]
       },
       {
-        category: "School of Arts",
+        category: "Học Viện Nghệ Thuật",
         items: [
-          { label: "The Academy of Jewelry Arts", href: "/the-maison" },
-          { label: "Workshops & Classes", href: "/the-maison" },
-          { label: "Young Jewelry Artisans Support", href: "/the-maison" }
+          { label: "Học viện Nghệ thuật Trang sức", href: "/the-maison" },
+          { label: "Lớp học trải nghiệm chuyên sâu", href: "/the-maison" },
+          { label: "Bảo trợ tài năng nghệ nhân trẻ", href: "/the-maison" }
         ]
       }
     ],
-    featuredImage2: "https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&q=80&w=400",
-    featuredTitle2: "Artisan Workshops",
-    ctaText: "Discover History",
+    featuredImage2: SITE_IMAGES.megaMenu.atelierFeatured2,
+    featuredTitle2: "Không gian Xưởng chế tác",
+    ctaText: "Khám phá Lịch sử",
     ctaHref: "/the-maison"
   }
 };
@@ -195,7 +197,7 @@ export default function MegaMenu({ activeItem, onClose, onMouseEnter, onMouseLea
           />
           <div className="absolute inset-0 bg-gradient-to-t from-brand-charcoal/70 via-brand-charcoal/20 to-transparent"></div>
           <div className="absolute bottom-6 left-6 right-6 text-brand-white">
-            <span className="text-[9px] uppercase tracking-[0.2em] text-brand-gold font-bold mb-1 block">Featured Creation</span>
+            <span className="text-[9px] uppercase tracking-[0.2em] text-brand-gold font-bold mb-1 block">Kiệt Tác Nổi Bật</span>
             <h3 className="text-2xl font-light tracking-wide mb-2">{content.featuredTitle1}</h3>
             <p className="text-xs text-brand-white/80 leading-relaxed font-light max-w-sm">{content.featuredSubtitle1}</p>
           </div>
@@ -241,7 +243,7 @@ export default function MegaMenu({ activeItem, onClose, onMouseEnter, onMouseLea
               {content.featuredTitle2}
             </h4>
             <p className="text-[11px] text-brand-gray leading-relaxed font-light">
-              Explore the exceptional artistry of our Place Vendôme artisans.
+              Khám phá tay nghề thủ công kiệt tác từ các nghệ nhân của Place Vendôme.
             </p>
           </div>
           <Link

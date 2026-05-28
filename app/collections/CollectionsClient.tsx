@@ -4,8 +4,8 @@ import React, { useState, useMemo } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
-import { SlidersHorizontal, ArrowUpDown, ChevronRight, Grid, X } from "lucide-react";
-import { COLLECTIONS_DATA, Collection } from "@/lib/mockData";
+import { SlidersHorizontal, ArrowUpDown, ChevronRight, X } from "lucide-react";
+import { Collection } from "@/lib/mockData";
 import { CREAM_BLUR_DATA_URL } from "@/lib/constants";
 import { useSearchParams, useRouter } from "next/navigation";
 
@@ -14,18 +14,18 @@ interface CollectionsClientProps {
 }
 
 const CATEGORIES = [
-  { label: "All", value: "all" },
-  { label: "Necklaces", value: "necklaces" },
-  { label: "Bracelets", value: "bracelets" },
-  { label: "Earrings", value: "earrings" },
-  { label: "Rings", value: "rings" },
-  { label: "Watches", value: "watches" }
+  { label: "Tất cả", value: "all" },
+  { label: "Vòng cổ", value: "necklaces" },
+  { label: "Vòng tay", value: "bracelets" },
+  { label: "Bông tai", value: "earrings" },
+  { label: "Nhẫn", value: "rings" },
+  { label: "Đồng hồ", value: "watches" }
 ];
 
 const SORT_OPTIONS = [
-  { label: "Featured", value: "featured" },
-  { label: "Newest First", value: "newest" },
-  { label: "Alphabetical A-Z", value: "az" }
+  { label: "Nổi bật", value: "featured" },
+  { label: "Mới nhất trước", value: "newest" },
+  { label: "Thứ tự A-Z", value: "az" }
 ];
 
 export default function CollectionsClient({ initialCollections }: CollectionsClientProps) {
@@ -50,12 +50,14 @@ export default function CollectionsClient({ initialCollections }: CollectionsCli
     // reset pagination
     params.delete("page");
     router.push(`/collections?${params.toString()}`);
+    setCurrentPage(1);
   };
 
   const handleClearSearch = () => {
     const params = new URLSearchParams(searchParams.toString());
     params.delete("search");
     router.push(`/collections?${params.toString()}`);
+    setCurrentPage(1);
   };
 
   // Filter & Sort collections logic
@@ -93,10 +95,7 @@ export default function CollectionsClient({ initialCollections }: CollectionsCli
     return result;
   }, [initialCollections, selectedCategory, selectedSort, searchQuery]);
 
-  // Reset pagination when filter/sort/search changes
-  React.useEffect(() => {
-    setCurrentPage(1);
-  }, [selectedCategory, selectedSort, searchQuery]);
+
 
   // Pagination calculation
   const totalItems = filteredAndSortedCollections.length;
@@ -129,7 +128,7 @@ export default function CollectionsClient({ initialCollections }: CollectionsCli
             transition={{ duration: 0.8, ease: "easeOut" }}
             className="text-5xl md:text-6xl lg:text-7xl font-light text-brand-white font-serif tracking-widest leading-tight"
           >
-            Collections
+            Bộ Sưu Tập
           </motion.h1>
           <div className="gold-divider my-4 bg-brand-gold w-16" />
           <motion.p
@@ -138,7 +137,7 @@ export default function CollectionsClient({ initialCollections }: CollectionsCli
             transition={{ delay: 0.3, duration: 0.8 }}
             className="text-brand-cream/80 text-sm md:text-base font-sans tracking-[0.15em] uppercase"
           >
-            Timeless Poetry, Crafted Excellence
+            Chất Thơ Vượt Thời Gian, Sự Tinh Hoa Chế Tác
           </motion.p>
         </div>
       </section>
@@ -158,18 +157,18 @@ export default function CollectionsClient({ initialCollections }: CollectionsCli
               <div className="absolute left-0 top-0 bottom-0 w-1 bg-brand-gold" />
               <div className="flex flex-col md:flex-row md:items-center gap-2 pl-4">
                 <span className="text-xs uppercase tracking-[0.2em] text-brand-gold font-bold">
-                  Search Results
+                  Kết Quả Tìm Kiếm
                 </span>
                 <span className="hidden md:inline text-brand-gold/60">•</span>
                 <p className="text-xs text-brand-charcoal font-light">
-                  Showing <span className="font-serif italic font-medium text-brand-burgundy text-sm">&ldquo;{searchQuery}&rdquo;</span> in <span className="font-semibold text-brand-burgundy capitalize">{selectedCategory === 'all' ? 'All Collections' : selectedCategory}</span> ({totalItems} matches found)
+                  Đang hiển thị <span className="font-serif italic font-medium text-brand-burgundy text-sm">&ldquo;{searchQuery}&rdquo;</span> trong <span className="font-semibold text-brand-burgundy">{selectedCategory === 'all' ? 'Tất cả Bộ sưu tập' : CATEGORIES.find(c => c.value === selectedCategory)?.label}</span> (Tìm thấy {totalItems} kết quả)
                 </p>
               </div>
               <button
                 onClick={handleClearSearch}
                 className="flex items-center gap-1.5 px-3 py-1.5 border border-brand-gold/15 bg-brand-cream hover:bg-brand-white text-xs uppercase tracking-widest text-brand-charcoal hover:text-brand-burgundy transition-all duration-300 font-semibold rounded-sm"
               >
-                Clear Search <X size={12} className="text-brand-gold" />
+                Xóa Tìm Kiếm <X size={12} className="text-brand-gold" />
               </button>
             </motion.div>
           )}
@@ -180,7 +179,7 @@ export default function CollectionsClient({ initialCollections }: CollectionsCli
           {/* Categories Pills */}
           <div className="flex flex-wrap items-center gap-2">
             <span className="text-xs uppercase tracking-widest text-brand-gray mr-2 flex items-center gap-2 font-medium">
-              <SlidersHorizontal size={14} className="text-brand-burgundy" /> Category:
+              <SlidersHorizontal size={14} className="text-brand-burgundy" /> Danh mục:
             </span>
             {CATEGORIES.map((cat) => {
               const isActive = selectedCategory === cat.value;
@@ -203,13 +202,16 @@ export default function CollectionsClient({ initialCollections }: CollectionsCli
           {/* Sort Dropdown & Display Counter */}
           <div className="flex flex-wrap items-center justify-between w-full lg:w-auto gap-4">
             <span className="text-xs uppercase tracking-widest text-brand-gray font-medium">
-              Showing <span className="text-brand-charcoal font-semibold">{totalItems}</span> collections
+              Đang hiển thị <span className="text-brand-charcoal font-semibold">{totalItems}</span> bộ sưu tập
             </span>
             <div className="flex items-center gap-2 bg-brand-white px-3 py-1.5 border border-brand-charcoal/5 rounded-md shadow-sm">
               <ArrowUpDown size={14} className="text-brand-gold" />
               <select
                 value={selectedSort}
-                onChange={(e) => setSelectedSort(e.target.value)}
+                onChange={(e) => {
+                  setSelectedSort(e.target.value);
+                  setCurrentPage(1);
+                }}
                 className="bg-transparent text-xs font-semibold uppercase tracking-widest text-brand-charcoal focus:outline-none cursor-pointer pr-1"
               >
                 {SORT_OPTIONS.map((opt) => (
@@ -231,8 +233,8 @@ export default function CollectionsClient({ initialCollections }: CollectionsCli
               exit={{ opacity: 0 }}
               className="text-center py-24 bg-brand-white rounded-lg border border-brand-charcoal/5"
             >
-              <h3 className="text-2xl font-light font-serif text-brand-charcoal/60 mb-2">No Collections Found</h3>
-              <p className="text-brand-gray text-sm">Please try selecting a different category filter.</p>
+              <h3 className="text-2xl font-light font-serif text-brand-charcoal/60 mb-2">Không Tìm Thấy Bộ Sưu Tập Nào</h3>
+              <p className="text-brand-gray text-sm">Vui lòng thử chọn một danh mục lọc khác hoặc xóa tìm kiếm.</p>
             </motion.div>
           ) : (
             <motion.div
@@ -264,7 +266,7 @@ export default function CollectionsClient({ initialCollections }: CollectionsCli
                     
                     {/* Floating Count Badge */}
                     <div className="absolute top-4 right-4 bg-brand-white/90 backdrop-blur-sm border border-brand-gold/20 px-3 py-1 text-xs uppercase tracking-[0.2em] font-semibold text-brand-burgundy shadow-sm">
-                      {col.itemCount} Creations
+                      {col.itemCount} Tác phẩm
                     </div>
                   </Link>
 
@@ -272,7 +274,7 @@ export default function CollectionsClient({ initialCollections }: CollectionsCli
                   <div className="p-6 md:p-8 flex flex-col flex-grow text-center items-center justify-between border-t border-brand-charcoal/5 bg-brand-white relative">
                     <div className="flex flex-col items-center">
                       <span className="text-xs uppercase tracking-[0.25em] text-brand-gold font-semibold mb-2">
-                        {col.category}
+                        {CATEGORIES.find(c => c.value === col.category)?.label || col.category}
                       </span>
                       <h2 className="text-2xl font-light font-serif text-brand-charcoal group-hover:text-brand-burgundy transition-colors duration-300 mb-3">
                         <Link href={`/collections/${col.slug}`}>
@@ -289,7 +291,7 @@ export default function CollectionsClient({ initialCollections }: CollectionsCli
                       href={`/collections/${col.slug}`}
                       className="text-sm font-semibold uppercase tracking-[0.2em] text-brand-charcoal hover:text-brand-burgundy group-hover:translate-x-1 transition-all duration-300 flex items-center gap-1.5 border-b border-brand-charcoal/10 pb-0.5 hover:border-brand-burgundy"
                     >
-                      Explore Collection <ChevronRight size={12} className="group-hover:translate-x-0.5 transition-transform duration-300" />
+                      Khám Phá Bộ Sưu Tập <ChevronRight size={12} className="group-hover:translate-x-0.5 transition-transform duration-300" />
                     </Link>
                   </div>
                 </motion.div>
@@ -310,7 +312,7 @@ export default function CollectionsClient({ initialCollections }: CollectionsCli
                   : "border-brand-charcoal/20 text-brand-charcoal hover:bg-brand-charcoal hover:text-brand-white"
               }`}
             >
-              Previous
+              Trang trước
             </button>
             <div className="flex items-center gap-2">
               {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => {
@@ -339,7 +341,7 @@ export default function CollectionsClient({ initialCollections }: CollectionsCli
                   : "border-brand-charcoal/20 text-brand-charcoal hover:bg-brand-charcoal hover:text-brand-white"
               }`}
             >
-              Next
+              Trang sau
             </button>
           </div>
         )}

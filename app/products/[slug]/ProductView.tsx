@@ -151,7 +151,7 @@ export default function ProductView({ product, collection, relatedProducts }: Pr
           {/* LEFT SECTION (60% width - cols 7) */}
           <div className="lg:col-span-7 flex flex-col md:flex-row gap-6">
             
-            {/* Desktop Vertical Thumbnails Dọc bên cạnh */}
+            {/* Desktop Vertical Thumbnails */}
             <div className="order-2 md:order-1 flex md:flex-col gap-3 justify-center md:justify-start w-full md:w-20 lg:w-24 shrink-0 overflow-x-auto md:overflow-x-visible">
               {product.images.map((img, idx) => (
                 <button
@@ -216,7 +216,7 @@ export default function ProductView({ product, collection, relatedProducts }: Pr
 
               {/* Click to expand instruction */}
               <div className="absolute bottom-4 left-4 bg-brand-charcoal/60 backdrop-blur-sm text-brand-white text-[11px] uppercase tracking-[0.2em] px-2.5 py-1 pointer-events-none rounded-none font-medium">
-                Hover to Zoom | Click to Expand
+                Rê chuột để phóng to | Click để mở rộng
               </div>
             </div>
 
@@ -227,9 +227,9 @@ export default function ProductView({ product, collection, relatedProducts }: Pr
             
             {/* Luxury Breadcrumb */}
             <nav className="text-xs uppercase tracking-[0.18em] text-brand-gray mb-6 flex flex-wrap items-center gap-1.5 font-medium">
-              <Link href="/" className="hover:text-brand-burgundy">Home</Link>
+              <Link href="/" className="hover:text-brand-burgundy">Trang Chủ</Link>
               <ChevronRight size={10} className="text-brand-gold/60" />
-              <Link href="/collections" className="hover:text-brand-burgundy">Collections</Link>
+              <Link href="/collections" className="hover:text-brand-burgundy">Bộ Sưu Tập</Link>
               <ChevronRight size={10} className="text-brand-gold/60" />
               <Link href={`/collections/${collection.slug}`} className="hover:text-brand-burgundy">{collection.name}</Link>
               <ChevronRight size={10} className="text-brand-gold/60" />
@@ -238,7 +238,7 @@ export default function ProductView({ product, collection, relatedProducts }: Pr
 
             {/* Collection identifier Tag */}
             <span className="text-sm uppercase tracking-[0.2em] text-brand-burgundy font-semibold mb-2">
-              {collection.name} Collection
+              Bộ sưu tập {collection.name}
             </span>
 
             {/* Product Name */}
@@ -267,7 +267,7 @@ export default function ProductView({ product, collection, relatedProducts }: Pr
                   onClick={() => toggleAccordion("materials")}
                   className="w-full py-4 flex items-center justify-between text-left text-sm font-semibold uppercase tracking-wider text-brand-charcoal hover:text-brand-burgundy transition-colors duration-300"
                 >
-                  <span>Materials & Settings</span>
+                  <span>Chất liệu & Sắp đặt</span>
                   <ChevronDown
                     size={14}
                     className={`text-brand-gold transition-transform duration-300 ${
@@ -298,7 +298,7 @@ export default function ProductView({ product, collection, relatedProducts }: Pr
                   onClick={() => toggleAccordion("dimensions")}
                   className="w-full py-4 flex items-center justify-between text-left text-sm font-semibold uppercase tracking-wider text-brand-charcoal hover:text-brand-burgundy transition-colors duration-300"
                 >
-                  <span>Dimensions & Fit</span>
+                  <span>Kích thước & Thiết kế</span>
                   <ChevronDown
                     size={14}
                     className={`text-brand-gold transition-transform duration-300 ${
@@ -329,7 +329,7 @@ export default function ProductView({ product, collection, relatedProducts }: Pr
                   onClick={() => toggleAccordion("reference")}
                   className="w-full py-4 flex items-center justify-between text-left text-sm font-semibold uppercase tracking-wider text-brand-charcoal hover:text-brand-burgundy transition-colors duration-300"
                 >
-                  <span>Reference & Care</span>
+                  <span>Mã tham chiếu & Bảo quản</span>
                   <ChevronDown
                     size={14}
                     className={`text-brand-gold transition-transform duration-300 ${
@@ -347,8 +347,8 @@ export default function ProductView({ product, collection, relatedProducts }: Pr
                       className="overflow-hidden"
                     >
                       <div className="pb-4 text-xs text-brand-gray font-light leading-relaxed flex flex-col gap-1">
-                        <div><strong className="text-brand-charcoal/80 font-medium">Ref No:</strong> {product.specifications.reference}</div>
-                        <div>Every creation is entirely handmade: stone weights and metal carats may differ slightly from one creation to another.</div>
+                        <div><strong className="text-brand-charcoal/80 font-medium">Mã tham chiếu:</strong> {product.specifications.reference}</div>
+                        <div>Mỗi tạo tác đều được chế tác hoàn toàn thủ công: trọng lượng đá và cara kim loại có thể khác biệt nhẹ giữa các sản phẩm.</div>
                       </div>
                     </motion.div>
                   )}
@@ -377,7 +377,7 @@ export default function ProductView({ product, collection, relatedProducts }: Pr
                       exit={{ opacity: 0, y: -4 }}
                       className="flex items-center gap-2"
                     >
-                      <Check size={14} /> Added to Cart
+                      <Check size={14} /> Đã thêm vào giỏ
                     </motion.span>
                   ) : (
                     <motion.span
@@ -388,7 +388,7 @@ export default function ProductView({ product, collection, relatedProducts }: Pr
                       className="flex items-center gap-2"
                     >
                       <ShoppingBag size={14} />
-                      Add to Cart
+                      Thêm vào giỏ hàng
                     </motion.span>
                   )}
                 </AnimatePresence>
@@ -399,7 +399,7 @@ export default function ProductView({ product, collection, relatedProducts }: Pr
                 href="/contact"
                 className="w-full py-4 btn-luxury btn-luxury-burgundy flex items-center justify-center font-sans uppercase font-semibold text-xs tracking-widest text-center shadow-sm hover:shadow-md transition-all duration-300"
               >
-                Contact a Boutique
+                Liên hệ Cửa hàng
               </Link>
 
               {/* Wishlist toggle - outline styling */}
@@ -412,7 +412,7 @@ export default function ProductView({ product, collection, relatedProducts }: Pr
                 }`}
               >
                 <Heart size={14} className={isWishlisted ? "fill-brand-burgundy text-brand-burgundy" : ""} />
-                {isWishlisted ? "Saved in Wishlist" : "Add to Wishlist"}
+                {isWishlisted ? "Đã lưu trong danh sách Yêu thích" : "Thêm vào danh sách Yêu thích"}
               </button>
 
               {/* Book Appointment text link */}
@@ -420,7 +420,7 @@ export default function ProductView({ product, collection, relatedProducts }: Pr
                 href="/boutiques"
                 className="w-full py-2 flex items-center justify-center gap-1.5 text-xs uppercase font-semibold tracking-widest text-brand-charcoal hover:text-brand-burgundy group transition-all duration-300"
               >
-                Book an Appointment <ArrowRight size={14} className="group-hover:translate-x-1.5 transition-transform duration-300" />
+                Đặt lịch hẹn tư vấn <ArrowRight size={14} className="group-hover:translate-x-1.5 transition-transform duration-300" />
               </Link>
             </div>
 
@@ -429,29 +429,29 @@ export default function ProductView({ product, collection, relatedProducts }: Pr
               <div className="flex items-start gap-2.5">
                 <Truck size={16} className="text-brand-burgundy shrink-0 mt-0.5" />
                 <div className="flex flex-col">
-                  <span className="text-xs font-bold uppercase tracking-wider text-brand-charcoal mb-0.5">Complimentary Shipping</span>
-                  <span className="text-xs text-brand-gray font-light">Free secure delivery</span>
+                  <span className="text-xs font-bold uppercase tracking-wider text-brand-charcoal mb-0.5">Giao Hàng Miễn Phí</span>
+                  <span className="text-xs text-brand-gray font-light">Giao hàng bảo mật miễn phí</span>
                 </div>
               </div>
               <div className="flex items-start gap-2.5">
                 <Gift size={16} className="text-brand-burgundy shrink-0 mt-0.5" />
                 <div className="flex flex-col">
-                  <span className="text-xs font-bold uppercase tracking-wider text-brand-charcoal mb-0.5">Signature Gift Wrap</span>
-                  <span className="text-xs text-brand-gray font-light">Elegant packaging</span>
+                  <span className="text-xs font-bold uppercase tracking-wider text-brand-charcoal mb-0.5">Hộp Quà Đặc Trưng</span>
+                  <span className="text-xs text-brand-gray font-light">Đóng gói sang trọng</span>
                 </div>
               </div>
               <div className="flex items-start gap-2.5">
                 <RefreshCw size={16} className="text-brand-burgundy shrink-0 mt-0.5" />
                 <div className="flex flex-col">
-                  <span className="text-xs font-bold uppercase tracking-wider text-brand-charcoal mb-0.5">Complimentary Returns</span>
-                  <span className="text-xs text-brand-gray font-light">30-day exchange window</span>
+                  <span className="text-xs font-bold uppercase tracking-wider text-brand-charcoal mb-0.5">Đổi Trả Miễn Phí</span>
+                  <span className="text-xs text-brand-gray font-light">Đổi hàng trong vòng 30 ngày</span>
                 </div>
               </div>
               <div className="flex items-start gap-2.5">
                 <ShieldCheck size={16} className="text-brand-burgundy shrink-0 mt-0.5" />
                 <div className="flex flex-col">
-                  <span className="text-xs font-bold uppercase tracking-wider text-brand-charcoal mb-0.5">Maison Authenticity</span>
-                  <span className="text-xs text-brand-gray font-light">Certified original jewelry</span>
+                  <span className="text-xs font-bold uppercase tracking-wider text-brand-charcoal mb-0.5">Cam Kết Chính Hãng</span>
+                  <span className="text-xs text-brand-gray font-light">Trang sức nguyên bản chứng nhận</span>
                 </div>
               </div>
             </div>
@@ -467,10 +467,10 @@ export default function ProductView({ product, collection, relatedProducts }: Pr
           <div className="page-content">
             <div className="text-center mb-16">
               <span className="text-xs uppercase tracking-[0.3em] text-brand-gold font-semibold block mb-2">
-                Select Curations
+                Tuyển Chọn Tinh Hoa
               </span>
               <h2 className="text-3xl md:text-4xl font-light font-serif text-brand-charcoal">
-                You May Also Like
+                Có Thể Bạn Cũng Thích
               </h2>
               <div className="gold-divider bg-brand-gold w-12 my-4" />
             </div>

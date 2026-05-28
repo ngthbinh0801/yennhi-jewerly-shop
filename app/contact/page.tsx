@@ -3,12 +3,12 @@ import { Metadata } from "next";
 import ContactForm from "./ContactForm";
 
 export const metadata: Metadata = {
-  title: "Contact Client Services Concierge | Yen Nhi Jewerly",
-  description: "Inquire with our dedicated Yen Nhi Jewerly client service concierge. Request custom high jewelry details, schedule private viewings, or consult with horology advisors.",
-  keywords: "Contact Yen Nhi Jewerly, high jewelry concierge, boutique support, client relations, wedding rings advisor",
+  title: "Liên Hệ Bộ Phận Chăm Sóc Khách Hàng Concierge | Rì Rào Store",
+  description: "Gửi yêu cầu tới bộ phận dịch vụ khách hàng concierge tận tâm của Rì Rào Store. Yêu cầu chi tiết thiết kế trang sức cao cấp theo yêu cầu, đặt lịch hẹn xem riêng hoặc tư vấn với chuyên gia đồng hồ.",
+  keywords: "Contact Rì Rào Store, high jewelry concierge, boutique support, client relations, wedding rings advisor",
   openGraph: {
-    title: "Contact Client Services Concierge | Yen Nhi Jewerly",
-    description: "Inquire with our dedicated Yen Nhi Jewerly client service concierge. Request details or book consultation slots.",
+    title: "Liên Hệ Bộ Phận Chăm Sóc Khách Hàng Concierge | Rì Rào Store",
+    description: "Gửi yêu cầu tới bộ phận dịch vụ khách hàng concierge tận tâm của Rì Rào Store. Yêu cầu chi tiết hoặc đăng ký tư vấn.",
     type: "website",
   },
 };
