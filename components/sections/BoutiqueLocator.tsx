@@ -10,10 +10,7 @@ import { useRouter } from "next/navigation";
 import { SITE_IMAGES } from "@/lib/imageConfig";
 
 const FEATURED_BOUTIQUES = [
-  { city: "Hà Nội", address: "18 Hàng Bài, Hoàn Kiếm" },
-  { city: "TP. Hồ Chí Minh", address: "38 Đồng Khởi, Quận 1" },
-  { city: "Đà Nẵng", address: "255 Hùng Vương, Hải Châu" },
-  { city: "Hội An", address: "23 Lê Lợi, Phố Cổ" },
+  { city: "Phú Quốc", address: "12 Trần Hưng Đạo, Dương Đông" },
 ];
 
 export default function BoutiqueLocator() {
@@ -53,7 +50,7 @@ export default function BoutiqueLocator() {
           <div className="flex flex-col gap-5 items-center lg:items-start text-center lg:text-left lg:col-span-4">
             <span className="section-label text-brand-burgundy">Cửa Hàng</span>
             <h2 className="section-title text-[2rem] lg:text-[2.75rem] leading-none">
-              Ghé Thăm Hệ Thống<br className="hidden lg:block" /> Cửa Hàng Tại Việt Nam
+              Ghé Thăm Cửa Hàng<br className="hidden lg:block" /> Tại Phú Quốc
             </h2>
             <div className="w-8 h-px bg-brand-gold" />
             <p className="text-[0.8125rem] text-brand-gray leading-[1.85] font-light max-w-sm">

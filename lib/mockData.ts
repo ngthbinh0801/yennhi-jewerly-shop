@@ -167,76 +167,19 @@ export const PRODUCTS_DATA: Product[] = [
   { slug: "vong_tay-004", name: "Vòng Đôi Vỏ Ốc Mini", collectionSlug: "vong_tay", material: "Dây da lộn, Vỏ ốc mini, Khóa gỗ", price: "420.000 VND", description: "Bộ hai vòng tay da lộn mảnh, đính vỏ ốc mini rải thưa tự nhiên. Khóa gỗ thô mộc tạo nét bohemian đặc trưng. Phù hợp đeo đơn lẻ hoặc kết hợp cùng nhau.", images: [SITE_IMAGES.collections.vong_tay_4], specifications: { materials: "Da lộn, Vỏ ốc mini, Gỗ tự nhiên", dimensions: "Bộ 2 chiếc, Điều chỉnh 14–18cm", reference: "RRS-VT-004" }, featured: false },
 ];
 
-// 6 Cửa hàng tại Việt Nam
+// 1 Cửa hàng tại Phú Quốc
 export const BOUTIQUES_DATA: Boutique[] = [
   {
-    name: "Flagship Hà Nội – Hoàn Kiếm",
-    city: "Hà Nội",
-    region: "North",
-    address: "18 Hàng Bài, Hoàn Kiếm, Hà Nội",
-    phone: "+84 24 3825 1188",
+    name: "Rì Rào Store – Phú Quốc",
+    city: "Phú Quốc",
+    region: "South",
+    address: "12 Trần Hưng Đạo, Dương Đông, Phú Quốc, Kiên Giang",
+    phone: "+84 297 3980 888",
     hours: [
       "Thứ Hai - Thứ Bảy: 9:00 sáng - 8:00 tối",
       "Chủ Nhật: 10:00 sáng - 6:00 tối"
     ],
-    coordinates: { lat: 21.02278, lng: 105.85209 }
-  },
-  {
-    name: "Hà Nội – Vincom Bà Triệu",
-    city: "Hà Nội",
-    region: "North",
-    address: "191 Bà Triệu, Hai Bà Trưng, Hà Nội",
-    phone: "+84 24 3974 9988",
-    hours: [
-      "Thứ Hai - Chủ Nhật: 9:30 sáng - 9:30 tối"
-    ],
-    coordinates: { lat: 21.01155, lng: 105.84612 }
-  },
-  {
-    name: "Đà Nẵng – Hùng Vương",
-    city: "Đà Nẵng",
-    region: "Central",
-    address: "255 Hùng Vương, Hải Châu, Đà Nẵng",
-    phone: "+84 236 3822 668",
-    hours: [
-      "Thứ Hai - Thứ Bảy: 9:00 sáng - 8:00 tối",
-      "Chủ Nhật: 10:00 sáng - 6:00 tối"
-    ],
-    coordinates: { lat: 16.06778, lng: 108.22083 }
-  },
-  {
-    name: "Hội An – Phố Cổ",
-    city: "Hội An",
-    region: "Central",
-    address: "23 Lê Lợi, Phường Minh An, Hội An, Quảng Nam",
-    phone: "+84 235 3861 223",
-    hours: [
-      "Thứ Hai - Chủ Nhật: 9:00 sáng - 9:00 tối"
-    ],
-    coordinates: { lat: 15.87978, lng: 108.33503 }
-  },
-  {
-    name: "TP. Hồ Chí Minh – Đồng Khởi",
-    city: "TP. Hồ Chí Minh",
-    region: "South",
-    address: "38 Đồng Khởi, Bến Nghé, Quận 1, TP. HCM",
-    phone: "+84 28 3829 9988",
-    hours: [
-      "Thứ Hai - Thứ Bảy: 9:00 sáng - 8:30 tối",
-      "Chủ Nhật: 10:00 sáng - 7:00 tối"
-    ],
-    coordinates: { lat: 10.77695, lng: 106.70322 }
-  },
-  {
-    name: "TP. Hồ Chí Minh – Phú Mỹ Hưng",
-    city: "TP. Hồ Chí Minh",
-    region: "South",
-    address: "Crescent Mall, 101 Tôn Dật Tiên, Quận 7, TP. HCM",
-    phone: "+84 28 5413 6688",
-    hours: [
-      "Thứ Hai - Chủ Nhật: 10:00 sáng - 10:00 tối"
-    ],
-    coordinates: { lat: 10.72988, lng: 106.71812 }
+    coordinates: { lat: 10.21770, lng: 103.95890 }
   }
 ];
 

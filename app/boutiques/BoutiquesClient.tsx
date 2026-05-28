@@ -24,12 +24,7 @@ const REGION_VN: Record<string, string> = {
 };
 
 const MAP_MARKERS = [
-  { name: "Flagship Hà Nội – Hoàn Kiếm", x: "45%", y: "28%" },
-  { name: "Hà Nội – Vincom Bà Triệu", x: "52%", y: "28%" },
-  { name: "Đà Nẵng – Hùng Vương", x: "48%", y: "50%" },
-  { name: "Hội An – Phố Cổ", x: "55%", y: "55%" },
-  { name: "TP. Hồ Chí Minh – Đồng Khởi", x: "44%", y: "75%" },
-  { name: "TP. Hồ Chí Minh – Phú Mỹ Hưng", x: "54%", y: "75%" }
+  { name: "Rì Rào Store – Phú Quốc", x: "32%", y: "82%" },
 ];
 
 export default function BoutiquesClient() {
@@ -39,7 +34,7 @@ export default function BoutiquesClient() {
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedRegion, setSelectedRegion] = useState("Tất cả");
   const [activeBoutiqueName, setActiveBoutiqueName] = useState<string | null>(
-    "Flagship Hà Nội – Hoàn Kiếm"
+    "Rì Rào Store – Phú Quốc"
   );
   const [bookingBoutique, setBookingBoutique] = useState<Boutique | null>(null);
   const [bookingSuccess, setBookingSuccess] = useState(false);
