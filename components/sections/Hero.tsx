@@ -2,7 +2,6 @@
 
 import React, { useState, useEffect, useRef } from "react";
 import Image from "next/image";
-import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { CREAM_BLUR_DATA_URL, CHARCOAL_BLUR_DATA_URL } from "@/lib/constants";
@@ -71,7 +70,6 @@ export default function Hero() {
   };
 
   const mutedColor = "text-brand-charcoal/60";
-  const isDark = !!slide.dark;
 
   return (
     <section
@@ -126,54 +124,6 @@ export default function Hero() {
         <div className="absolute bottom-0 left-0 right-0 h-48 pointer-events-none" style={{ background: "linear-gradient(to bottom, transparent, #FAF6F0)" }} />
       </div>
 
-      {/* Text overlay — centered with improved size, contrast, and layout */}
-      <div className="relative h-full flex flex-col justify-center items-center text-center px-6 md:px-12 lg:px-24 z-10">
-        <AnimatePresence mode="wait">
-          <motion.div
-            key={`text-${current}`}
-            initial={{ opacity: 0, y: 24 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -12 }}
-            transition={{ duration: 0.85, ease: [0.16, 1, 0.3, 1] }}
-            className="flex flex-col gap-5 md:gap-6 max-w-xl md:max-w-2xl"
-          >
-            {/* Label */}
-            <span className={`text-[11px] md:text-[12px] uppercase tracking-[0.3em] font-semibold ${isDark ? "text-white/80" : "text-brand-charcoal/80"}`}>
-              {slide.label}
-            </span>
-
-            {/* Heading */}
-            <h2 
-              className={`font-serif font-normal leading-[1.15] ${isDark ? "text-white" : "text-brand-charcoal"}`}
-              style={{ fontSize: "clamp(2.4rem, 5.5vw, 4.5rem)" }}
-            >
-              {slide.title.map((line, i) => (
-                <React.Fragment key={i}>
-                  {line}
-                  {i < slide.title.length - 1 && <br />}
-                </React.Fragment>
-              ))}
-            </h2>
-
-            {/* Subtitle */}
-            <p className={`text-[0.9rem] md:text-[1rem] leading-relaxed font-normal max-w-lg mx-auto ${isDark ? "text-white/70" : "text-brand-charcoal/85"}`}>
-              {slide.subtitle}
-            </p>
-
-            {/* CTA */}
-            <Link
-              href={slide.href}
-              className={`self-center mt-3 text-xs md:text-[13px] uppercase tracking-[0.25em] font-bold border-b-2 pb-2 transition-all duration-300 focus:outline-none ${
-                isDark 
-                  ? "text-white border-white/40 hover:border-white" 
-                  : "text-brand-charcoal border-brand-charcoal/20 hover:border-brand-burgundy hover:text-brand-burgundy"
-              }`}
-            >
-              {slide.cta}
-            </Link>
-          </motion.div>
-        </AnimatePresence>
-      </div>
 
       {/* Prev / Next — desktop only, hidden since only 1 slide exists */}
       {HERO_SLIDES.length > 1 && (
