@@ -1,10 +1,8 @@
 "use client";
 
 import React, { useState, useEffect, useRef } from "react";
-import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import { ChevronLeft, ChevronRight } from "lucide-react";
-import { CREAM_BLUR_DATA_URL, CHARCOAL_BLUR_DATA_URL } from "@/lib/constants";
 
 interface Slide {
   id: number;
@@ -13,13 +11,9 @@ interface Slide {
   subtitle: string;
   cta: string;
   href: string;
-  image: string;
   bg: string;
   dark?: boolean;
-  objectPosition?: string;
 }
-
-import { SITE_IMAGES } from "@/lib/imageConfig";
 
 const HERO_SLIDES: Slide[] = [
   {
@@ -29,9 +23,7 @@ const HERO_SLIDES: Slide[] = [
     subtitle: "Chuỗi hạt ngọc trai nước ngọt tự nhiên kết bện thủ công mang âm hưởng bình yên từ đại dương.",
     cta: "Khám Phá Hạt Ngọc Biển",
     href: "/collections/day_chuyen_vo_so",
-    image: SITE_IMAGES.collections.frivole,
     bg: "#FAF6F0",
-    objectPosition: "object-[center_25%]", // Đặt ở mức 25% (nằm giữa center và top) để ảnh dịch lên lại một chút vừa vặn
   },
 ];
 
@@ -95,27 +87,21 @@ export default function Hero() {
 
       {/* Full-bleed image */}
       <div className="absolute inset-0">
-        <AnimatePresence mode="wait">
-          <motion.div
-            key={`img-${current}`}
-            initial={{ opacity: 0, scale: 1.04 }}
-            animate={{ opacity: 1, scale: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 1.1, ease: [0.16, 1, 0.3, 1] }}
-            className="absolute inset-0"
-          >
-            <Image
-              src={slide.image}
-              alt={slide.title.join(" ")}
-              fill
-              priority
-              placeholder="blur"
-              blurDataURL={slide.dark ? CHARCOAL_BLUR_DATA_URL : CREAM_BLUR_DATA_URL}
-              className={`object-cover ${slide.objectPosition || "object-center"}`}
-              sizes="100vw"
-            />
-          </motion.div>
-        </AnimatePresence>
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 1.1, ease: [0.16, 1, 0.3, 1] }}
+          className="absolute inset-0"
+        >
+          <video
+            src="/images/collections/logo/logo_.mp4"
+            autoPlay
+            loop
+            muted
+            playsInline
+            className="absolute inset-0 w-full h-full object-cover object-center"
+          />
+        </motion.div>
 
         {/* Subtle dark tint to help with text contrast */}
         <div className="absolute inset-0 bg-black/5" />
