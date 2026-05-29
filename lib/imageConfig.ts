@@ -87,7 +87,7 @@ export const SITE_IMAGES = {
     maisonHistory: "https://images.unsplash.com/photo-1519046904884-53103b34b206?auto=format&fit=crop&q=80&w=800",
     maisonCraft: "https://images.unsplash.com/photo-1546026423-cc4642628d2b?auto=format&fit=crop&q=80&w=800",
     maisonSchool: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&q=80&w=800",
-    boutiqueLocator: "/images/sections/boutique-locator.jpg",
+    boutiqueLocator: "/images/collections/logo/store.jpg",
     editorial: "https://images.unsplash.com/photo-1505118380757-91f5f5632de0?auto=format&fit=crop&q=1200",
     highJewelryShowcase: "https://images.unsplash.com/photo-1629224316810-9d8805b95e76?auto=format&fit=crop&q=80&w=800",
     hop_dung_trang_suc: "/images/collections/hop_dung_trang_suc/hop_dung_trang_suc.jpg",

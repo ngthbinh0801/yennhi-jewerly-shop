@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { MapPin } from "lucide-react";
@@ -10,17 +10,11 @@ import { useRouter } from "next/navigation";
 import { SITE_IMAGES } from "@/lib/imageConfig";
 
 const FEATURED_BOUTIQUES = [
-  { city: "Phú Quốc", address: "12 Trần Hưng Đạo, Dương Đông" },
+  { city: "Phú Quốc", address: "18 Trần Hưng Đạo, Dương Đông" },
 ];
 
 export default function BoutiqueLocator() {
   const router = useRouter();
-  const [query, setQuery] = useState("");
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (query.trim()) router.push(`/boutiques?search=${encodeURIComponent(query)}`);
-  };
 
   return (
     <section className="w-full bg-brand-white section-padding overflow-hidden">
@@ -57,22 +51,14 @@ export default function BoutiqueLocator() {
               Hãy bước vào các không gian đầy chất thơ của chúng tôi. Trải nghiệm tư vấn trang sức cao cấp riêng biệt, định hướng bộ sưu tập cưới, và sự hiếu khách đẳng cấp từ đội ngũ nhân viên.
             </p>
 
-            {/* Search form */}
-            <form onSubmit={handleSubmit} className="w-full flex flex-col gap-4 mt-1">
-              <div className="flex items-center gap-2 border-b border-brand-gold/30 pb-2.5 focus-within:border-brand-burgundy transition-colors duration-300">
-                <input
-                  type="text"
-                  placeholder="Tìm kiếm theo thành phố hoặc quốc gia"
-                  value={query}
-                  onChange={(e) => setQuery(e.target.value)}
-                  className="flex-1 bg-transparent border-none text-[0.8125rem] text-brand-charcoal placeholder-brand-gray/55 font-light focus:outline-none select-text"
-                />
-                <MapPin className="w-4 h-4 text-brand-gold/70 flex-shrink-0" />
-              </div>
-              <button type="submit" className="btn-luxury w-full">
-                Tìm Cửa Hàng
-              </button>
-            </form>
+            {/* Action button */}
+            <button
+              type="button"
+              onClick={() => router.push("/boutiques")}
+              className="btn-luxury w-full mt-2"
+            >
+              Xem Bản Đồ & Đặt Lịch Hẹn
+            </button>
 
             {/* Featured boutiques */}
             <div className="w-full border-t border-brand-gold/10 pt-5 mt-1">
@@ -82,7 +68,7 @@ export default function BoutiqueLocator() {
                   <button
                     key={b.city}
                     type="button"
-                    onClick={() => router.push(`/boutiques?search=${encodeURIComponent(b.city)}`)}
+                    onClick={() => router.push("/boutiques")}
                     className="group text-left focus:outline-none"
                   >
                     <p className="font-serif text-[0.875rem] text-brand-charcoal group-hover:text-brand-burgundy transition-colors duration-300 flex items-center gap-1">
