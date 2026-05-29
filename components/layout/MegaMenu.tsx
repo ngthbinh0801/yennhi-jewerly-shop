@@ -86,7 +86,7 @@ const MENU_CONTENT: Record<string, MegaMenuContent> = {
   },
   "HANDBAGS": {
     featuredImage1: SITE_IMAGES.megaMenu.handbagsFeatured1,
-    featuredTitle1: "Giỏ Vỏ Sò",
+    featuredTitle1: "Phụ Kiện Tóc & Túi",
     featuredSubtitle1: "Giỏ cói dệt tay khảm sò biển — mang hương vị biển khơi theo từng bước chân.",
     links: [
       {
@@ -107,7 +107,7 @@ const MENU_CONTENT: Record<string, MegaMenuContent> = {
       }
     ],
     featuredImage2: SITE_IMAGES.megaMenu.handbagsFeatured2,
-    featuredTitle2: "Bộ Sưu Tập Giỏ Vỏ Sò",
+    featuredTitle2: "Bộ Sưu Tập Phụ Kiện Tóc & Túi",
     ctaText: "Khám phá Túi Xách",
     ctaHref: "/collections/gio_vo_so"
   },

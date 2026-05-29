@@ -75,13 +75,11 @@ export default async function CollectionDetailPage({ params }: PageProps) {
                 <div className="w-1.5 h-1.5 rounded-full bg-brand-gold/40" />
               </div>
 
-              <p className="text-brand-cream/80 text-[0.9375rem] font-light leading-[1.95] mb-5">
-                {collection.description}
-              </p>
-
-              <p className="text-brand-cream/40 text-[0.875rem] font-light leading-[1.85]">
-                Từng chi tiết được các nghệ nhân bậc thầy của chúng tôi chăm chút tỉ mỉ — kết hợp vẻ đẹp vượt thời gian của vỏ sò tự nhiên với kỹ thuật khảm bạc tinh xảo. Mỗi tác phẩm là minh chứng rực rỡ cho chất thơ nghệ thuật của Rì Rào Store.
-              </p>
+              <div className="text-brand-cream/80 text-[0.9375rem] font-light leading-[1.95] mb-5 flex flex-col gap-4">
+                {collection.description.split("\n\n").map((para, i) => (
+                  <p key={i}>{para}</p>
+                ))}
+              </div>
             </div>
 
             {/* Image column */}

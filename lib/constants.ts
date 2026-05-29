@@ -19,9 +19,9 @@ export const NAVIGATION_ITEMS: NavigationItem[] = [
     label: "Trang Sức",
     href: "/collections",
     dropdownItems: [
-      { label: "Dây Chuyền Vỏ Sò", href: "/collections/day_chuyen_vo_so" },
+      { label: "Dây Chuyền", href: "/collections/day_chuyen_vo_so" },
       { label: "Nhẫn Vỏ Ốc", href: "/collections/nhan_vo_oc" },
-      { label: "Vòng Tay Vỏ Sò", href: "/collections/vong_tay" },
+      { label: "Vòng Tay", href: "/collections/vong_tay" },
       { label: "Tất Cả Bộ Sưu Tập", href: "/collections" },
     ],
   },
@@ -29,19 +29,9 @@ export const NAVIGATION_ITEMS: NavigationItem[] = [
     label: "Đồ Thủ Công",
     href: "/collections",
     dropdownItems: [
-      { label: "Giỏ Vỏ Sò", href: "/collections/gio_vo_so" },
-      { label: "Gương Đính Vỏ Sò", href: "/collections/guong_vo_so" },
-      { label: "Khuyên Tai Vỏ Sò", href: "/collections/khuyen_tai" },
-    ],
-  },
-  {
-    label: "Xưởng Chế Tác",
-    href: "/the-maison",
-    dropdownItems: [
-      { label: "Kể Từ 2026", href: "/the-maison" },
-      { label: "Hành Trình Nghệ Nhân", href: "/the-maison" },
-      { label: "Triển Lãm & Sự Kiện", href: "/the-maison" },
-      { label: "Học Viện Nghệ Thuật", href: "/the-maison" },
+      { label: "Phụ Kiện Tóc & Túi", href: "/collections/gio_vo_so" },
+      { label: "Phụ Kiện Lifestyle", href: "/collections/guong_vo_so" },
+      { label: "Khuyên Tai", href: "/collections/khuyen_tai" },
     ],
   },
 ];
@@ -49,7 +39,7 @@ export const NAVIGATION_ITEMS: NavigationItem[] = [
 export const COLLECTIONS: CollectionItem[] = [
   {
     id: "day_chuyen_vo_so",
-    name: "Dây Chuyền Vỏ Sò",
+    name: "Dây Chuyền",
     tagline: "Chất thơ đại dương trên đôi vai trần gợi cảm",
     description: "Tuyển chọn những mảnh vỏ sò điệp tự nhiên và ngọc trai tươi được mài bóng khảm bạc Ý 925 tạo nên nét kiêu sa, thanh khiết của biển cả.",
     image: "/images/collections/day_chuyen_vo_so/perlee.jpg",
@@ -67,7 +57,7 @@ export const COLLECTIONS: CollectionItem[] = [
   },
   {
     id: "gio_vo_so",
-    name: "Giỏ Vỏ Sò",
+    name: "Phụ Kiện Tóc & Túi",
     tagline: "Giỏ tre bện mây khảm sò biển mộc mạc và hoang sơ",
     description: "Những chiếc túi và giỏ cói dệt tay tự nhiên, đính kết vỏ sò, sao biển sinh động, đưa cả hương vị biển khơi phóng khoáng bên bạn trong mọi chuyến đi.",
     image: "/images/collections/gio_vo_so/alhambra.jpg",
@@ -76,7 +66,7 @@ export const COLLECTIONS: CollectionItem[] = [
   },
   {
     id: "guong_vo_so",
-    name: "Gương Đính Vỏ Sò",
+    name: "Phụ Kiện Lifestyle",
     tagline: "Khung gương nghệ thuật làm từ ngàn vỏ điệp biển sâu",
     description: "Vật phẩm trang trí nội thất tinh xảo mang hơi thở thanh bình của biển cả vào không gian phòng tắm hay phòng khách thơ mộng của bạn.",
     image: "/images/collections/guong_vo_so/guong_vo_so.jpg",
@@ -85,7 +75,7 @@ export const COLLECTIONS: CollectionItem[] = [
   },
   {
     id: "khuyen_tai",
-    name: "Khuyên Tai Vỏ Sò",
+    name: "Khuyên Tai",
     tagline: "Ánh xà cừ lung linh đung đưa bên khóe mắt",
     description: "Những đôi khuyên tai thủ công kết từ vỏ điệp, ngọc trai và xà cừ tự nhiên — nhẹ nhàng, tinh tế, mang cả đại dương theo từng bước đi.",
     image: "/images/collections/khuyen_tai/khuyen_tai.jpg",
@@ -94,7 +84,7 @@ export const COLLECTIONS: CollectionItem[] = [
   },
   {
     id: "vong_tay",
-    name: "Vòng Tay Vỏ Sò",
+    name: "Vòng Tay",
     tagline: "Nhịp điệu sóng vỗ dịu êm bện chặt cổ tay",
     description: "Vòng bện dây thủ công đính mảnh xà cừ tròn và ngọc trai tươi thuần khiết, biểu tượng cho năng lượng tích cực và sự bình an từ khơi xa.",
     image: "/images/collections/vong_tay/vong_tay.jpg",

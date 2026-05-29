@@ -4,7 +4,6 @@ import Hero from '@/components/sections/Hero';
 import FeaturedCollections from '@/components/sections/FeaturedCollections';
 import Editorial from '@/components/sections/Editorial';
 import IconicCollections from '@/components/sections/IconicCollections';
-import TheMaison from '@/components/sections/TheMaison';
 import Services from '@/components/sections/Services';
 import BoutiqueLocator from '@/components/sections/BoutiqueLocator';
 
@@ -43,9 +42,6 @@ export default function Home() {
 
       {/* 4. Iconic Collections Snap Horizontal Carousel */}
       <IconicCollections />
-
-      {/* 5. The Maison Heritage Column Grid */}
-      <TheMaison />
 
       {/* 7. Luxury Maison Client Services Section */}
       <Services />

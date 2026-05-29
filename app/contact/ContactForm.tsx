@@ -267,18 +267,18 @@ export default function ContactForm() {
 
               <div className="flex flex-col gap-5 font-sans text-xs">
                 <a
-                  href="tel:+33155041111"
+                  href="tel:0888525525"
                   className="flex items-center gap-3 text-brand-charcoal hover:text-brand-burgundy transition-all duration-300 font-semibold"
                 >
                   <Phone size={14} className="text-brand-burgundy shrink-0" />
-                  <span>+33 1 55 04 11 11</span>
+                  <span>0888 525 525</span>
                 </a>
                 <a
-                  href="mailto:rirao_support@gmail.com"
+                  href="mailto:rirao.store@gmail.com"
                   className="flex items-center gap-3 text-brand-charcoal hover:text-brand-burgundy transition-all duration-300 font-semibold"
                 >
                   <Mail size={14} className="text-brand-burgundy shrink-0" />
-                  <span>rirao_support@gmail.com</span>
+                  <span>rirao.store@gmail.com</span>
                 </a>
                 <div className="flex items-start gap-3 text-brand-gray">
                   <Clock size={14} className="text-brand-burgundy shrink-0 mt-0.5" />
@@ -310,9 +310,8 @@ export default function ContactForm() {
             <div className="bg-brand-white border border-brand-charcoal/5 shadow-md flex flex-col gap-5" style={{ padding: '3rem' }}>
               <span className="text-[9px] uppercase tracking-widest text-brand-gray font-bold">Mạng xã hội</span>
               <div className="flex flex-col gap-4 text-xs font-semibold uppercase tracking-widest text-brand-charcoal font-sans">
-                <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="hover:text-brand-burgundy transition-all">Instagram</a>
-                <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" className="hover:text-brand-burgundy transition-all">YouTube</a>
-                <a href="https://pinterest.com" target="_blank" rel="noopener noreferrer" className="hover:text-brand-burgundy transition-all">Pinterest</a>
+                <a href="https://instagram.com/rirao.store" target="_blank" rel="noopener noreferrer" className="hover:text-brand-burgundy transition-all">Instagram — rirao.store</a>
+                <a href="https://facebook.com/riraostore" target="_blank" rel="noopener noreferrer" className="hover:text-brand-burgundy transition-all">Facebook — Rì Rào Store</a>
               </div>
             </div>
 

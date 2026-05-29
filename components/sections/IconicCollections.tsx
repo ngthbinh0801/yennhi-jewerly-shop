@@ -9,12 +9,12 @@ import { CREAM_BLUR_DATA_URL } from "@/lib/constants";
 import { SITE_IMAGES } from "@/lib/imageConfig";
 
 const ICONIC_ITEMS = [
-  { id: 1, name: "Dây Chuyền Vỏ Sò", description: "Chất thơ đại dương trên đôi vai trần gợi cảm", image: SITE_IMAGES.collections.perlee, href: "/collections/day_chuyen_vo_so" },
+  { id: 1, name: "Dây Chuyền", description: "Chất thơ đại dương trên đôi vai trần gợi cảm", image: SITE_IMAGES.collections.perlee, href: "/collections/day_chuyen_vo_so" },
   { id: 2, name: "Nhẫn Vỏ Ốc", description: "Ánh cầu vồng lấp lánh đọng trên ngón tay xinh", image: SITE_IMAGES.collections.nhan, href: "/collections/nhan_vo_oc" },
-  { id: 3, name: "Giỏ Vỏ Sò", description: "Giỏ tre bện mây khảm sò biển mộc mạc và hoang sơ", image: SITE_IMAGES.collections.alhambra, href: "/collections/gio_vo_so" },
-  { id: 4, name: "Gương Đính Vỏ Sò", description: "Khung gương nghệ thuật làm từ ngàn vỏ điệp biển sâu", image: SITE_IMAGES.collections.guong, href: "/collections/guong_vo_so" },
-  { id: 5, name: "Khuyên Tai Vỏ Sò", description: "Ánh xà cừ lung linh đung đưa bên khóe mắt", image: SITE_IMAGES.collections.khuyen_tai, href: "/collections/khuyen_tai" },
-  { id: 6, name: "Vòng Tay Vỏ Sò", description: "Nhịp điệu sóng vỗ dịu êm bện chặt cổ tay", image: SITE_IMAGES.collections.vong_tay, href: "/collections/vong_tay" },
+  { id: 3, name: "Phụ Kiện Tóc & Túi", description: "Giỏ tre bện mây khảm sò biển mộc mạc và hoang sơ", image: SITE_IMAGES.collections.alhambra, href: "/collections/gio_vo_so" },
+  { id: 4, name: "Phụ Kiện Lifestyle", description: "Khung gương nghệ thuật làm từ ngàn vỏ điệp biển sâu", image: SITE_IMAGES.collections.guong, href: "/collections/guong_vo_so" },
+  { id: 5, name: "Khuyên Tai", description: "Ánh xà cừ lung linh đung đưa bên khóe mắt", image: SITE_IMAGES.collections.khuyen_tai, href: "/collections/khuyen_tai" },
+  { id: 6, name: "Vòng Tay", description: "Nhịp điệu sóng vỗ dịu êm bện chặt cổ tay", image: SITE_IMAGES.collections.vong_tay, href: "/collections/vong_tay" },
 ];
 
 export default function IconicCollections() {

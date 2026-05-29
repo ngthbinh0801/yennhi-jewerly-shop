@@ -11,9 +11,6 @@ const REGION_VN: Record<string, string> = {
   "South": "MIỀN NAM"
 };
 
-const MAP_MARKERS = [
-  { name: "Rì Rào Store – Phú Quốc", x: "32%", y: "82%" },
-];
 
 export default function BoutiquesClient() {
   const [activeBoutiqueName, setActiveBoutiqueName] = useState<string | null>(
@@ -180,91 +177,46 @@ export default function BoutiquesClient() {
 
 
       {/* 2. Map & Dynamic Location Interface */}
-      <section className="page-content py-12 flex flex-col">
-        {/* 60vh Stylized Visual Map Box */}
-        <div className="w-full h-[60vh] bg-[#171A21] border border-brand-gold/15 relative overflow-hidden rounded-none shadow-2xl mb-12 flex items-center justify-center">
-          {/* Grid lines layout backdrop for luxury feeling */}
-          <div className="absolute inset-0 bg-[linear-gradient(rgba(201,169,97,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(201,169,97,0.02)_1px,transparent_1px)] bg-[size:32px_32px] pointer-events-none" />
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(114,47,55,0.05)_0%,transparent_70%)] pointer-events-none" />
-          
-          {/* Stylized high end global schematic backdrop */}
-          <div className="absolute opacity-25 w-[110%] h-[110%] pointer-events-none select-none flex items-center justify-center">
-            <div className="text-[200px] font-serif font-light text-brand-white/5 tracking-widest leading-none select-none rotate-6 select-none italic select-none">
-              Rì Rào Store
-            </div>
-          </div>
+      <section className="page-content flex flex-col" style={{ paddingTop: "4rem", paddingBottom: "3rem" }}>
+        {/* Google Maps Embed */}
+        <div style={{ position: "relative", width: "100%", height: "60vh", marginBottom: "3rem", overflow: "hidden", borderRadius: "14px", boxShadow: "0 16px 48px -12px rgba(0,0,0,0.18)" }}>
+          <iframe
+            key={activeBoutique.name}
+            src={`https://maps.google.com/maps?q=${activeBoutique.coordinates.lat},${activeBoutique.coordinates.lng}&z=16&output=embed&hl=vi`}
+            style={{ width: "100%", height: "100%", border: "none", display: "block" }}
+            loading="lazy"
+            allowFullScreen
+            referrerPolicy="no-referrer-when-downgrade"
+            title={`Bản đồ ${activeBoutique.name}`}
+          />
 
-          {/* Map Title overlay */}
-          <div className="absolute top-4 left-4 z-10 bg-brand-charcoal/80 border border-brand-gold/15 px-3 py-1.5 text-[9px] uppercase tracking-[0.2em] font-medium text-brand-white select-none">
-            Hệ Thống Cửa Hàng Rì Rào Store — Trên Khắp Việt Nam
-          </div>
-
-          {/* Stylized World Vector Dots Mapping */}
-          <div className="relative w-full h-full max-w-5xl mx-auto flex items-center justify-center">
-            {MAP_MARKERS.map((marker) => {
-              const bData = BOUTIQUES_DATA.find((b) => b.name === marker.name);
-              if (!bData) return null;
-              
-              const isSelected = activeBoutiqueName === marker.name;
-              const matchesFilter = BOUTIQUES_DATA.some((fb) => fb.name === marker.name);
-
-              return (
-                <div
-                  key={marker.name}
-                  style={{ left: marker.x, top: marker.y }}
-                  className={`absolute -translate-x-1/2 -translate-y-1/2 z-20 transition-all duration-500 ${
-                    matchesFilter ? "opacity-100 scale-100" : "opacity-20 scale-75 pointer-events-none"
-                  }`}
-                >
-                  <button
-                    onClick={() => setActiveBoutiqueName(marker.name)}
-                    className="relative group focus:outline-none"
-                  >
-                    {/* Ring animation */}
-                    <span className={`absolute -inset-3 rounded-full border transition-all duration-500 ${
-                      isSelected
-                        ? "border-brand-gold scale-120 animate-ping opacity-75 bg-brand-gold/10"
-                        : "border-brand-burgundy/40 group-hover:scale-110 group-hover:border-brand-gold/60"
-                    }`} />
-                    
-                    {/* Core Point dot */}
-                    <div className={`w-3.5 h-3.5 rounded-full border border-brand-white shadow-md transition-all duration-300 ${
-                      isSelected
-                        ? "bg-brand-gold scale-125"
-                        : "bg-brand-burgundy group-hover:bg-brand-gold"
-                    }`} />
-
-                    {/* Floating Info Tooltip */}
-                    <div className={`absolute bottom-6 left-1/2 -translate-x-1/2 bg-brand-charcoal border border-brand-gold/20 px-3 py-1.5 rounded-none shadow-xl pointer-events-none transition-all duration-300 w-44 text-center z-30 ${
-                      isSelected 
-                        ? "opacity-100 translate-y-0 scale-100"
-                        : "opacity-0 translate-y-1 scale-95 group-hover:opacity-100 group-hover:translate-y-0"
-                    }`}>
-                      <div className="text-[10px] font-bold text-brand-white truncate">{bData.name}</div>
-                      <div className="text-[9px] text-brand-gold font-medium uppercase tracking-widest mt-0.5">{bData.city}</div>
-                    </div>
-                  </button>
-                </div>
-              );
-            })}
-
-            {/* Visual Radar sweep animation */}
-            <div className="absolute w-[400px] h-[400px] border border-brand-gold/5 rounded-full bg-[conic-gradient(from_0deg,rgba(201,169,97,0.08)_0deg,transparent_90deg)] animate-spin [animation-duration:12s] pointer-events-none" />
-            <div className="absolute w-[200px] h-[200px] border border-brand-gold/5 rounded-full pointer-events-none" />
-          </div>
-
-          {/* Active boutique status indicator */}
-          <div className="absolute bottom-4 right-4 z-10 bg-brand-charcoal/80 border border-brand-gold/15 p-4 max-w-sm rounded-none shadow-xl text-brand-white">
-            <span className="text-[9px] uppercase tracking-[0.2em] text-brand-gold font-bold block mb-1">
-              Tọa Độ Cửa Hàng Đang Chọn
+          {/* Info overlay card */}
+          <div style={{
+            position: "absolute",
+            bottom: "1.25rem",
+            right: "1.25rem",
+            zIndex: 10,
+            backgroundColor: "rgba(27,42,48,0.93)",
+            border: "1px solid rgba(201,169,97,0.2)",
+            padding: "1.125rem 1.375rem",
+            maxWidth: "272px",
+            boxShadow: "0 8px 32px rgba(0,0,0,0.35)",
+            backdropFilter: "blur(6px)",
+          }}>
+            <span style={{ fontSize: "0.5625rem", textTransform: "uppercase", letterSpacing: "0.22em", color: "#C9A961", fontWeight: 700, display: "block", marginBottom: "0.375rem" }}>
+              Cửa Hàng Đang Chọn
             </span>
-            <h4 className="text-sm font-light font-serif mb-1 truncate text-brand-cream">{activeBoutique.name}</h4>
-            <p className="text-[10px] text-brand-cream/80 font-light truncate mb-2">{activeBoutique.address}</p>
+            <h4 style={{ fontSize: "0.9375rem", fontWeight: 300, fontFamily: "serif", color: "#FAF6F0", margin: "0 0 0.25rem", lineHeight: 1.3 }}>
+              {activeBoutique.name}
+            </h4>
+            <p style={{ fontSize: "0.6875rem", color: "rgba(250,246,240,0.6)", fontWeight: 300, margin: "0 0 0.875rem", lineHeight: 1.55 }}>
+              {activeBoutique.address}
+            </p>
             <button
               onClick={() => handleBookAppointment(activeBoutique)}
-              className="text-[10px] uppercase tracking-widest text-brand-gold font-semibold hover:text-brand-burgundy transition-colors flex items-center gap-1.5"
+              style={{ fontSize: "0.5625rem", textTransform: "uppercase", letterSpacing: "0.14em", color: "#C9A961", fontWeight: 700, background: "none", border: "none", cursor: "pointer", padding: 0, display: "flex", alignItems: "center", gap: "0.375rem" }}
             >
-              Đặt lịch hẹn tư vấn <ArrowRight size={12} />
+              Đặt lịch hẹn tư vấn <ArrowRight size={11} />
             </button>
           </div>
         </div>
@@ -286,78 +238,129 @@ export default function BoutiquesClient() {
               <p className="text-brand-gray text-sm">Không tìm thấy cửa hàng flagship nào khớp với thông tin tìm kiếm của bạn.</p>
             </div>
           ) : (
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(320px, 1fr))", gap: "1.5rem" }}>
               {BOUTIQUES_DATA.map((boutique) => {
                 const isActive = activeBoutiqueName === boutique.name;
                 return (
                   <motion.div
                     key={boutique.name}
                     layout
-                    className={`flex flex-col bg-brand-white p-6 md:p-8 border shadow-sm transition-all duration-300 ${
-                      isActive
-                        ? "border-brand-burgundy ring-1 ring-brand-burgundy/10 shadow-lg"
-                        : "border-brand-charcoal/5 hover:border-brand-gold/40 hover:shadow-md"
-                    }`}
+                    style={{
+                      display: "flex",
+                      flexDirection: "column",
+                      backgroundColor: "#FFFFFF",
+                      border: `1px solid ${isActive ? "#722F37" : "rgba(27,42,48,0.08)"}`,
+                      boxShadow: isActive
+                        ? "0 20px 40px -12px rgba(114,47,55,0.18)"
+                        : "0 2px 8px rgba(0,0,0,0.04)",
+                      overflow: "hidden",
+                      transition: "border-color 0.3s, box-shadow 0.3s",
+                    }}
                   >
-                    {/* Header: Boutique info */}
-                    <div className="flex justify-between items-start gap-4 mb-4" style={{ paddingLeft: '1rem' }}>
-                      <div>
-                        <span className="text-[10px] uppercase tracking-[0.2em] text-brand-gold font-bold block mb-1">
-                          FLAGSHIP {REGION_VN[boutique.region] || boutique.region}
-                        </span>
-                        <h3 className="text-xl font-light font-serif text-brand-charcoal hover:text-brand-burgundy transition-colors">
-                          <button onClick={() => {
-                            setActiveBoutiqueName(boutique.name);
-                            // Scroll visual map into view on click
-                            document.querySelector(".h-\\[60vh\\]")?.scrollIntoView({ behavior: "smooth", block: "center" });
+                    {/* Top accent bar */}
+                    <div style={{
+                      height: "3px",
+                      width: "100%",
+                      backgroundColor: isActive ? "#722F37" : "rgba(201,169,97,0.35)",
+                      transition: "background-color 0.3s",
+                    }} />
+
+                    {/* Card body */}
+                    <div style={{ display: "flex", flexDirection: "column", flexGrow: 1, padding: "2.25rem 2.5rem" }}>
+
+                      {/* Header */}
+                      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", gap: "1rem", marginBottom: "1.75rem" }}>
+                        <div>
+                          <span style={{
+                            fontSize: "0.5625rem",
+                            textTransform: "uppercase",
+                            letterSpacing: "0.3em",
+                            color: "#C9A961",
+                            fontWeight: 700,
+                            display: "block",
+                            marginBottom: "0.5rem",
                           }}>
-                            {boutique.name}
-                          </button>
-                        </h3>
+                            FLAGSHIP {REGION_VN[boutique.region] || boutique.region}
+                          </span>
+                          <h3 style={{ fontSize: "1.375rem", fontWeight: 300, fontFamily: "serif", color: "#1B2A30", lineHeight: 1.25, margin: 0 }}>
+                            <button
+                              onClick={() => {
+                                setActiveBoutiqueName(boutique.name);
+                                document.querySelector(".h-\\[60vh\\]")?.scrollIntoView({ behavior: "smooth", block: "center" });
+                              }}
+                              style={{ background: "none", border: "none", cursor: "pointer", padding: 0, fontFamily: "inherit", fontSize: "inherit", fontWeight: "inherit", color: "inherit", textAlign: "left", transition: "color 0.2s", whiteSpace: "nowrap" }}
+                            >
+                              {boutique.name}
+                            </button>
+                          </h3>
+                        </div>
+                        <span style={{
+                          marginTop: "0.25rem",
+                          flexShrink: 0,
+                          fontSize: "0.5625rem",
+                          textTransform: "uppercase",
+                          letterSpacing: "0.18em",
+                          fontWeight: 700,
+                          color: "rgba(27,42,48,0.4)",
+                          borderBottom: "1px solid rgba(27,42,48,0.12)",
+                          paddingBottom: "2px",
+                        }}>
+                          {boutique.city}
+                        </span>
                       </div>
-                      <div className="px-2.5 py-1 text-[9px] uppercase tracking-widest font-semibold border border-brand-charcoal/5 bg-brand-cream/80 text-brand-charcoal">
-                        {boutique.city}
-                      </div>
-                    </div>
 
-                    <div className="w-full h-[1px] bg-brand-charcoal/5 mb-4" />
-
-                    {/* Address & Phone details */}
-                    <div className="flex flex-col gap-3 flex-grow mb-6 text-xs text-brand-charcoal/80 font-light" style={{ paddingLeft: '1rem' }}>
-                      <div className="flex items-start gap-2.5">
-                        <MapPin size={14} className="text-brand-burgundy shrink-0 mt-0.5" />
-                        <span>{boutique.address}</span>
-                      </div>
-                      <div className="flex items-start gap-2.5">
-                        <Phone size={14} className="text-brand-burgundy shrink-0 mt-0.5" />
-                        <span>{boutique.phone}</span>
-                      </div>
-                      <div className="flex items-start gap-2.5">
-                        <Clock size={14} className="text-brand-burgundy shrink-0 mt-0.5" />
-                        <div className="flex flex-col gap-0.5">
-                          {boutique.hours.map((h, i) => (
-                            <span key={i}>{h}</span>
-                          ))}
+                      {/* Info rows */}
+                      <div style={{ display: "flex", flexDirection: "column", gap: "1.125rem", flexGrow: 1, marginBottom: "2rem" }}>
+                        <div style={{ display: "flex", alignItems: "flex-start", gap: "0.875rem" }}>
+                          <MapPin size={13} style={{ color: "#722F37", flexShrink: 0, marginTop: "3px" }} />
+                          <span style={{ fontSize: "0.8125rem", color: "rgba(27,42,48,0.65)", fontWeight: 300, lineHeight: 1.65 }}>{boutique.address}</span>
+                        </div>
+                        <div style={{ display: "flex", alignItems: "center", gap: "0.875rem" }}>
+                          <Phone size={13} style={{ color: "#722F37", flexShrink: 0 }} />
+                          <span style={{ fontSize: "0.8125rem", color: "rgba(27,42,48,0.65)", fontWeight: 300, letterSpacing: "0.02em" }}>{boutique.phone}</span>
+                        </div>
+                        <div style={{ display: "flex", alignItems: "flex-start", gap: "0.875rem" }}>
+                          <Clock size={13} style={{ color: "#722F37", flexShrink: 0, marginTop: "3px" }} />
+                          <div style={{ display: "flex", flexDirection: "column", gap: "0.25rem" }}>
+                            {boutique.hours.map((h, i) => (
+                              <span key={i} style={{ fontSize: "0.8125rem", color: "rgba(27,42,48,0.65)", fontWeight: 300 }}>{h}</span>
+                            ))}
+                          </div>
                         </div>
                       </div>
-                    </div>
 
-                    {/* Action buttons */}
-                    <div className="flex items-center gap-4 mt-auto" style={{ paddingLeft: '1rem' }}>
-                      <button
-                        onClick={() => handleBookAppointment(boutique)}
-                        className="btn-luxury btn-luxury-burgundy flex-1 py-2.5 text-[10px] font-semibold uppercase tracking-widest shadow-sm hover:shadow-md"
-                      >
-                        Đặt Lịch Hẹn
-                      </button>
-                      <a
-                        href={`https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(boutique.address)}`}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="text-[10px] uppercase tracking-widest font-bold text-brand-charcoal hover:text-brand-burgundy py-2 px-4 border border-brand-charcoal/10 hover:border-brand-burgundy/30 transition-all flex items-center gap-1 shrink-0"
-                      >
-                        Chỉ Đường
-                      </a>
+                      {/* Actions */}
+                      <div style={{ display: "flex", alignItems: "stretch", gap: "0.75rem", marginTop: "auto", paddingTop: "1.5rem", borderTop: "1px solid rgba(27,42,48,0.06)" }}>
+                        <button
+                          onClick={() => handleBookAppointment(boutique)}
+                          className="btn-luxury btn-luxury-burgundy"
+                          style={{ flex: 1, padding: "0.75rem 1rem", fontSize: "0.625rem", fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.15em" }}
+                        >
+                          Đặt Lịch Hẹn
+                        </button>
+                        <a
+                          href={`https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(boutique.address)}`}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          style={{
+                            flexShrink: 0,
+                            fontSize: "0.625rem",
+                            textTransform: "uppercase",
+                            letterSpacing: "0.12em",
+                            fontWeight: 700,
+                            color: "rgba(27,42,48,0.5)",
+                            padding: "0.75rem 1.25rem",
+                            border: "1px solid rgba(27,42,48,0.1)",
+                            display: "flex",
+                            alignItems: "center",
+                            gap: "0.375rem",
+                            textDecoration: "none",
+                            transition: "color 0.2s, border-color 0.2s",
+                          }}
+                        >
+                          Chỉ Đường
+                        </a>
+                      </div>
                     </div>
                   </motion.div>
                 );

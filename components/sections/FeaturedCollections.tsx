@@ -11,7 +11,7 @@ import { SITE_IMAGES } from "@/lib/imageConfig";
 const FEATURED_CARDS = [
   {
     id: 1,
-    name: "Dây Chuyền Vỏ Sò",
+    name: "Dây Chuyền",
     tagline: "",
     image: SITE_IMAGES.collections.perlee,
     href: "/collections/day_chuyen_vo_so",
@@ -25,21 +25,21 @@ const FEATURED_CARDS = [
   },
   {
     id: 2,
-    name: "Giỏ Vỏ Sò",
+    name: "Phụ Kiện Tóc & Túi",
     tagline: "",
     image: SITE_IMAGES.collections.alhambra,
     href: "/collections/gio_vo_so",
   },
   {
     id: 4,
-    name: "Gương Đính Vỏ Sò",
+    name: "Phụ Kiện Lifestyle",
     tagline: "",
     image: SITE_IMAGES.collections.guong,
     href: "/collections/guong_vo_so",
   },
   {
     id: 5,
-    name: "Khuyên Tai Vỏ Sò",
+    name: "Khuyên Tai",
     tagline: "Ánh xà cừ lung linh đung đưa bên khóe mắt",
     image: SITE_IMAGES.collections.khuyen_tai,
     href: "/collections/khuyen_tai",

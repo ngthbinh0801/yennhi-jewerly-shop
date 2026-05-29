@@ -22,10 +22,10 @@ const MOBILE_MENU_ITEMS: MobileMenuItem[] = [
     label: "Trang Sức",
     href: "/collections",
     subItems: [
-      { label: "Dây Chuyền Vỏ Sò", href: "/collections/day_chuyen_vo_so" },
+      { label: "Dây Chuyền", href: "/collections/day_chuyen_vo_so" },
       { label: "Nhẫn Vỏ Ốc", href: "/collections/nhan_vo_oc" },
-      { label: "Khuyên Tai Vỏ Sò", href: "/collections/khuyen_tai" },
-      { label: "Vòng Tay Vỏ Sò", href: "/collections/vong_tay" },
+      { label: "Khuyên Tai", href: "/collections/khuyen_tai" },
+      { label: "Vòng Tay", href: "/collections/vong_tay" },
       { label: "Tất cả Trang sức", href: "/collections" }
     ]
   },
@@ -33,8 +33,8 @@ const MOBILE_MENU_ITEMS: MobileMenuItem[] = [
     label: "Đồ Thủ Công",
     href: "/collections",
     subItems: [
-      { label: "Giỏ Vỏ Sò", href: "/collections/gio_vo_so" },
-      { label: "Gương Đính Vỏ Sò", href: "/collections/guong_vo_so" },
+      { label: "Phụ Kiện Tóc & Túi", href: "/collections/gio_vo_so" },
+      { label: "Phụ Kiện Lifestyle", href: "/collections/guong_vo_so" },
       { label: "Tất cả Đồ Thủ Công", href: "/collections" }
     ]
   },
@@ -45,15 +45,6 @@ const MOBILE_MENU_ITEMS: MobileMenuItem[] = [
       { label: "Nhẫn đính hôn", href: "/collections?category=rings" },
       { label: "Vòng tay cô dâu", href: "/collections/vong_tay" },
       { label: "Bộ trang sức cưới", href: "/collections" }
-    ]
-  },
-  {
-    label: "Xưởng Chế Tác",
-    href: "/the-maison",
-    subItems: [
-      { label: "Di sản của chúng tôi", href: "/the-maison" },
-      { label: "Nghệ thuật thủ công", href: "/the-maison" },
-      { label: "Triển lãm & Sự kiện văn hóa", href: "/the-maison" }
     ]
   },
   {

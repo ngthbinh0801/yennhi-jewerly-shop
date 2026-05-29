@@ -37,16 +37,6 @@ const FOOTER_LINKS = [
     ],
   },
   {
-    title: "Về Xưởng Chế Tác",
-    links: [
-      { label: "Di Sản Của Chúng Tôi", href: "/the-maison" },
-      { label: "Nghệ Thuật Savoir-Faire", href: "/the-maison" },
-      { label: "Tin Tức Xưởng Chế Tác", href: "/the-maison" },
-      { label: "Phát Triển Bền Vững", href: "/the-maison" },
-      { label: "Cơ Hội Nghề Nghiệp", href: "/the-maison" },
-    ],
-  },
-  {
     title: "Pháp Lý",
     links: [
       { label: "Điều Khoản Bán Hàng", href: "/contact" },
@@ -96,9 +86,8 @@ export default function Footer() {
             <p className="text-[9px] uppercase tracking-[0.35em] font-bold text-[#ffffff] mb-5 pb-2 border-b border-[#ffffff]/15">Theo Dõi Chúng Tôi</p>
             <ul className="space-y-3.5">
               {[
-                { label: "Instagram", icon: <InstagramIcon />, href: "https://instagram.com" },
-                { label: "Facebook", icon: <FacebookIcon />, href: "https://facebook.com" },
-                { label: "YouTube", icon: <YoutubeIcon />, href: "https://youtube.com" },
+                { label: "Instagram", icon: <InstagramIcon />, href: "https://instagram.com/rirao.store" },
+                { label: "Facebook", icon: <FacebookIcon />, href: "https://facebook.com/riraostore" },
               ].map((s) => (
                 <li key={s.label}>
                   <a

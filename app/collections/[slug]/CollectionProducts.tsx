@@ -84,9 +84,6 @@ export default function CollectionProducts({ products }: CollectionProductsProps
 
             {/* Info */}
             <div className="pt-4 flex flex-col gap-1">
-              <span className="text-[9px] uppercase tracking-[0.35em] text-brand-gold font-semibold">
-                {prod.material.split(",")[0].trim()}
-              </span>
               <h3 className="font-serif text-[1.0625rem] font-light text-brand-charcoal leading-snug">
                 {prod.name}
               </h3>
