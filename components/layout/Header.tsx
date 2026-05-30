@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, useMemo } from "react";
 import { Search, ShoppingBag, Menu, X, Heart, ArrowRight } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
@@ -8,7 +8,7 @@ import Image from "next/image";
 import { useRouter, usePathname } from "next/navigation";
 import { BRAND_INFO } from "@/lib/constants";
 import { useCart } from "@/lib/cartContext";
-import { COLLECTIONS_DATA } from "@/lib/mockData";
+import { COLLECTIONS_DATA, PRODUCTS_DATA } from "@/lib/mockData";
 import MegaMenu from "./MegaMenu";
 import MobileNav from "./MobileNav";
 
@@ -32,9 +32,23 @@ export default function Header() {
   const [searchOpen, setSearchOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
   const [mobileNavOpen, setMobileNavOpen] = useState(false);
+  const [activeIndex, setActiveIndex] = useState(-1);
   const closeTimeoutRef = useRef<NodeJS.Timeout | null>(null);
   const dropdownTimeoutRef = useRef<NodeJS.Timeout | null>(null);
   const { totalCount } = useCart();
+
+  const suggestions = useMemo(() => {
+    const q = searchQuery.trim().toLowerCase();
+    if (q.length < 2) return [];
+    return PRODUCTS_DATA.filter((p) => {
+      const col = COLLECTIONS_DATA.find((c) => c.slug === p.collectionSlug);
+      return (
+        p.name.toLowerCase().includes(q) ||
+        p.description.toLowerCase().includes(q) ||
+        col?.name.toLowerCase().includes(q)
+      );
+    }).slice(0, 6);
+  }, [searchQuery]);
 
   useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 40);
@@ -326,12 +340,18 @@ export default function Header() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: "-100%" }}
             transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
-            className="fixed inset-x-0 top-0 bg-brand-white border-b border-brand-gold/20 shadow-2xl z-50 py-10 px-6 lg:px-12 flex flex-col items-center justify-center"
+            className="fixed inset-x-0 top-0 bg-brand-white border-b border-brand-gold/20 shadow-2xl z-50 py-10 px-6 lg:px-12 flex flex-col items-center"
           >
             <form
               onSubmit={(e) => {
                 e.preventDefault();
-                if (searchQuery.trim()) {
+                const target = activeIndex >= 0 ? suggestions[activeIndex] : null;
+                if (target) {
+                  setSearchOpen(false);
+                  setSearchQuery("");
+                  setActiveIndex(-1);
+                  router.push(`/products/${target.slug}`);
+                } else if (searchQuery.trim()) {
                   setSearchOpen(false);
                   router.push(`/collections?search=${encodeURIComponent(searchQuery)}`);
                 }
@@ -342,7 +362,7 @@ export default function Header() {
                 <span className="section-label">Bạn đang tìm kiếm sản phẩm gì?</span>
                 <button
                   type="button"
-                  onClick={() => setSearchOpen(false)}
+                  onClick={() => { setSearchOpen(false); setSearchQuery(""); setActiveIndex(-1); }}
                   className="p-1 text-brand-charcoal hover:text-brand-burgundy transition-colors duration-300 focus:outline-none"
                   aria-label="Close search"
                 >
@@ -354,9 +374,16 @@ export default function Header() {
                 <input
                   type="text"
                   value={searchQuery}
-                  onChange={(e) => setSearchQuery(e.target.value)}
-                  placeholder="Tìm kiếm bộ sưu tập, trang sức, đồng hồ..."
+                  onChange={(e) => { setSearchQuery(e.target.value); setActiveIndex(-1); }}
+                  onKeyDown={(e) => {
+                    if (!suggestions.length) return;
+                    if (e.key === "ArrowDown") { e.preventDefault(); setActiveIndex((i) => Math.min(i + 1, suggestions.length - 1)); }
+                    else if (e.key === "ArrowUp") { e.preventDefault(); setActiveIndex((i) => Math.max(i - 1, -1)); }
+                    else if (e.key === "Escape") { setSearchOpen(false); setSearchQuery(""); setActiveIndex(-1); }
+                  }}
+                  placeholder="Tìm kiếm bộ sưu tập, trang sức, túi xách..."
                   autoFocus
+                  autoComplete="off"
                   className="w-full bg-transparent border-none text-brand-charcoal placeholder-brand-gray/55 text-xl font-light focus:outline-none focus:ring-0 select-text font-serif"
                 />
                 <button type="submit" className="focus:outline-none flex-shrink-0">
@@ -364,24 +391,76 @@ export default function Header() {
                 </button>
               </div>
 
-              <div>
-                <span className="section-label mb-3 block">Xu hướng tìm kiếm</span>
-                <div className="flex flex-wrap gap-2">
-                  {["Mặt dây chuyền Xà Cừ Bốn Lá", "Bông tai Hoa Khơi Biển", "Vòng tay Hạt Ngọc Biển", "Nhẫn cưới Solitaire"].map((trend) => (
-                    <button
-                      key={trend}
-                      type="button"
-                      onClick={() => {
-                        setSearchOpen(false);
-                        router.push(`/collections?search=${encodeURIComponent(trend)}`);
-                      }}
-                      className="text-[11px] text-brand-charcoal/75 hover:text-brand-burgundy border border-brand-gold/20 bg-brand-cream hover:bg-brand-white px-3 py-1.5 transition-all duration-300 tracking-wide"
-                    >
-                      {trend}
-                    </button>
-                  ))}
-                </div>
-              </div>
+              {/* Product Suggestions */}
+              <AnimatePresence mode="wait">
+                {suggestions.length > 0 ? (
+                  <motion.div
+                    key="suggestions"
+                    initial={{ opacity: 0, y: -6 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -6 }}
+                    transition={{ duration: 0.2 }}
+                    className="flex flex-col divide-y divide-brand-gold/10"
+                  >
+                    <span className="section-label mb-3 block">Gợi ý sản phẩm</span>
+                    {suggestions.map((product, idx) => {
+                      const col = COLLECTIONS_DATA.find((c) => c.slug === product.collectionSlug);
+                      return (
+                        <Link
+                          key={product.slug}
+                          href={`/products/${product.slug}`}
+                          onClick={() => { setSearchOpen(false); setSearchQuery(""); setActiveIndex(-1); }}
+                          className={`flex items-center gap-4 py-3 px-2 rounded-sm transition-colors duration-200 group ${
+                            activeIndex === idx ? "bg-brand-cream" : "hover:bg-brand-cream/60"
+                          }`}
+                        >
+                          <div className="relative w-14 h-14 flex-shrink-0 overflow-hidden rounded-sm border border-brand-gold/15">
+                            <Image
+                              src={product.images[0]}
+                              alt={product.name}
+                              fill
+                              className="object-cover group-hover:scale-105 transition-transform duration-300"
+                              sizes="56px"
+                            />
+                          </div>
+                          <div className="flex flex-col min-w-0">
+                            <span className="text-[10px] uppercase tracking-[0.2em] text-brand-gold mb-0.5 truncate">
+                              {col?.name}
+                            </span>
+                            <span className="text-sm font-light text-brand-charcoal group-hover:text-brand-burgundy transition-colors duration-200 truncate">
+                              {product.name}
+                            </span>
+                            <span className="text-xs text-brand-charcoal/50 mt-0.5">{product.price}</span>
+                          </div>
+                          <ArrowRight className="w-3.5 h-3.5 text-brand-gold ml-auto flex-shrink-0 opacity-0 group-hover:opacity-100 transition-opacity duration-200" />
+                        </Link>
+                      );
+                    })}
+                  </motion.div>
+                ) : (
+                  <motion.div
+                    key="trends"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    transition={{ duration: 0.2 }}
+                  >
+                    <span className="section-label mb-3 block">Xu hướng tìm kiếm</span>
+                    <div className="flex flex-wrap gap-2">
+                      {["Túi cói ngọc trai", "Nhẫn xà cừ", "Dây chuyền vỏ ốc", "Kẹp tóc vỏ sò"].map((trend) => (
+                        <button
+                          key={trend}
+                          type="button"
+                          onClick={() => { setSearchQuery(trend); setActiveIndex(-1); }}
+                          className="text-[11px] text-brand-charcoal/75 hover:text-brand-burgundy border border-brand-gold/20 bg-brand-cream hover:bg-brand-white px-3 py-1.5 transition-all duration-300 tracking-wide"
+                        >
+                          {trend}
+                        </button>
+                      ))}
+                    </div>
+                  </motion.div>
+                )}
+              </AnimatePresence>
             </form>
           </motion.div>
         )}
