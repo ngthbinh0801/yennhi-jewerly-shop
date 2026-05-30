@@ -1,12 +1,14 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useRef } from "react";
 import Image from "next/image";
-import { Heart, ShoppingBag, Check } from "lucide-react";
+import { Heart, ShoppingBag, Check, ChevronLeft, ChevronRight } from "lucide-react";
 import { motion } from "framer-motion";
 import { Product } from "@/lib/mockData";
 import { CREAM_BLUR_DATA_URL } from "@/lib/constants";
 import { useCart } from "@/lib/cartContext";
+
+const ITEMS_PER_PAGE = 4;
 
 interface CollectionProductsProps {
   products: Product[];
@@ -17,6 +19,27 @@ export default function CollectionProducts({ products }: CollectionProductsProps
   const [wishlist, setWishlist] = useState<Record<string, boolean>>({});
   const [hovered, setHovered] = useState<string | null>(null);
   const [added, setAdded] = useState<Record<string, boolean>>({});
+  const [currentPage, setCurrentPage] = useState(1);
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  const totalPages = Math.ceil(products.length / ITEMS_PER_PAGE);
+  const paginatedProducts = products.slice(
+    (currentPage - 1) * ITEMS_PER_PAGE,
+    currentPage * ITEMS_PER_PAGE
+  );
+
+  const goToPage = (page: number) => {
+    setCurrentPage(page);
+    if (containerRef.current) {
+      const rect = containerRef.current.getBoundingClientRect();
+      const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+      const targetY = rect.top + scrollTop - 120;
+      window.scrollTo({
+        top: targetY,
+        behavior: "smooth"
+      });
+    }
+  };
 
   const handleAdd = (prod: Product, e: React.MouseEvent) => {
     e.preventDefault();
@@ -31,8 +54,9 @@ export default function CollectionProducts({ products }: CollectionProductsProps
   }
 
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-12">
-      {products.map((prod, i) => {
+    <div ref={containerRef} className="flex flex-col gap-16">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-x-8 gap-y-12">
+      {paginatedProducts.map((prod, i) => {
         const img = prod.images[0];
         const isAdded = !!added[prod.slug];
 
@@ -94,6 +118,46 @@ export default function CollectionProducts({ products }: CollectionProductsProps
           </motion.div>
         );
       })}
+      </div>
+
+      {/* Pagination */}
+      {totalPages > 1 && (
+        <div className="flex items-center justify-center gap-6">
+          <button
+            onClick={() => goToPage(currentPage - 1)}
+            disabled={currentPage === 1}
+            aria-label="Trang trước"
+            className="w-9 h-9 flex items-center justify-center border border-brand-charcoal/20 text-brand-charcoal/50 hover:border-brand-charcoal hover:text-brand-charcoal disabled:opacity-25 disabled:cursor-not-allowed transition-colors duration-200"
+          >
+            <ChevronLeft size={14} />
+          </button>
+
+          <div className="flex items-center gap-3">
+            {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
+              <button
+                key={page}
+                onClick={() => goToPage(page)}
+                className={`w-9 h-9 flex items-center justify-center text-[11px] tracking-[0.15em] font-semibold transition-colors duration-200 ${
+                  page === currentPage
+                    ? "bg-brand-charcoal text-white"
+                    : "border border-brand-charcoal/20 text-brand-charcoal/50 hover:border-brand-charcoal hover:text-brand-charcoal"
+                }`}
+              >
+                {page}
+              </button>
+            ))}
+          </div>
+
+          <button
+            onClick={() => goToPage(currentPage + 1)}
+            disabled={currentPage === totalPages}
+            aria-label="Trang sau"
+            className="w-9 h-9 flex items-center justify-center border border-brand-charcoal/20 text-brand-charcoal/50 hover:border-brand-charcoal hover:text-brand-charcoal disabled:opacity-25 disabled:cursor-not-allowed transition-colors duration-200"
+          >
+            <ChevronRight size={14} />
+          </button>
+        </div>
+      )}
     </div>
   );
 }

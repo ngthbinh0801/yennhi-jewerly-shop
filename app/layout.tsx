@@ -1,25 +1,9 @@
 import type { Metadata } from "next";
-import { Cormorant_Garamond, Inter } from "next/font/google";
 import "./globals.css";
 import UtilityBar from "@/components/layout/UtilityBar";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import { CartProvider } from "@/lib/cartContext";
-
-const cormorantGaramond = Cormorant_Garamond({
-  variable: "--font-cormorant",
-  subsets: ["latin", "vietnamese"],
-  weight: ["300", "400", "500", "600", "700"],
-  style: ["normal", "italic"],
-  display: "swap",
-});
-
-const inter = Inter({
-  variable: "--font-inter",
-  subsets: ["latin", "vietnamese"],
-  weight: ["300", "400", "500", "600", "700"],
-  display: "swap",
-});
 
 export const metadata: Metadata = {
   title: "Rì Rào Store | Premium Artisanal Seashell Jewelry since 2026",
@@ -42,7 +26,7 @@ export default function RootLayout({
   return (
     <html
       lang="vi"
-      className={`${cormorantGaramond.variable} ${inter.variable} scroll-smooth`}
+      className="scroll-smooth"
     >
       <body className="min-h-screen w-full overflow-x-hidden flex flex-col antialiased bg-brand-cream">
         <CartProvider>
