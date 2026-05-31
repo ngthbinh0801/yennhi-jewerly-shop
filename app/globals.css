@@ -214,3 +214,124 @@ img {
   -ms-overflow-style: none;
   scrollbar-width: none;
 }
+
+/* ─── Cinematic Intro Screen ─────────────────────────────────── */
+
+/* Water light shimmer sweep */
+@keyframes introShimmer {
+  0%   { background-position: -160% center; }
+  100% { background-position: 260% center; }
+}
+
+.intro-shimmer {
+  background: linear-gradient(
+    110deg,
+    transparent 26%,
+    rgba(255, 255, 255, 0.06) 38%,
+    rgba(255, 248, 210, 0.16) 50%,
+    rgba(255, 255, 255, 0.06) 62%,
+    transparent 74%
+  );
+  background-size: 200% 100%;
+  animation: introShimmer 6.5s ease-in-out infinite;
+}
+
+/* Floating pearl bubble */
+@keyframes introPearlFloat {
+  0%   { transform: translateY(0);      opacity: 0; }
+  7%   { opacity: 0.75; }
+  88%  { opacity: 0.75; }
+  100% { transform: translateY(-110vh); opacity: 0; }
+}
+
+.intro-pearl {
+  position: absolute;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle at 33% 28%,
+    rgba(255, 255, 255, 0.97) 0%,
+    rgba(210, 242, 240, 0.72) 50%,
+    rgba(176, 220, 217, 0.42) 100%
+  );
+  box-shadow:
+    0 0 6px rgba(255, 255, 255, 0.45),
+    inset 0 1px 3px rgba(255, 255, 255, 0.65);
+  animation: introPearlFloat linear infinite;
+  will-change: transform, opacity;
+}
+
+/* Pearl CTA button */
+.pearl-cta-btn {
+  position: relative;
+  padding: 18px 64px;
+  background: rgba(255, 255, 255, 0.09);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-radius: 2px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: background 0.5s ease, box-shadow 0.5s ease;
+}
+
+/* Gradient pearl border via mask */
+.pearl-cta-btn::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 2px;
+  padding: 1.5px;
+  background: linear-gradient(
+    135deg,
+    rgba(240, 218, 148, 0.88),
+    rgba(255, 255, 255, 0.94),
+    rgba(198, 170, 104, 0.78),
+    rgba(255, 255, 255, 0.94),
+    rgba(240, 218, 148, 0.88)
+  );
+  -webkit-mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: destination-out;
+  mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  mask-composite: exclude;
+  transition: background 0.5s ease;
+}
+
+.pearl-cta-btn:hover {
+  background: rgba(212, 175, 55, 0.15);
+  box-shadow:
+    0 0 30px rgba(212, 175, 55, 0.40),
+    0 0 80px rgba(212, 175, 55, 0.12),
+    inset 0 0 20px rgba(255, 248, 195, 0.04);
+}
+
+.pearl-cta-btn:hover::before {
+  background: linear-gradient(
+    135deg,
+    rgba(255, 212, 70, 0.96),
+    rgba(255, 248, 195, 0.99),
+    rgba(212, 175, 55, 0.92),
+    rgba(255, 248, 195, 0.99),
+    rgba(255, 212, 70, 0.96)
+  );
+}
+
+/* Champagne glow overlay on hover */
+.pearl-cta-glow {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    ellipse at 50% 50%,
+    rgba(212, 175, 55, 0.26) 0%,
+    transparent 65%
+  );
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  pointer-events: none;
+}
+
+.pearl-cta-btn:hover .pearl-cta-glow {
+  opacity: 1;
+}

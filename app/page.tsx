@@ -6,10 +6,12 @@ import Editorial from '@/components/sections/Editorial';
 import IconicCollections from '@/components/sections/IconicCollections';
 import Services from '@/components/sections/Services';
 import BoutiqueLocator from '@/components/sections/BoutiqueLocator';
+import IntroScreen from '@/components/IntroScreen';
 
 export default function Home() {
   return (
     <div className="flex flex-col w-full bg-brand-cream">
+      <IntroScreen />
       {/* 1. Hero Carousel */}
       <Hero />
 
